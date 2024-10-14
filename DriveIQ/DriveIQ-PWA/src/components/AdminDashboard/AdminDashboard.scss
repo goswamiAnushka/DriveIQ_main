@@ -1,0 +1,138 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #121212; // Dark background
+    color: #ffffff; // White text
+}
+
+.admin-dashboard {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    background-color: #1e1e1e; // Slightly lighter dark background
+}
+
+h2 {
+    text-align: center;
+    color: #e3e3e3; // Light gray color for header
+    margin-bottom: 20px;
+}
+
+.fetch-drivers-btn {
+    display: block;
+    margin: 0 auto 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #8a2be2; // Violet
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+        background-color: #7a1b99; // Darker violet on hover
+        transform: translateY(-2px);
+    }
+}
+
+.drivers-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.drivers-table th,
+.drivers-table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #444; // Slightly lighter border
+}
+
+.drivers-table th {
+    background-color: #5d5d5d; // Dark gray for header
+    color: #e3e3e3;
+}
+
+.drivers-table tr:nth-child(even) {
+    background-color: #2b2b2b; // Even row background
+}
+
+.drivers-table tr:hover {
+    background-color: #3a3a3a; // Hover effect
+}
+
+.action-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #9370db; // Light violet
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+        background-color: #7b68ee; // Darker light violet on hover
+        transform: translateY(-2px);
+    }
+}
+
+.error {
+    color: #ff6347; // Tomato color for error messages
+    text-align: center;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7); // Black overlay
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #292929; // Dark modal background
+    border-radius: 10px;
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease-in-out; // Modal fade in animation
+}
+
+.close {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
+
+    &:hover {
+        color: #ff6347; // Change color on hover
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// Chart styles
+.chart-container {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #333333; // Dark background for charts
+}

@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_ff5fc7a092b8c6ec45bdcd170505bcba {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_ff5fc7a092b8c6ec45bdcd170505bcba" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_ff5fc7a092b8c6ec45bdcd170505bcba = L.map(
+                "map_ff5fc7a092b8c6ec45bdcd170505bcba",
+                {
+                    center: [40.0242307, -83.0393514],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 12,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_2fbcc483c937f90f8700a5f62045f7f8 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_2fbcc483c937f90f8700a5f62045f7f8.addTo(map_ff5fc7a092b8c6ec45bdcd170505bcba);
+        
+    
+            var marker_cluster_f3b522719d743d6b4a083b2f8b12cce1 = L.markerClusterGroup(
+                {}
+            );
+        
+    
+            var marker_186beed59ddeb3b6fab7765c758d388f = L.marker(
+                [40.0242307, -83.0393514],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_3c370c23f21acd3fabec5f83765154a6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_186beed59ddeb3b6fab7765c758d388f.setIcon(icon_3c370c23f21acd3fabec5f83765154a6);
+        
+    
+        var popup_fe98f915f1bf9e6ddc43a5647b976423 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6f4836df04d7a2a64190732e7d9a9756 = $(`<div id="html_6f4836df04d7a2a64190732e7d9a9756" style="width: 100.0%; height: 100.0%;">School: Cranbrook School</div>`)[0];
+                popup_fe98f915f1bf9e6ddc43a5647b976423.setContent(html_6f4836df04d7a2a64190732e7d9a9756);
+            
+        
+
+        marker_186beed59ddeb3b6fab7765c758d388f.bindPopup(popup_fe98f915f1bf9e6ddc43a5647b976423)
+        ;
+
+        
+    
+    
+            var marker_185d54803d73789573a553c6f12f6831 = L.marker(
+                [39.9947867, -82.9829602],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_ef75c0b75014d2b554873655067297d6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_185d54803d73789573a553c6f12f6831.setIcon(icon_ef75c0b75014d2b554873655067297d6);
+        
+    
+        var popup_f1376e7b42c15c9f24eaf16390eee9c9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_abb4a6c1da66b02a7c907f29cba70674 = $(`<div id="html_abb4a6c1da66b02a7c907f29cba70674" style="width: 100.0%; height: 100.0%;">School: Eleventh Avenue School</div>`)[0];
+                popup_f1376e7b42c15c9f24eaf16390eee9c9.setContent(html_abb4a6c1da66b02a7c907f29cba70674);
+            
+        
+
+        marker_185d54803d73789573a553c6f12f6831.bindPopup(popup_f1376e7b42c15c9f24eaf16390eee9c9)
+        ;
+
+        
+    
+    
+            var marker_80759c1023ef1c1b23d9cd35ea4a118c = L.marker(
+                [40.0453419, -83.0060169],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_0d25f51c3018df60f7717d75bf05958b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_80759c1023ef1c1b23d9cd35ea4a118c.setIcon(icon_0d25f51c3018df60f7717d75bf05958b);
+        
+    
+        var popup_f1c5577783e05b604198bddb45f5425d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a3712ec87a2dd02503d70aedd6770b5a = $(`<div id="html_a3712ec87a2dd02503d70aedd6770b5a" style="width: 100.0%; height: 100.0%;">School: Glenmont School</div>`)[0];
+                popup_f1c5577783e05b604198bddb45f5425d.setContent(html_a3712ec87a2dd02503d70aedd6770b5a);
+            
+        
+
+        marker_80759c1023ef1c1b23d9cd35ea4a118c.bindPopup(popup_f1c5577783e05b604198bddb45f5425d)
+        ;
+
+        
+    
+    
+            var marker_e1014ebf28ebd1d3b7c4c4e8a51f3edc = L.marker(
+                [40.0081201, -83.0057389],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_b93813664d65956c6b6c5a1a7d21680c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_e1014ebf28ebd1d3b7c4c4e8a51f3edc.setIcon(icon_b93813664d65956c6b6c5a1a7d21680c);
+        
+    
+        var popup_7210ccbc62baed4a74e70b14b8899fa0 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f09116d600f7314b81ac580c4fe5905c = $(`<div id="html_f09116d600f7314b81ac580c4fe5905c" style="width: 100.0%; height: 100.0%;">School: Holy Name School</div>`)[0];
+                popup_7210ccbc62baed4a74e70b14b8899fa0.setContent(html_f09116d600f7314b81ac580c4fe5905c);
+            
+        
+
+        marker_e1014ebf28ebd1d3b7c4c4e8a51f3edc.bindPopup(popup_7210ccbc62baed4a74e70b14b8899fa0)
+        ;
+
+        
+    
+    
+            var marker_33797dd687dceccd4da4a71cebcf4903 = L.marker(
+                [39.9828422, -82.9596258],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_e40a548b2cf1c2a1bd2b1583545f88f2 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_33797dd687dceccd4da4a71cebcf4903.setIcon(icon_e40a548b2cf1c2a1bd2b1583545f88f2);
+        
+    
+        var popup_c0b64636c3b1bae193275ae795e8e371 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_981b5b891b2ee6f418473d644e20cf11 = $(`<div id="html_981b5b891b2ee6f418473d644e20cf11" style="width: 100.0%; height: 100.0%;">School: Leonard School</div>`)[0];
+                popup_c0b64636c3b1bae193275ae795e8e371.setContent(html_981b5b891b2ee6f418473d644e20cf11);
+            
+        
+
+        marker_33797dd687dceccd4da4a71cebcf4903.bindPopup(popup_c0b64636c3b1bae193275ae795e8e371)
+        ;
+
+        
+    
+    
+            var marker_6b83ad7328941918a7934e71815a8a4d = L.marker(
+                [40.0070229, -83.0105076],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_6f03cec2860301588e16da40d8b1b40b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_6b83ad7328941918a7934e71815a8a4d.setIcon(icon_6f03cec2860301588e16da40d8b1b40b);
+        
+    
+        var popup_cc415a1af8f0decf4c8d6d8f979a78bc = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_560d8a62ffd0808816c5b6aa4123c5c1 = $(`<div id="html_560d8a62ffd0808816c5b6aa4123c5c1" style="width: 100.0%; height: 100.0%;">School: Northwood School</div>`)[0];
+                popup_cc415a1af8f0decf4c8d6d8f979a78bc.setContent(html_560d8a62ffd0808816c5b6aa4123c5c1);
+            
+        
+
+        marker_6b83ad7328941918a7934e71815a8a4d.bindPopup(popup_cc415a1af8f0decf4c8d6d8f979a78bc)
+        ;
+
+        
+    
+    
+            var marker_5005e0acde3db9537f724d4da3235930 = L.marker(
+                [39.9747866, -82.9743486],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_78484344d07939845ad8f862bdb66c50 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_5005e0acde3db9537f724d4da3235930.setIcon(icon_78484344d07939845ad8f862bdb66c50);
+        
+    
+        var popup_5ca71798907a418b700031b7a8462e74 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a4cda2e806d5118dbb7a4ffc6e39876c = $(`<div id="html_a4cda2e806d5118dbb7a4ffc6e39876c" style="width: 100.0%; height: 100.0%;">School: Saint Dominic School</div>`)[0];
+                popup_5ca71798907a418b700031b7a8462e74.setContent(html_a4cda2e806d5118dbb7a4ffc6e39876c);
+            
+        
+
+        marker_5005e0acde3db9537f724d4da3235930.bindPopup(popup_5ca71798907a418b700031b7a8462e74)
+        ;
+
+        
+    
+    
+            var marker_cd56d6488b5923059a97e829bb71c236 = L.marker(
+                [40.0311753, -82.9696264],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_bd2373e64f93c34ee753e654f78b0aab = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_cd56d6488b5923059a97e829bb71c236.setIcon(icon_bd2373e64f93c34ee753e654f78b0aab);
+        
+    
+        var popup_3b9194cc4060477ebfb41e43178b2576 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_80c2652eb312fea532753c910c126ff2 = $(`<div id="html_80c2652eb312fea532753c910c126ff2" style="width: 100.0%; height: 100.0%;">School: Saint James the Less School</div>`)[0];
+                popup_3b9194cc4060477ebfb41e43178b2576.setContent(html_80c2652eb312fea532753c910c126ff2);
+            
+        
+
+        marker_cd56d6488b5923059a97e829bb71c236.bindPopup(popup_3b9194cc4060477ebfb41e43178b2576)
+        ;
+
+        
+    
+    
+            var marker_78e7d9b9459cc8f4a407f34795ffd38e = L.marker(
+                [40.0503418, -82.9751823],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_a44c48a2bb94034745c862e8ef16fdae = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_78e7d9b9459cc8f4a407f34795ffd38e.setIcon(icon_a44c48a2bb94034745c862e8ef16fdae);
+        
+    
+        var popup_353ee0370fce2bd8091963dcf7e702d5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_5e30322d2bcce2f77d91af1b31dac359 = $(`<div id="html_5e30322d2bcce2f77d91af1b31dac359" style="width: 100.0%; height: 100.0%;">School: Saint Mathias School</div>`)[0];
+                popup_353ee0370fce2bd8091963dcf7e702d5.setContent(html_5e30322d2bcce2f77d91af1b31dac359);
+            
+        
+
+        marker_78e7d9b9459cc8f4a407f34795ffd38e.bindPopup(popup_353ee0370fce2bd8091963dcf7e702d5)
+        ;
+
+        
+    
+    
+            var marker_6f4292aacecef434a5afe4b6ed6e0bd6 = L.marker(
+                [40.0139533, -83.00435],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_ed3a74a712ee30558cf353d2ecbd72fa = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_6f4292aacecef434a5afe4b6ed6e0bd6.setIcon(icon_ed3a74a712ee30558cf353d2ecbd72fa);
+        
+    
+        var popup_523e5d6d0a43c0e6d90c5c78553d4538 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4634fc55a1aae2b4935223585542ebfb = $(`<div id="html_4634fc55a1aae2b4935223585542ebfb" style="width: 100.0%; height: 100.0%;">School: Saint Medary School</div>`)[0];
+                popup_523e5d6d0a43c0e6d90c5c78553d4538.setContent(html_4634fc55a1aae2b4935223585542ebfb);
+            
+        
+
+        marker_6f4292aacecef434a5afe4b6ed6e0bd6.bindPopup(popup_523e5d6d0a43c0e6d90c5c78553d4538)
+        ;
+
+        
+    
+    
+            var marker_059f4061da4b99d81282485a2392f484 = L.marker(
+                [39.9870089, -82.9876826],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_d815472b6ff01100fc1f4c9890d63dd6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_059f4061da4b99d81282485a2392f484.setIcon(icon_d815472b6ff01100fc1f4c9890d63dd6);
+        
+    
+        var popup_0d4867b23b74b70dd8d6bfc751d5914c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f70554981fc6ba8015b0c110e141fd66 = $(`<div id="html_f70554981fc6ba8015b0c110e141fd66" style="width: 100.0%; height: 100.0%;">School: Saint Peters School</div>`)[0];
+                popup_0d4867b23b74b70dd8d6bfc751d5914c.setContent(html_f70554981fc6ba8015b0c110e141fd66);
+            
+        
+
+        marker_059f4061da4b99d81282485a2392f484.bindPopup(popup_0d4867b23b74b70dd8d6bfc751d5914c)
+        ;
+
+        
+    
+    
+            var marker_18379df7b9db65b35e0d14ea41ef5a58 = L.marker(
+                [39.986494, -82.944245],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_34eaef28cf4d87b0c0b5fc52af194cb9 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_18379df7b9db65b35e0d14ea41ef5a58.setIcon(icon_34eaef28cf4d87b0c0b5fc52af194cb9);
+        
+    
+        var popup_d58c73626176c0a580e3a51288f47f61 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d99de22b064b9d32345eae69c6b43f66 = $(`<div id="html_d99de22b064b9d32345eae69c6b43f66" style="width: 100.0%; height: 100.0%;">School: Shepard Center</div>`)[0];
+                popup_d58c73626176c0a580e3a51288f47f61.setContent(html_d99de22b064b9d32345eae69c6b43f66);
+            
+        
+
+        marker_18379df7b9db65b35e0d14ea41ef5a58.bindPopup(popup_d58c73626176c0a580e3a51288f47f61)
+        ;
+
+        
+    
+    
+            var marker_6c2752136c08a0d0d3c18312663f2f6d = L.marker(
+                [40.0006202, -83.0043499],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_852c3c3b83f2572106d49e2b47135ca0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_6c2752136c08a0d0d3c18312663f2f6d.setIcon(icon_852c3c3b83f2572106d49e2b47135ca0);
+        
+    
+        var popup_0b5c107d3635045916f9101dff166ff8 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_985fcde3cf2585302a43db4408ae6a7a = $(`<div id="html_985fcde3cf2585302a43db4408ae6a7a" style="width: 100.0%; height: 100.0%;">School: Indianola School</div>`)[0];
+                popup_0b5c107d3635045916f9101dff166ff8.setContent(html_985fcde3cf2585302a43db4408ae6a7a);
+            
+        
+
+        marker_6c2752136c08a0d0d3c18312663f2f6d.bindPopup(popup_0b5c107d3635045916f9101dff166ff8)
+        ;
+
+        
+    
+    
+            var marker_d04754836101ec9bdefff621fac9a485 = L.marker(
+                [40.0373062, -83.0415338],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_4de05ddb8600dc62760c18757e59f71f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_d04754836101ec9bdefff621fac9a485.setIcon(icon_4de05ddb8600dc62760c18757e59f71f);
+        
+    
+        var popup_c4d73d516322f91f0f4bb388b5f5eab0 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1493c7a02e1a1e8ea6567443529a876a = $(`<div id="html_1493c7a02e1a1e8ea6567443529a876a" style="width: 100.0%; height: 100.0%;">School: Ecole Kenwood French Emersion School K-6</div>`)[0];
+                popup_c4d73d516322f91f0f4bb388b5f5eab0.setContent(html_1493c7a02e1a1e8ea6567443529a876a);
+            
+        
+
+        marker_d04754836101ec9bdefff621fac9a485.bindPopup(popup_c4d73d516322f91f0f4bb388b5f5eab0)
+        ;
+
+        
+    
+    
+            var marker_1416bdda6bd017eb9a0dafe44f18207e = L.marker(
+                [40.0214529, -82.876289],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_7d863018312331965d8dfaa75d05fdbf = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_1416bdda6bd017eb9a0dafe44f18207e.setIcon(icon_7d863018312331965d8dfaa75d05fdbf);
+        
+    
+        var popup_9ee41c2ad667a9ba96c5f9dc7692ca79 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_478612290d8138c2a1c0c492859a97d9 = $(`<div id="html_478612290d8138c2a1c0c492859a97d9" style="width: 100.0%; height: 100.0%;">School: Lincoln School</div>`)[0];
+                popup_9ee41c2ad667a9ba96c5f9dc7692ca79.setContent(html_478612290d8138c2a1c0c492859a97d9);
+            
+        
+
+        marker_1416bdda6bd017eb9a0dafe44f18207e.bindPopup(popup_9ee41c2ad667a9ba96c5f9dc7692ca79)
+        ;
+
+        
+    
+    
+            var marker_acede0bb10428e5a65d51856f4734e3a = L.marker(
+                [39.9620084, -82.8721218],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_6f29215e144d07d360fdd049d6e8d168 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_acede0bb10428e5a65d51856f4734e3a.setIcon(icon_6f29215e144d07d360fdd049d6e8d168);
+        
+    
+        var popup_c762d72803da32531cdc795e5074f345 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1880a5affe99040cf9b7f9ab904606b1 = $(`<div id="html_1880a5affe99040cf9b7f9ab904606b1" style="width: 100.0%; height: 100.0%;">School: Rose More School</div>`)[0];
+                popup_c762d72803da32531cdc795e5074f345.setContent(html_1880a5affe99040cf9b7f9ab904606b1);
+            
+        
+
+        marker_acede0bb10428e5a65d51856f4734e3a.bindPopup(popup_c762d72803da32531cdc795e5074f345)
+        ;
+
+        
+    
+    
+            var marker_aacc593a085f661f7a906608d955d41d = L.marker(
+                [39.9866316, -82.9210524],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_bdc0fe73046d106a0b4e4c782008f5e0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_aacc593a085f661f7a906608d955d41d.setIcon(icon_bdc0fe73046d106a0b4e4c782008f5e0);
+        
+    
+        var popup_a86149c2435fe1e32336c177b9818029 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_966100eabaf7015fafcf3900d68a0159 = $(`<div id="html_966100eabaf7015fafcf3900d68a0159" style="width: 100.0%; height: 100.0%;">School: East Columbus Elementary School</div>`)[0];
+                popup_a86149c2435fe1e32336c177b9818029.setContent(html_966100eabaf7015fafcf3900d68a0159);
+            
+        
+
+        marker_aacc593a085f661f7a906608d955d41d.bindPopup(popup_a86149c2435fe1e32336c177b9818029)
+        ;
+
+        
+    
+    
+            var marker_a3222f1b7bd514445e30f2f9d8127b4b = L.marker(
+                [39.9861754, -82.9318468],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_8c32031d286d573a72a26d46666d187d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_a3222f1b7bd514445e30f2f9d8127b4b.setIcon(icon_8c32031d286d573a72a26d46666d187d);
+        
+    
+        var popup_bee1057835a103df7ba1da0e52dccf40 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b9025b9dad925b0591049ab40ecc8645 = $(`<div id="html_b9025b9dad925b0591049ab40ecc8645" style="width: 100.0%; height: 100.0%;">School: Saint Thomas the Apostle School</div>`)[0];
+                popup_bee1057835a103df7ba1da0e52dccf40.setContent(html_b9025b9dad925b0591049ab40ecc8645);
+            
+        
+
+        marker_a3222f1b7bd514445e30f2f9d8127b4b.bindPopup(popup_bee1057835a103df7ba1da0e52dccf40)
+        ;
+
+        
+    
+    
+            var marker_33038e8226ee371db02dbfc94714211d = L.marker(
+                [40.0453419, -82.9760156],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_35931e7f31fe0e987b912faf54545e5e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_33038e8226ee371db02dbfc94714211d.setIcon(icon_35931e7f31fe0e987b912faf54545e5e);
+        
+    
+        var popup_7f245bbea9097ea6235c0111ee2846a3 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_114eb3bde9738c8697d870adb7d4c323 = $(`<div id="html_114eb3bde9738c8697d870adb7d4c323" style="width: 100.0%; height: 100.0%;">School: Clinton Junior High School</div>`)[0];
+                popup_7f245bbea9097ea6235c0111ee2846a3.setContent(html_114eb3bde9738c8697d870adb7d4c323);
+            
+        
+
+        marker_33038e8226ee371db02dbfc94714211d.bindPopup(popup_7f245bbea9097ea6235c0111ee2846a3)
+        ;
+
+        
+    
+    
+            var marker_9abb0ec596e144c6c055eb967d7d165c = L.marker(
+                [39.96062, -82.9890716],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_f227c19b75979194f9918e256d899f02 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_9abb0ec596e144c6c055eb967d7d165c.setIcon(icon_f227c19b75979194f9918e256d899f02);
+        
+    
+        var popup_caeea39faf1884be1a239f20d6e44443 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1683e7051f78ce9fc92e4b41aa58d9cf = $(`<div id="html_1683e7051f78ce9fc92e4b41aa58d9cf" style="width: 100.0%; height: 100.0%;">School: Ohio Institution for the Education of the Deaf and Dumb</div>`)[0];
+                popup_caeea39faf1884be1a239f20d6e44443.setContent(html_1683e7051f78ce9fc92e4b41aa58d9cf);
+            
+        
+
+        marker_9abb0ec596e144c6c055eb967d7d165c.bindPopup(popup_caeea39faf1884be1a239f20d6e44443)
+        ;
+
+        
+    
+    
+            var marker_9fac0005dd774503d5b178a31210ef62 = L.marker(
+                [40.0409804, -83.019075],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_39ec6f95f01032f14c57884dd397c8b1 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_9fac0005dd774503d5b178a31210ef62.setIcon(icon_39ec6f95f01032f14c57884dd397c8b1);
+        
+    
+        var popup_00bfa100b257d5555258e90e73ffc5f8 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_66ea7d5a9665fb55e8133a4960f458ba = $(`<div id="html_66ea7d5a9665fb55e8133a4960f458ba" style="width: 100.0%; height: 100.0%;">School: Bible Institute of Ohio</div>`)[0];
+                popup_00bfa100b257d5555258e90e73ffc5f8.setContent(html_66ea7d5a9665fb55e8133a4960f458ba);
+            
+        
+
+        marker_9fac0005dd774503d5b178a31210ef62.bindPopup(popup_00bfa100b257d5555258e90e73ffc5f8)
+        ;
+
+        
+    
+    
+            var marker_acc2c6f26eac4aa0ca38fe8271ca544c = L.marker(
+                [39.9925644, -82.9490698],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_5ccef7ec9ce3249f9d9eeb369ae69f41 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_acc2c6f26eac4aa0ca38fe8271ca544c.setIcon(icon_5ccef7ec9ce3249f9d9eeb369ae69f41);
+        
+    
+        var popup_52c17ec324f898051bc55aece5cdbfc4 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ab18def60257dfa70a63d91354d88c4f = $(`<div id="html_ab18def60257dfa70a63d91354d88c4f" style="width: 100.0%; height: 100.0%;">School: Karl F Smith Bible School</div>`)[0];
+                popup_52c17ec324f898051bc55aece5cdbfc4.setContent(html_ab18def60257dfa70a63d91354d88c4f);
+            
+        
+
+        marker_acc2c6f26eac4aa0ca38fe8271ca544c.bindPopup(popup_52c17ec324f898051bc55aece5cdbfc4)
+        ;
+
+        
+    
+    
+            var marker_2d84179c7562dd7a19d3fe52b56c210b = L.marker(
+                [40.0011756, -82.9557367],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_74d461ad3cb7b06130c3dd3dc42b0e95 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_2d84179c7562dd7a19d3fe52b56c210b.setIcon(icon_74d461ad3cb7b06130c3dd3dc42b0e95);
+        
+    
+        var popup_b1575bee9a865aad13b46cdd560bb006 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_631b90874c92f6bfd520673309d48384 = $(`<div id="html_631b90874c92f6bfd520673309d48384" style="width: 100.0%; height: 100.0%;">School: Northeast Elementary School</div>`)[0];
+                popup_b1575bee9a865aad13b46cdd560bb006.setContent(html_631b90874c92f6bfd520673309d48384);
+            
+        
+
+        marker_2d84179c7562dd7a19d3fe52b56c210b.bindPopup(popup_b1575bee9a865aad13b46cdd560bb006)
+        ;
+
+        
+    
+    
+            var marker_d41eff3c2a4fbf7033948935e950829e = L.marker(
+                [40.0178421, -82.9518477],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_e18f61d902a2e6e3c0a0f1885d572fde = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_d41eff3c2a4fbf7033948935e950829e.setIcon(icon_e18f61d902a2e6e3c0a0f1885d572fde);
+        
+    
+        var popup_4e8fdf1aa2be981dfa9a0c20d58d5100 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_637ec668aa9a74f06e791d8f8ba4dbb4 = $(`<div id="html_637ec668aa9a74f06e791d8f8ba4dbb4" style="width: 100.0%; height: 100.0%;">School: East Linden Elementary School</div>`)[0];
+                popup_4e8fdf1aa2be981dfa9a0c20d58d5100.setContent(html_637ec668aa9a74f06e791d8f8ba4dbb4);
+            
+        
+
+        marker_d41eff3c2a4fbf7033948935e950829e.bindPopup(popup_4e8fdf1aa2be981dfa9a0c20d58d5100)
+        ;
+
+        
+    
+    
+            var marker_c06568772dc13686f4c3bf31fa2d03bf = L.marker(
+                [39.9642308, -82.871844],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_d9ba53a1c9b3ead3a294cf30cdb24ffe = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_c06568772dc13686f4c3bf31fa2d03bf.setIcon(icon_d9ba53a1c9b3ead3a294cf30cdb24ffe);
+        
+    
+        var popup_115e07d379edebd214bd0c891793018f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_16290a6ac7619342747008219dc5b660 = $(`<div id="html_16290a6ac7619342747008219dc5b660" style="width: 100.0%; height: 100.0%;">School: Kay Avenue Elementary School</div>`)[0];
+                popup_115e07d379edebd214bd0c891793018f.setContent(html_16290a6ac7619342747008219dc5b660);
+            
+        
+
+        marker_c06568772dc13686f4c3bf31fa2d03bf.bindPopup(popup_115e07d379edebd214bd0c891793018f)
+        ;
+
+        
+    
+    
+            var marker_12163e1be3eeef46eee2f0e71d062f54 = L.marker(
+                [40.0447863, -82.9707376],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_030e05e9f11e52e424f46ea7d9e994b0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_12163e1be3eeef46eee2f0e71d062f54.setIcon(icon_030e05e9f11e52e424f46ea7d9e994b0);
+        
+    
+        var popup_4c0b396f99223d5be431d8bba56beef9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_651c71129acfa1dba599f52967fd074d = $(`<div id="html_651c71129acfa1dba599f52967fd074d" style="width: 100.0%; height: 100.0%;">School: North Linden Elementary School</div>`)[0];
+                popup_4c0b396f99223d5be431d8bba56beef9.setContent(html_651c71129acfa1dba599f52967fd074d);
+            
+        
+
+        marker_12163e1be3eeef46eee2f0e71d062f54.bindPopup(popup_4c0b396f99223d5be431d8bba56beef9)
+        ;
+
+        
+    
+    
+            var marker_f8e3514b2b26b50d5e0adb24ae14a695 = L.marker(
+                [39.9808975, -83.0354624],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_b88c9c24e05dce7d62417b237ab71d64 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_f8e3514b2b26b50d5e0adb24ae14a695.setIcon(icon_b88c9c24e05dce7d62417b237ab71d64);
+        
+    
+        var popup_62f6387b49fdfc8ab59eac5b13649c87 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a105d18c2852ba144692567f82ffb037 = $(`<div id="html_a105d18c2852ba144692567f82ffb037" style="width: 100.0%; height: 100.0%;">School: Robert Louis Stevenson Elementary School</div>`)[0];
+                popup_62f6387b49fdfc8ab59eac5b13649c87.setContent(html_a105d18c2852ba144692567f82ffb037);
+            
+        
+
+        marker_f8e3514b2b26b50d5e0adb24ae14a695.bindPopup(popup_62f6387b49fdfc8ab59eac5b13649c87)
+        ;
+
+        
+    
+    
+            var marker_649852828d206679c0b5d2e45b88734d = L.marker(
+                [40.0342298, -83.0459208],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_a8340d385ceaef283bffbf661518ed97 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_649852828d206679c0b5d2e45b88734d.setIcon(icon_a8340d385ceaef283bffbf661518ed97);
+        
+    
+        var popup_a7656c3f389480ceb5bbfa067225e48d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_49b39f538233868295a10b927fa51245 = $(`<div id="html_49b39f538233868295a10b927fa51245" style="width: 100.0%; height: 100.0%;">School: Saint Timothy School</div>`)[0];
+                popup_a7656c3f389480ceb5bbfa067225e48d.setContent(html_49b39f538233868295a10b927fa51245);
+            
+        
+
+        marker_649852828d206679c0b5d2e45b88734d.bindPopup(popup_a7656c3f389480ceb5bbfa067225e48d)
+        ;
+
+        
+    
+    
+            var marker_cb08791188f03fd374671021b8d6a7e6 = L.marker(
+                [40.0216667, -82.9083333],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_050a5edad61686bc5183ba68750e4e78 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_cb08791188f03fd374671021b8d6a7e6.setIcon(icon_050a5edad61686bc5183ba68750e4e78);
+        
+    
+        var popup_5c3d596a7af27476e52c3f438a9298a9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4f6357dcfa8e1b2d762e086997de049b = $(`<div id="html_4f6357dcfa8e1b2d762e086997de049b" style="width: 100.0%; height: 100.0%;">School: Eagle Academy of Columbus</div>`)[0];
+                popup_5c3d596a7af27476e52c3f438a9298a9.setContent(html_4f6357dcfa8e1b2d762e086997de049b);
+            
+        
+
+        marker_cb08791188f03fd374671021b8d6a7e6.bindPopup(popup_5c3d596a7af27476e52c3f438a9298a9)
+        ;
+
+        
+    
+    
+            var marker_2f77134b67f7ff1cb69b5ca79d8eb21e = L.marker(
+                [40.0238889, -82.965],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_bcdf18c2134a272dd51745eef1980300 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_2f77134b67f7ff1cb69b5ca79d8eb21e.setIcon(icon_bcdf18c2134a272dd51745eef1980300);
+        
+    
+        var popup_efb53418e7e76d8291b0ccf69849f6a6 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0c59236904374bb9f73e940ba5b18a03 = $(`<div id="html_0c59236904374bb9f73e940ba5b18a03" style="width: 100.0%; height: 100.0%;">School: High Peaks Learning  Academy</div>`)[0];
+                popup_efb53418e7e76d8291b0ccf69849f6a6.setContent(html_0c59236904374bb9f73e940ba5b18a03);
+            
+        
+
+        marker_2f77134b67f7ff1cb69b5ca79d8eb21e.bindPopup(popup_efb53418e7e76d8291b0ccf69849f6a6)
+        ;
+
+        
+    
+    
+            var marker_28586e6c8e4b9e60fee73b3cf8a18df8 = L.marker(
+                [40.0347222, -82.9319444],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_6137300165fad71c3a64470dbddf2e5e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_28586e6c8e4b9e60fee73b3cf8a18df8.setIcon(icon_6137300165fad71c3a64470dbddf2e5e);
+        
+    
+        var popup_685c82a500ac18a75aafeb5452a02da9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_42de1a29bae64b91047b45afa9e2d329 = $(`<div id="html_42de1a29bae64b91047b45afa9e2d329" style="width: 100.0%; height: 100.0%;">School: Columbus Adventist Academy</div>`)[0];
+                popup_685c82a500ac18a75aafeb5452a02da9.setContent(html_42de1a29bae64b91047b45afa9e2d329);
+            
+        
+
+        marker_28586e6c8e4b9e60fee73b3cf8a18df8.bindPopup(popup_685c82a500ac18a75aafeb5452a02da9)
+        ;
+
+        
+    
+    
+            var marker_04bd862647d331d2fb94e5e0dcb98c6d = L.marker(
+                [39.9672222, -82.905],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_c06b2c9cfe5770bf3f806f5c87eb56c8 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_04bd862647d331d2fb94e5e0dcb98c6d.setIcon(icon_c06b2c9cfe5770bf3f806f5c87eb56c8);
+        
+    
+        var popup_d6a460e8ec22ba9d38eb5a73a00dc3fa = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_28e36c642c623c88c381aa57f1d9b348 = $(`<div id="html_28e36c642c623c88c381aa57f1d9b348" style="width: 100.0%; height: 100.0%;">School: A Plus Arts Academy</div>`)[0];
+                popup_d6a460e8ec22ba9d38eb5a73a00dc3fa.setContent(html_28e36c642c623c88c381aa57f1d9b348);
+            
+        
+
+        marker_04bd862647d331d2fb94e5e0dcb98c6d.bindPopup(popup_d6a460e8ec22ba9d38eb5a73a00dc3fa)
+        ;
+
+        
+    
+    
+            var marker_b1c766d4333a56516d82a72b79d52039 = L.marker(
+                [39.9652778, -82.985],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_6542ff11e851f0a63c7695fbafe11395 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_b1c766d4333a56516d82a72b79d52039.setIcon(icon_6542ff11e851f0a63c7695fbafe11395);
+        
+    
+        var popup_d06407ffa2089e166658a71939f88c93 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_669c2a0da310616121d340bdad4fa414 = $(`<div id="html_669c2a0da310616121d340bdad4fa414" style="width: 100.0%; height: 100.0%;">School: Academy For Leadership</div>`)[0];
+                popup_d06407ffa2089e166658a71939f88c93.setContent(html_669c2a0da310616121d340bdad4fa414);
+            
+        
+
+        marker_b1c766d4333a56516d82a72b79d52039.bindPopup(popup_d06407ffa2089e166658a71939f88c93)
+        ;
+
+        
+    
+    
+            var marker_22d01fdd500e68d886ec68b183313793 = L.marker(
+                [39.9694296, -82.9927742],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_afb3240ca7dadf8701dc633176a21dfe = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_22d01fdd500e68d886ec68b183313793.setIcon(icon_afb3240ca7dadf8701dc633176a21dfe);
+        
+    
+        var popup_803a865def0c162ed513f229c3db7959 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f902ad259ca73357c70852b6e31c316d = $(`<div id="html_f902ad259ca73357c70852b6e31c316d" style="width: 100.0%; height: 100.0%;">School: Ballet Met Dance Academy</div>`)[0];
+                popup_803a865def0c162ed513f229c3db7959.setContent(html_f902ad259ca73357c70852b6e31c316d);
+            
+        
+
+        marker_22d01fdd500e68d886ec68b183313793.bindPopup(popup_803a865def0c162ed513f229c3db7959)
+        ;
+
+        
+    
+    
+            var marker_46cf1f4dd62dd1e1690479df2f125639 = L.marker(
+                [39.9984944, -83.0353988],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_3f9e97508606e4d550e8dd8001c1e411 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_46cf1f4dd62dd1e1690479df2f125639.setIcon(icon_3f9e97508606e4d550e8dd8001c1e411);
+        
+    
+        var popup_cce8450addf6746200d26cabcf83847c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_286506f8a235ae2c33d6cedf668a58e6 = $(`<div id="html_286506f8a235ae2c33d6cedf668a58e6" style="width: 100.0%; height: 100.0%;">School: Metro Early College High School</div>`)[0];
+                popup_cce8450addf6746200d26cabcf83847c.setContent(html_286506f8a235ae2c33d6cedf668a58e6);
+            
+        
+
+        marker_46cf1f4dd62dd1e1690479df2f125639.bindPopup(popup_cce8450addf6746200d26cabcf83847c)
+        ;
+
+        
+    
+    
+            var marker_36a7c87bb695adc929a27c9e8fcc2d1c = L.marker(
+                [39.9936015, -83.0269415],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_e0960ba4cfbdc4029e5a941a798b9ef3 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_36a7c87bb695adc929a27c9e8fcc2d1c.setIcon(icon_e0960ba4cfbdc4029e5a941a798b9ef3);
+        
+    
+        var popup_6673c0944c815d80e7904b35d10278c5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_66f0d70780269fc2ed9b23dccbdcb4b0 = $(`<div id="html_66f0d70780269fc2ed9b23dccbdcb4b0" style="width: 100.0%; height: 100.0%;">Police: Clinton Township Police Target Substation</div>`)[0];
+                popup_6673c0944c815d80e7904b35d10278c5.setContent(html_66f0d70780269fc2ed9b23dccbdcb4b0);
+            
+        
+
+        marker_36a7c87bb695adc929a27c9e8fcc2d1c.bindPopup(popup_6673c0944c815d80e7904b35d10278c5)
+        ;
+
+        
+    
+    
+            var marker_21a11cee88edce78323e625b638f7e32 = L.marker(
+                [40.0549013, -82.8846595],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_4376b6540a238be5a1bba0afbf5b8555 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_21a11cee88edce78323e625b638f7e32.setIcon(icon_4376b6540a238be5a1bba0afbf5b8555);
+        
+    
+        var popup_b056cc1db0a79c18014882beb535b686 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7cc8064f5c7b3f39eb155af3b98975b2 = $(`<div id="html_7cc8064f5c7b3f39eb155af3b98975b2" style="width: 100.0%; height: 100.0%;">School: Unnamed</div>`)[0];
+                popup_b056cc1db0a79c18014882beb535b686.setContent(html_7cc8064f5c7b3f39eb155af3b98975b2);
+            
+        
+
+        marker_21a11cee88edce78323e625b638f7e32.bindPopup(popup_b056cc1db0a79c18014882beb535b686)
+        ;
+
+        
+    
+    
+            var marker_2acc5bba9b63de1c5aba21d9947d5d37 = L.marker(
+                [40.0023104, -83.033477],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_99c1d3903cb9847979145573035bf1b2 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_2acc5bba9b63de1c5aba21d9947d5d37.setIcon(icon_99c1d3903cb9847979145573035bf1b2);
+        
+    
+        var popup_5790b4cec9a2b0100f265dfda05ca22c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e37bc270d8d9aa69ce5038b9e10373cd = $(`<div id="html_e37bc270d8d9aa69ce5038b9e10373cd" style="width: 100.0%; height: 100.0%;">Police: The Ohio State University Police Division</div>`)[0];
+                popup_5790b4cec9a2b0100f265dfda05ca22c.setContent(html_e37bc270d8d9aa69ce5038b9e10373cd);
+            
+        
+
+        marker_2acc5bba9b63de1c5aba21d9947d5d37.bindPopup(popup_5790b4cec9a2b0100f265dfda05ca22c)
+        ;
+
+        
+    
+    
+            var marker_f8fd02ae28f6886bd980370b32ba23e8 = L.marker(
+                [39.9994711, -83.0162701],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_da84cb9baa7408b0dd50fb68c17493ae = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_f8fd02ae28f6886bd980370b32ba23e8.setIcon(icon_da84cb9baa7408b0dd50fb68c17493ae);
+        
+    
+        var popup_8d413b60a78be38f36acbfee7e986179 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_94c173da09559184a395712ade77a277 = $(`<div id="html_94c173da09559184a395712ade77a277" style="width: 100.0%; height: 100.0%;">Pharmacy: Student Life Student Health Services Pharmacy</div>`)[0];
+                popup_8d413b60a78be38f36acbfee7e986179.setContent(html_94c173da09559184a395712ade77a277);
+            
+        
+
+        marker_f8fd02ae28f6886bd980370b32ba23e8.bindPopup(popup_8d413b60a78be38f36acbfee7e986179)
+        ;
+
+        
+    
+    
+            var marker_fe4501244cfa008865f065275bb212ff = L.marker(
+                [39.9926803, -83.0428878],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_48f353ba73a81ae7b205731733a008be = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_fe4501244cfa008865f065275bb212ff.setIcon(icon_48f353ba73a81ae7b205731733a008be);
+        
+    
+        var popup_05586950a1c6dd8ce26e2d6ff5a2887c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e47d5c99d94be6fcb4d10e4bdf943b25 = $(`<div id="html_e47d5c99d94be6fcb4d10e4bdf943b25" style="width: 100.0%; height: 100.0%;">Pharmacy: Kroger Pharmacy</div>`)[0];
+                popup_05586950a1c6dd8ce26e2d6ff5a2887c.setContent(html_e47d5c99d94be6fcb4d10e4bdf943b25);
+            
+        
+
+        marker_fe4501244cfa008865f065275bb212ff.bindPopup(popup_05586950a1c6dd8ce26e2d6ff5a2887c)
+        ;
+
+        
+    
+    
+            var marker_9156f4593d9e522a0e9e7baa90dd81a9 = L.marker(
+                [40.0144144, -83.0003373],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_da666a00f3db1c0245577662e6605677 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_9156f4593d9e522a0e9e7baa90dd81a9.setIcon(icon_da666a00f3db1c0245577662e6605677);
+        
+    
+        var popup_b8c6cc4918a0cf8506b847856e158e05 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4bda26744a0c74e15e107128f5fbf951 = $(`<div id="html_4bda26744a0c74e15e107128f5fbf951" style="width: 100.0%; height: 100.0%;">School: Studio 614</div>`)[0];
+                popup_b8c6cc4918a0cf8506b847856e158e05.setContent(html_4bda26744a0c74e15e107128f5fbf951);
+            
+        
+
+        marker_9156f4593d9e522a0e9e7baa90dd81a9.bindPopup(popup_b8c6cc4918a0cf8506b847856e158e05)
+        ;
+
+        
+    
+    
+            var marker_589e6826bc4a9ba5cc6381a7b6c48f0c = L.marker(
+                [39.9703577, -82.9885145],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_49a565708ff491117b8eb1a005390068 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_589e6826bc4a9ba5cc6381a7b6c48f0c.setIcon(icon_49a565708ff491117b8eb1a005390068);
+        
+    
+        var popup_b6c8838da5e2768b2a48143a0835a0ed = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7383fe358a0c525b55981950fa1f1164 = $(`<div id="html_7383fe358a0c525b55981950fa1f1164" style="width: 100.0%; height: 100.0%;">Police: Columbus State Police Department</div>`)[0];
+                popup_b6c8838da5e2768b2a48143a0835a0ed.setContent(html_7383fe358a0c525b55981950fa1f1164);
+            
+        
+
+        marker_589e6826bc4a9ba5cc6381a7b6c48f0c.bindPopup(popup_b6c8838da5e2768b2a48143a0835a0ed)
+        ;
+
+        
+    
+    
+            var marker_751d08f7cdfba11eebaa6c017bd9615f = L.marker(
+                [39.9984062, -83.0117886],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_4b6bf4de30828a0380c3c3cef80264f3 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_751d08f7cdfba11eebaa6c017bd9615f.setIcon(icon_4b6bf4de30828a0380c3c3cef80264f3);
+        
+    
+        var popup_536e31a7ddb8e35e241c7e1479fbc6c2 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0a4e9e5de6af876d8f08b22a6671789b = $(`<div id="html_0a4e9e5de6af876d8f08b22a6671789b" style="width: 100.0%; height: 100.0%;">Library: Geology Library</div>`)[0];
+                popup_536e31a7ddb8e35e241c7e1479fbc6c2.setContent(html_0a4e9e5de6af876d8f08b22a6671789b);
+            
+        
+
+        marker_751d08f7cdfba11eebaa6c017bd9615f.bindPopup(popup_536e31a7ddb8e35e241c7e1479fbc6c2)
+        ;
+
+        
+    
+    
+            var marker_91af9c9bf4e38e90a0332c44f896e4df = L.marker(
+                [40.0102068, -82.853007],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_1ac997f70e68a2702bf8f7f36c1c9e62 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_91af9c9bf4e38e90a0332c44f896e4df.setIcon(icon_1ac997f70e68a2702bf8f7f36c1c9e62);
+        
+    
+        var popup_ca35276e4fa20f8959abbd185ee98dfc = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_06e8680f7545189c0b4ce0a0ae0d5d40 = $(`<div id="html_06e8680f7545189c0b4ce0a0ae0d5d40" style="width: 100.0%; height: 100.0%;">School: Gahanna Middle School South</div>`)[0];
+                popup_ca35276e4fa20f8959abbd185ee98dfc.setContent(html_06e8680f7545189c0b4ce0a0ae0d5d40);
+            
+        
+
+        marker_91af9c9bf4e38e90a0332c44f896e4df.bindPopup(popup_ca35276e4fa20f8959abbd185ee98dfc)
+        ;
+
+        
+    
+    
+            var marker_20331d568424539ba0170c19b930150e = L.marker(
+                [39.9969011, -83.0203844],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_6f38fb8c8e46eef4dadc3e10ab4e3e29 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_20331d568424539ba0170c19b930150e.setIcon(icon_6f38fb8c8e46eef4dadc3e10ab4e3e29);
+        
+    
+        var popup_cdb1c63e5233427c538c43bc5c6bdfa5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_efb8c176652ad36160cc981ee10f0bf4 = $(`<div id="html_efb8c176652ad36160cc981ee10f0bf4" style="width: 100.0%; height: 100.0%;">Library: Biological Sciences and Pharmacy Library</div>`)[0];
+                popup_cdb1c63e5233427c538c43bc5c6bdfa5.setContent(html_efb8c176652ad36160cc981ee10f0bf4);
+            
+        
+
+        marker_20331d568424539ba0170c19b930150e.bindPopup(popup_cdb1c63e5233427c538c43bc5c6bdfa5)
+        ;
+
+        
+    
+    
+            var marker_647cb14c9385d21cd2a443bc8c1cbdd2 = L.marker(
+                [39.9674207, -82.981391],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_69227bcba547b18ee718b0d69966ca80 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_647cb14c9385d21cd2a443bc8c1cbdd2.setIcon(icon_69227bcba547b18ee718b0d69966ca80);
+        
+    
+        var popup_aecef6b4170f8f92b7d68ea4c0e8c526 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_047949b0628efe3156e6dbe10ed5b639 = $(`<div id="html_047949b0628efe3156e6dbe10ed5b639" style="width: 100.0%; height: 100.0%;">Pharmacy: Equitas Health Pharmacy</div>`)[0];
+                popup_aecef6b4170f8f92b7d68ea4c0e8c526.setContent(html_047949b0628efe3156e6dbe10ed5b639);
+            
+        
+
+        marker_647cb14c9385d21cd2a443bc8c1cbdd2.bindPopup(popup_aecef6b4170f8f92b7d68ea4c0e8c526)
+        ;
+
+        
+    
+    
+            var marker_f78736da61f5d03422bfd9a4fe0c86dc = L.marker(
+                [39.9874402, -83.005307],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_4b81a1c8f59fbc63fab8b785cb5516b6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_f78736da61f5d03422bfd9a4fe0c86dc.setIcon(icon_4b81a1c8f59fbc63fab8b785cb5516b6);
+        
+    
+        var popup_097a326c0d2e2be207119a6e880e9dca = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_10851d606b7c08b5413f8ff1953e3e5f = $(`<div id="html_10851d606b7c08b5413f8ff1953e3e5f" style="width: 100.0%; height: 100.0%;">Pharmacy: AHF Pharmacy</div>`)[0];
+                popup_097a326c0d2e2be207119a6e880e9dca.setContent(html_10851d606b7c08b5413f8ff1953e3e5f);
+            
+        
+
+        marker_f78736da61f5d03422bfd9a4fe0c86dc.bindPopup(popup_097a326c0d2e2be207119a6e880e9dca)
+        ;
+
+        
+    
+    
+            var marker_fd3313c8bb9e723bf2c9f7c6afed9ac5 = L.marker(
+                [40.0197301, -82.8895785],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_03bddac1c4fdbe0d2ace8a49ec21ad57 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_fd3313c8bb9e723bf2c9f7c6afed9ac5.setIcon(icon_03bddac1c4fdbe0d2ace8a49ec21ad57);
+        
+    
+        var popup_392bc9bde2a207d80f6266861d0c9b0a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_85dc540d64494183fac61271fd0eeb23 = $(`<div id="html_85dc540d64494183fac61271fd0eeb23" style="width: 100.0%; height: 100.0%;">Pharmacy: CVS Pharmacy</div>`)[0];
+                popup_392bc9bde2a207d80f6266861d0c9b0a.setContent(html_85dc540d64494183fac61271fd0eeb23);
+            
+        
+
+        marker_fd3313c8bb9e723bf2c9f7c6afed9ac5.bindPopup(popup_392bc9bde2a207d80f6266861d0c9b0a)
+        ;
+
+        
+    
+    
+            var marker_35150ce75f66ef3f67a52cfa8ebe7fa1 = L.marker(
+                [40.0590738, -82.9525365],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_79ba13dfe8a4f70ebfd8480ab22cc1f1 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_35150ce75f66ef3f67a52cfa8ebe7fa1.setIcon(icon_79ba13dfe8a4f70ebfd8480ab22cc1f1);
+        
+    
+        var popup_a12888a310c0fc1e59cddbc193cb1f2d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e1ffff456d07dc862a9dabb75d829d86 = $(`<div id="html_e1ffff456d07dc862a9dabb75d829d86" style="width: 100.0%; height: 100.0%;">Pharmacy: CVS Pharmacy</div>`)[0];
+                popup_a12888a310c0fc1e59cddbc193cb1f2d.setContent(html_e1ffff456d07dc862a9dabb75d829d86);
+            
+        
+
+        marker_35150ce75f66ef3f67a52cfa8ebe7fa1.bindPopup(popup_a12888a310c0fc1e59cddbc193cb1f2d)
+        ;
+
+        
+    
+    
+            var marker_d4acc79df88e8842ff7564ca48db1a8b = L.marker(
+                [39.9724061, -82.9044324],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_37d123add7e55d40a10f248932cfdfea = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_d4acc79df88e8842ff7564ca48db1a8b.setIcon(icon_37d123add7e55d40a10f248932cfdfea);
+        
+    
+        var popup_45f7c5889f28282ad97a4975861b72a5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_164f94687fb6725fb9ea86666af1d3ef = $(`<div id="html_164f94687fb6725fb9ea86666af1d3ef" style="width: 100.0%; height: 100.0%;">Pharmacy: Walgreens</div>`)[0];
+                popup_45f7c5889f28282ad97a4975861b72a5.setContent(html_164f94687fb6725fb9ea86666af1d3ef);
+            
+        
+
+        marker_d4acc79df88e8842ff7564ca48db1a8b.bindPopup(popup_45f7c5889f28282ad97a4975861b72a5)
+        ;
+
+        
+    
+    
+            var marker_befaaa98c46c2c0b5e395132fbec4285 = L.marker(
+                [39.9940333, -83.0270575],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_5cebdde2ebc10abae3ca63167f8216d9 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_befaaa98c46c2c0b5e395132fbec4285.setIcon(icon_5cebdde2ebc10abae3ca63167f8216d9);
+        
+    
+        var popup_363d95bdc8f537f6923016e878708376 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_04168fa8a856b37fc8b50e44dced83d3 = $(`<div id="html_04168fa8a856b37fc8b50e44dced83d3" style="width: 100.0%; height: 100.0%;">Pharmacy: CVS Pharmacy</div>`)[0];
+                popup_363d95bdc8f537f6923016e878708376.setContent(html_04168fa8a856b37fc8b50e44dced83d3);
+            
+        
+
+        marker_befaaa98c46c2c0b5e395132fbec4285.bindPopup(popup_363d95bdc8f537f6923016e878708376)
+        ;
+
+        
+    
+    
+            var marker_f26aa818ba69899107364a80ccbec306 = L.marker(
+                [40.0011051, -83.0080318],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_0f29da2490765b6e974e1515f427ffd3 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_f26aa818ba69899107364a80ccbec306.setIcon(icon_0f29da2490765b6e974e1515f427ffd3);
+        
+    
+        var popup_0222029bf87d71dbaa8d534534d00e8c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ebd4fa6e5c21ff4b67f398342532af42 = $(`<div id="html_ebd4fa6e5c21ff4b67f398342532af42" style="width: 100.0%; height: 100.0%;">Pharmacy: CVS Pharmacy</div>`)[0];
+                popup_0222029bf87d71dbaa8d534534d00e8c.setContent(html_ebd4fa6e5c21ff4b67f398342532af42);
+            
+        
+
+        marker_f26aa818ba69899107364a80ccbec306.bindPopup(popup_0222029bf87d71dbaa8d534534d00e8c)
+        ;
+
+        
+    
+    
+            var marker_974a9221d7907d12fbd88d4ac85799f0 = L.marker(
+                [40.0566492, -82.9208736],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_91ac31288cd53af53be6c04fbc81efec = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_974a9221d7907d12fbd88d4ac85799f0.setIcon(icon_91ac31288cd53af53be6c04fbc81efec);
+        
+    
+        var popup_295dfbbf3846ce9d746f4f7716ed5088 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6c75872b317dffb5e3c16b16310841e6 = $(`<div id="html_6c75872b317dffb5e3c16b16310841e6" style="width: 100.0%; height: 100.0%;">Pharmacy: CVS Pharmacy</div>`)[0];
+                popup_295dfbbf3846ce9d746f4f7716ed5088.setContent(html_6c75872b317dffb5e3c16b16310841e6);
+            
+        
+
+        marker_974a9221d7907d12fbd88d4ac85799f0.bindPopup(popup_295dfbbf3846ce9d746f4f7716ed5088)
+        ;
+
+        
+    
+    
+            var marker_cad7411de33fa45a0af76a96422f41ef = L.marker(
+                [39.9711787, -82.8951771],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_461facca97f307d52219bfbb46be68b0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_cad7411de33fa45a0af76a96422f41ef.setIcon(icon_461facca97f307d52219bfbb46be68b0);
+        
+    
+        var popup_b4b1b1d725f699db763f87fd3a7e9b40 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_89c91a321bfe7b2cd9ff652b70cd3999 = $(`<div id="html_89c91a321bfe7b2cd9ff652b70cd3999" style="width: 100.0%; height: 100.0%;">Pharmacy: CVS Pharmacy</div>`)[0];
+                popup_b4b1b1d725f699db763f87fd3a7e9b40.setContent(html_89c91a321bfe7b2cd9ff652b70cd3999);
+            
+        
+
+        marker_cad7411de33fa45a0af76a96422f41ef.bindPopup(popup_b4b1b1d725f699db763f87fd3a7e9b40)
+        ;
+
+        
+    
+    
+            var marker_6349ed504f5e7584e992077a13f73603 = L.marker(
+                [39.9860961, -83.0281275],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_e144e7a43120f39167d1ca9d3300a7f5 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_6349ed504f5e7584e992077a13f73603.setIcon(icon_e144e7a43120f39167d1ca9d3300a7f5);
+        
+    
+        var popup_d7a3e4172c36a88704951cf67b44681d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c0dbfe6b2ee65941793de96639fb4020 = $(`<div id="html_c0dbfe6b2ee65941793de96639fb4020" style="width: 100.0%; height: 100.0%;">Pharmacy: Giant Eagle Pharmacy</div>`)[0];
+                popup_d7a3e4172c36a88704951cf67b44681d.setContent(html_c0dbfe6b2ee65941793de96639fb4020);
+            
+        
+
+        marker_6349ed504f5e7584e992077a13f73603.bindPopup(popup_d7a3e4172c36a88704951cf67b44681d)
+        ;
+
+        
+    
+    
+            var marker_90a3183937737d48f33e5493f39aac43 = L.marker(
+                [40.0191587, -83.0137983],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_622493f6ec6ca06f09b2e0767a54aee0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_90a3183937737d48f33e5493f39aac43.setIcon(icon_622493f6ec6ca06f09b2e0767a54aee0);
+        
+    
+        var popup_c69d9caabd912a62df8a5275e67e5f04 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f64356206399d68dc9f86c91fd88b0dc = $(`<div id="html_f64356206399d68dc9f86c91fd88b0dc" style="width: 100.0%; height: 100.0%;">Pharmacy: Giant Eagle Pharmacy</div>`)[0];
+                popup_c69d9caabd912a62df8a5275e67e5f04.setContent(html_f64356206399d68dc9f86c91fd88b0dc);
+            
+        
+
+        marker_90a3183937737d48f33e5493f39aac43.bindPopup(popup_c69d9caabd912a62df8a5275e67e5f04)
+        ;
+
+        
+    
+    
+            var marker_ad3d560fe8774040bc4f9d0c7feff1f3 = L.marker(
+                [39.9894595, -83.0052307],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_8b7e212bc84043c05b8c81897ea14f89 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_ad3d560fe8774040bc4f9d0c7feff1f3.setIcon(icon_8b7e212bc84043c05b8c81897ea14f89);
+        
+    
+        var popup_e8f0b849c3a78bccbaad28b89c94bbb3 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_47e05a939c2441b1efdaf1459cc5a7b8 = $(`<div id="html_47e05a939c2441b1efdaf1459cc5a7b8" style="width: 100.0%; height: 100.0%;">Pharmacy: Kroger Pharmacy</div>`)[0];
+                popup_e8f0b849c3a78bccbaad28b89c94bbb3.setContent(html_47e05a939c2441b1efdaf1459cc5a7b8);
+            
+        
+
+        marker_ad3d560fe8774040bc4f9d0c7feff1f3.bindPopup(popup_e8f0b849c3a78bccbaad28b89c94bbb3)
+        ;
+
+        
+    
+    
+            var marker_cb529db66c9150b18c4a78fb995d8e7c = L.marker(
+                [40.0328366, -82.9113763],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_e80a1464b743913ea26e2bf871029d80 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_cb529db66c9150b18c4a78fb995d8e7c.setIcon(icon_e80a1464b743913ea26e2bf871029d80);
+        
+    
+        var popup_d84fa7826b9683171ee15c36d90ea8cd = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_564e755c10d48381de9dce1d73f74600 = $(`<div id="html_564e755c10d48381de9dce1d73f74600" style="width: 100.0%; height: 100.0%;">Pharmacy: CVS Pharmacy</div>`)[0];
+                popup_d84fa7826b9683171ee15c36d90ea8cd.setContent(html_564e755c10d48381de9dce1d73f74600);
+            
+        
+
+        marker_cb529db66c9150b18c4a78fb995d8e7c.bindPopup(popup_d84fa7826b9683171ee15c36d90ea8cd)
+        ;
+
+        
+    
+    
+            var marker_2a2df4698e2feea6c8beae060d988035 = L.marker(
+                [39.989092, -83.0451853],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_19393fd2a88eca563e88037fdbcc4762 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_2a2df4698e2feea6c8beae060d988035.setIcon(icon_19393fd2a88eca563e88037fdbcc4762);
+        
+    
+        var popup_7ca9798d1f17bd9e22e37936a545699f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ce4e7317a5f13973d3889b3c99ff2f8d = $(`<div id="html_ce4e7317a5f13973d3889b3c99ff2f8d" style="width: 100.0%; height: 100.0%;">Pharmacy: Walgreens</div>`)[0];
+                popup_7ca9798d1f17bd9e22e37936a545699f.setContent(html_ce4e7317a5f13973d3889b3c99ff2f8d);
+            
+        
+
+        marker_2a2df4698e2feea6c8beae060d988035.bindPopup(popup_7ca9798d1f17bd9e22e37936a545699f)
+        ;
+
+        
+    
+    
+            var marker_044bfa340b90b8d6fe841d8ef4e5e9fa = L.marker(
+                [39.988042, -83.0465846],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_6e6df54b0d550e4d9848940d0456f260 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_044bfa340b90b8d6fe841d8ef4e5e9fa.setIcon(icon_6e6df54b0d550e4d9848940d0456f260);
+        
+    
+        var popup_14222f8df4a2bf782c6b94e824f394a7 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9c8dc84e20255020bc715859d0e896cb = $(`<div id="html_9c8dc84e20255020bc715859d0e896cb" style="width: 100.0%; height: 100.0%;">Pharmacy: CVS Pharmacy</div>`)[0];
+                popup_14222f8df4a2bf782c6b94e824f394a7.setContent(html_9c8dc84e20255020bc715859d0e896cb);
+            
+        
+
+        marker_044bfa340b90b8d6fe841d8ef4e5e9fa.bindPopup(popup_14222f8df4a2bf782c6b94e824f394a7)
+        ;
+
+        
+    
+    
+            var marker_e34de8a95355b6ce3ba3e06c221630cb = L.marker(
+                [40.0126349, -82.9142245],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_87f4a8917b5246140ad40c79ef50fccd = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_e34de8a95355b6ce3ba3e06c221630cb.setIcon(icon_87f4a8917b5246140ad40c79ef50fccd);
+        
+    
+        var popup_742f59746032a57446d9e88c96c1c616 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9be88db81ee0727b79008031366e0c72 = $(`<div id="html_9be88db81ee0727b79008031366e0c72" style="width: 100.0%; height: 100.0%;">Hospital: Columbus Springs East</div>`)[0];
+                popup_742f59746032a57446d9e88c96c1c616.setContent(html_9be88db81ee0727b79008031366e0c72);
+            
+        
+
+        marker_e34de8a95355b6ce3ba3e06c221630cb.bindPopup(popup_742f59746032a57446d9e88c96c1c616)
+        ;
+
+        
+    
+    
+            var marker_093066c8532762868c7631908abedde4 = L.marker(
+                [40.0037373, -83.0163936],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_406e2f975a7ec184c1d0c29608125de2 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_093066c8532762868c7631908abedde4.setIcon(icon_406e2f975a7ec184c1d0c29608125de2);
+        
+    
+        var popup_e32798d840612b68e0d5fa2173b9e88c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c5638d3191bd78ca87ea114dd690d0ba = $(`<div id="html_c5638d3191bd78ca87ea114dd690d0ba" style="width: 100.0%; height: 100.0%;">Library: Architecture Library</div>`)[0];
+                popup_e32798d840612b68e0d5fa2173b9e88c.setContent(html_c5638d3191bd78ca87ea114dd690d0ba);
+            
+        
+
+        marker_093066c8532762868c7631908abedde4.bindPopup(popup_e32798d840612b68e0d5fa2173b9e88c)
+        ;
+
+        
+    
+    
+            var marker_290979cec2ff78ca51e63bd3e7c236e4 = L.marker(
+                [40.0359774, -83.0314595],
+                {}
+            ).addTo(marker_cluster_f3b522719d743d6b4a083b2f8b12cce1);
+        
+    
+            var icon_0c4682c7b8b34434632c0dcd686d9522 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_290979cec2ff78ca51e63bd3e7c236e4.setIcon(icon_0c4682c7b8b34434632c0dcd686d9522);
+        
+    
+        var popup_8fbd89ba0aaafa0d44644daa2b1cace9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6513a1f9d00abdb43d77fa83d30884fe = $(`<div id="html_6513a1f9d00abdb43d77fa83d30884fe" style="width: 100.0%; height: 100.0%;">Nursing_Home: Riverview Health & Rehabilitation Center</div>`)[0];
+                popup_8fbd89ba0aaafa0d44644daa2b1cace9.setContent(html_6513a1f9d00abdb43d77fa83d30884fe);
+            
+        
+
+        marker_290979cec2ff78ca51e63bd3e7c236e4.bindPopup(popup_8fbd89ba0aaafa0d44644daa2b1cace9)
+        ;
+
+        
+    
+    
+            marker_cluster_f3b522719d743d6b4a083b2f8b12cce1.addTo(map_ff5fc7a092b8c6ec45bdcd170505bcba);
+        
+</script>
+</html>

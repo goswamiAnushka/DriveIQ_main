@@ -1,0 +1,210 @@
+.login-page {
+  display: flex;
+  min-height: 100vh;
+
+  .login-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f4f8;
+
+    .login-box {
+      width: 80%;
+      max-width: 400px;
+      padding: 40px;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      text-align: center;
+
+      h2 {
+        margin-bottom: 20px;
+        font-size: 2rem;
+        color: #002855;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+        label {
+          display: block;
+          margin-bottom: 5px;
+          font-size: 1.1rem;
+        }
+
+        input {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 1rem;
+        }
+      }
+
+      .btn-login {
+        width: 100%;
+        padding: 10px 20px;
+        background-color: #002855;
+        color: white;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #001d3d;
+        }
+      }
+
+      .register-link {
+        margin-top: 15px;
+        font-size: 0.9rem;
+      }
+
+      .admin-link {
+        margin-top: 15px;
+        font-size: 0.9rem;
+      }
+
+      .error-message {
+        color: red;
+        margin-bottom: 15px;
+      }
+    }
+  }
+
+  .login-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #002855;
+
+    img {
+      max-width: 90%;
+      border-radius: 10px;
+    }
+  }
+}
+.login-page {
+  display: flex;
+  flex-direction: column; // Stack elements vertically on small screens
+  min-height: 100vh;
+
+  @media (min-width: 768px) {
+    flex-direction: row; // Change to row layout on larger screens
+  }
+
+  .login-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f4f8;
+
+    .login-box {
+      width: 90%; // Take 90% width on smaller screens
+      max-width: 400px;
+      padding: 20px; // Reduced padding for better fit
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      text-align: center;
+
+      h2 {
+        margin-bottom: 15px; // Adjusted margin for smaller spacing
+        font-size: 1.8rem; // Smaller font size for mobile
+        color: #002855;
+      }
+
+      .form-group {
+        margin-bottom: 15px; // Adjusted margin for form groups
+        label {
+          display: block;
+          margin-bottom: 5px;
+          font-size: 1rem; // Smaller font size for labels
+        }
+
+        input {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 0.9rem; // Smaller font size for inputs
+        }
+      }
+
+      .btn-login {
+        width: 100%;
+        padding: 10px 20px;
+        background-color: #002855;
+        color: white;
+        font-size: 1rem; // Adjusted font size for buttons
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #001d3d;
+        }
+      }
+
+      .register-link,
+      .admin-link {
+        margin-top: 10px; // Reduced margin for links
+        font-size: 0.8rem; // Smaller font size for links
+      }
+
+      .error-message {
+        color: red;
+        margin-bottom: 15px;
+        font-size: 0.9rem; // Smaller error message font
+      }
+    }
+  }
+
+  .login-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #002855;
+
+    img {
+      max-width: 90%;
+      border-radius: 10px;
+      object-fit: cover; // Maintain aspect ratio and fill the container
+    }
+  }
+
+  // Media queries for larger screens
+  @media (min-width: 768px) {
+    .login-left .login-box {
+      padding: 40px; // Restore padding on larger screens
+    }
+
+    .login-left .login-box h2 {
+      font-size: 2rem; // Restore larger font size for headers
+    }
+
+    .login-left .login-box .btn-login {
+      font-size: 1.2rem; // Restore larger font size for buttons
+    }
+
+    .login-left .login-box .register-link,
+    .login-left .login-box .admin-link {
+      font-size: 0.9rem; // Restore font size for links
+    }
+  }
+
+  // Hide the image on small screens
+  @media (max-width: 768px) {
+    .login-right {
+      display: none; // Hide the image on smaller screens
+    }
+  }
+}

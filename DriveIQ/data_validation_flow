@@ -1,0 +1,20 @@
+// Data Validation Flow
+digraph {
+	A [label="Client Sends Data"]
+	B [label="API Receives Data"]
+	C [label="Data Structure Validation"]
+	D [label="Data Type Validation"]
+	E [label="Value Range Validation"]
+	F [label="Data Cleaning and Transformation"]
+	G [label="Error Handling"]
+	H [label="Processed Data Ready for Use"]
+	I [label="Further Processing / Storage"]
+	A -> B [label="Request Data"]
+	B -> C [label=Validation]
+	C -> D [label="Check Structure"]
+	D -> E [label="Check Data Types"]
+	E -> F [label="Transform Data"]
+	F -> G [label="Check for Errors"]
+	G -> H [label="Return Processed Data"]
+	H -> I [label="Save / Process Further"]
+}

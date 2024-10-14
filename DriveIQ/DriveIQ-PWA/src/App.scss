@@ -1,0 +1,19 @@
+.app-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  h1, h2, p {
+    margin: 20px 0;
+    color: #333;
+  }
+  
+  a {
+    color: #007bff;
+    text-decoration: none;
+  
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  

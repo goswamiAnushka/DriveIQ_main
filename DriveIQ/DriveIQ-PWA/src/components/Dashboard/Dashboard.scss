@@ -1,0 +1,656 @@
+.dashboard-container {
+  padding: 40px;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(145deg, #1c1f27, #2d323e); /* Modern darker tone with subtle contrast */
+  max-width: 1200px;
+  margin: 40px auto;
+  border-radius: 30px;
+  box-shadow: 0px 15px 50px rgba(0, 0, 0, 0.3);
+  transition: all 0.5s ease;
+
+  &:hover {
+    box-shadow: 0px 20px 60px rgba(0, 0, 0, 0.4);
+    transform: translateY(-5px);
+  }
+
+  h2 {
+    text-align: center;
+    color: #ffffff;
+    font-size: 3rem;
+    margin-bottom: 30px;
+    letter-spacing: 1.8px;
+    text-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+    transition: color 0.5s ease;
+  }
+
+  .tracking-controls {
+    display: flex;
+    justify-content: space-between; /* Properly space buttons on larger screens */
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+  }
+
+  button {
+    background: linear-gradient(135deg, #8e44ad, #9b59b6); /* Violet gradient for rich contrast */
+    border: none;
+    color: white;
+    padding: 12px 28px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: all 0.4s ease;
+    box-shadow: 0 6px 20px rgba(142, 68, 173, 0.5), inset 0 3px 7px rgba(255, 255, 255, 0.3);
+
+    &:hover {
+      background: linear-gradient(135deg, #9b59b6, #8e44ad);
+      box-shadow: 0 8px 25px rgba(142, 68, 173, 0.8);
+      transform: translateY(-4px);
+    }
+
+    &:active {
+      transform: translateY(2px);
+      box-shadow: none;
+    }
+  }
+
+  /* Graph Section - Adjust for better spacing and 3D effect */
+  .chart-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two graphs in one row */
+    grid-gap: 30px; /* Space between graphs */
+    margin: 30px 0;
+  }
+
+  .chart-container,
+  .distribution-chart-container {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease;
+    position: relative; /* For 3D effect */
+    width: 100%;
+    margin: 0;
+
+    &:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    canvas {
+      height: 300px !important;
+      width: 100% !important;
+    }
+  }
+
+  /* Specific Styling for 3D Dashboard Look */
+  .chart-container::before,
+  .distribution-chart-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(145deg, rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.15));
+    border-radius: 25px;
+    pointer-events: none;
+  }
+
+  /* Map Section */
+  .map-section {
+    margin: 70px 0;
+
+    h3 {
+      text-align: center;
+      font-size: 2.6rem;
+      margin-bottom: 25px;
+      color: #f0f0f0;
+    }
+
+    .map-container {
+      height: 400px;
+      border-radius: 25px;
+      background: linear-gradient(135deg, #34495e, #5d6d7e);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), inset 0 8px 15px rgba(255, 255, 255, 0.15);
+      transition: all 0.5s ease;
+
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 22px 50px rgba(0, 0, 0, 0.35);
+      }
+    }
+  }
+
+  /* Data Section */
+  .daily-data-section {
+    margin-top: 50px;
+    background: #f3f6f9;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    color: #2c3e50;
+
+    h3 {
+      color: #34495e;
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+    }
+  }
+
+  /* Responsive Layout Adjustments */
+  @media (max-width: 1024px) {
+    .chart-grid {
+      grid-template-columns: 1fr; /* One graph per row on smaller screens */
+      grid-gap: 20px;
+    }
+
+    h2 {
+      font-size: 2.6rem;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 1.2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .chart-grid {
+      grid-template-columns: 1fr;
+    }
+
+    h2 {
+      font-size: 2.4rem;
+    }
+
+    button {
+      padding: 10px 22px;
+      font-size: 1.2rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .chart-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .chart-container,
+    .distribution-chart-container {
+      padding: 20px;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+    }
+  }
+}
+.welcome-popup {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  z-index: 1000;
+  animation: slide-in 0.5s ease-out forwards;
+
+  .popup-content {
+    text-align: center;
+    h2 {
+      margin-bottom: 10px;
+      color: #34495e;
+      font-size: 24px;
+    }
+    p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      background-color: #34495e;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+
+      &:hover {
+        background-color: #2c3e50;
+      }
+    }
+    img {
+      max-width: 100px;
+      margin-top: 20px;
+    }
+  }
+
+  .close-btn {
+    background-color: #e74c3c;
+    &:hover {
+      background-color: #c0392b;
+    }
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translate(-50%, -100%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+}
+.welcome-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border: 2px solid #34495e;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+// Dashboard.scss
+
+.welcome-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  .popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .popup-title {
+    color: #6c5ce7; // Violet color
+    font-size: 24px;
+  }
+
+  .fountain-animation {
+    font-size: 20px;
+    color: #ff4757; // Red color
+    animation: fountain 2s infinite;
+  }
+
+  @keyframes fountain {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+
+  .close-popup {
+    background: none;
+    border: none;
+    color: #ff4757;
+    font-size: 24px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin: 10px;
+}
+
+.dashboard-container {
+  padding: 20px;
+}
+
+.tracking-controls {
+  margin: 20px 0;
+}
+.dashboard-container {
+  padding: 20px;
+  background-color: #f0f0f5; // Light background for contrast
+}
+
+.chart-section {
+  margin-top: 30px;
+}
+
+.chart-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px; // Add some space between the charts
+}
+
+.chart-container .chart-wrapper {
+  width: 48%; // Adjusts the size to fit two charts in a row
+  height: 300px; // Adjust height to fit smaller graphs
+  background-color: #1b1b1b; // Dark background for the chart container
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chart-container .chart-wrapper:hover {
+  transform: scale(1.05); // Slight zoom effect on hover
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* General Styling for text */
+h2, h3 {
+  color: #8a2be2; // Violet shade for headings
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.2);
+}
+
+/* Buttons and controls */
+button {
+  background-color: #8a2be2;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #5d3bb7; // Darker violet on hover
+}
+
+/* Adjust the layout for mobile screens */
+@media (max-width: 768px) {
+  .chart-container .chart-wrapper {
+    width: 100%; // Stack charts on smaller screens
+  }
+}
+// Dashboard.scss
+
+.dashboard-container {
+  padding: 40px;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(145deg, #1c1f27, #2d323e); /* Default background for dark mode */
+  max-width: 1200px;
+  margin: 40px auto;
+  border-radius: 30px;
+  box-shadow: 0px 15px 50px rgba(0, 0, 0, 0.3);
+  transition: all 0.5s ease;
+
+  &.dark-mode { // Dark mode styles
+    background: #121212; // Dark background
+    color: #ffffff; // Light text color
+    
+    h2, h3, p {
+      color: #ffffff; // Make headings and paragraphs white
+    }
+
+    button {
+      background: linear-gradient(135deg, #8e44ad, #9b59b6); // Keep the same button styles
+      color: white;
+    }
+  }
+
+  // The rest of your existing styles remain unchanged...
+}
+
+// Add styles for the dark mode toggle button
+.dark-mode-toggle {
+  margin: 20px 0;
+  text-align: center;
+
+  button {
+    background-color: #8a2be2; // Violet color
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #5d3bb7; // Darker violet on hover
+    }
+  }
+}
+.dashboard-container {
+  position: relative; // Allows absolute positioning of child elements
+
+  .dark-mode-toggle {
+    position: absolute;
+    top: 20px; // Adjust as necessary for spacing
+    right: 20px; // Adjust as necessary for spacing
+    cursor: pointer;
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: scale(1.1); // Slightly scale up on hover for effect
+    }
+  }
+
+  // Button Styling
+  .tracking-controls button {
+    padding: 10px 15px; // Adjust padding for size
+    font-size: 16px; // Adjust font size
+    border: none;
+    border-radius: 5px; // Rounded corners
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+
+    &:hover {
+      background-color: #34495e; // Change background color on hover
+      color: white; // Change text color on hover
+    }
+  }
+
+}
+.dashboard-container {
+  padding: 40px;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(145deg, #1c1f27, #2d323e); /* Modern darker tone */
+  max-width: 1200px;
+  margin: 40px auto;
+  border-radius: 30px;
+  box-shadow: 0px 15px 50px rgba(0, 0, 0, 0.3);
+  transition: all 0.5s ease;
+
+  &.dark-mode { 
+    background: #121212; /* Dark mode background */
+    color: #ffffff; /* Light text for dark mode */
+    
+    h2, h3, p {
+      color: #ffffff;
+    }
+
+    button {
+      background: linear-gradient(135deg, #8e44ad, #9b59b6);
+      color: white;
+    }
+
+    .chart-container {
+      background-color: #2c2c2c; /* Dark background for charts */
+    }
+
+    .chart-wrapper {
+      background-color: #1b1b1b; /* Slightly darker for depth */
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5); /* More shadow in dark mode */
+    }
+
+    .tracking-controls button {
+      background-color: #8a2be2; /* Violet for buttons */
+      color: white;
+    }
+  }
+
+  &.light-mode { 
+    background: #f0f0f5; /* Light background */
+    color: #2c3e50; /* Dark text for light mode */
+    
+    h2, h3, p {
+      color: #2c3e50;
+    }
+
+    button {
+      background: linear-gradient(135deg, #34495e, #5d6d7e); /* Softer tones for light mode */
+      color: white;
+    }
+
+    .chart-container {
+      background-color: #ffffff; /* Light background for charts */
+    }
+
+    .chart-wrapper {
+      background-color: #f5f5f5; /* Slightly lighter for depth */
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Less shadow in light mode */
+    }
+
+    .tracking-controls button {
+      background-color: #34495e; /* Darker for buttons */
+      color: white;
+    }
+  }
+
+  .dark-mode-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    button {
+      background-color: #8a2be2; /* Violet for toggle */
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #5d3bb7;
+      }
+    }
+  }
+
+  .chart-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .chart-wrapper {
+    width: 48%;
+    height: 300px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .chart-wrapper:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  h2, h3 {
+    color: #8a2be2;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.2);
+  }
+
+  .tracking-controls button {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+
+    &:hover {
+      background-color: #34495e;
+      color: white;
+    }
+  }
+}
+.dashboard-container {
+  padding: 40px;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(145deg, #1c1f27, #2d323e);
+  max-width: 1200px;
+  margin: 40px auto;
+  border-radius: 30px;
+  box-shadow: 0px 15px 50px rgba(0, 0, 0, 0.3);
+  transition: all 0.5s ease;
+  
+  .chart-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .chart-wrapper {
+    flex: 1 1 48%; /* Two charts per row on large screens */
+    height: 300px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #1b1b1b;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .chart-wrapper {
+      flex: 1 1 100%; /* Full width for charts on smaller screens */
+    }
+  }
+
+  @media (max-width: 480px) {
+    .chart-wrapper {
+      flex: 1 1 100%; /* Full width for charts on smaller screens */
+      height: auto; /* Adjust height to fit smaller screens */
+      padding: 10px;
+    }
+  }
+}

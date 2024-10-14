@@ -1,0 +1,269 @@
+// General Chatbot Container Styling
+.chatbot {
+  max-width: 450px;      // Increase the width
+  height: 500px;
+  position: fixed;
+  bottom: 20px;       
+  right: 20px;       
+  background: linear-gradient(135deg, #2c2c54, #4b0082);
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  z-index: 9999;     
+}
+
+// Chatbot Header
+.chatbot-header {
+  background-color: #4b0082;
+  padding: 10px;
+  color: #fff;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.close-button:hover {
+  transform: scale(1.1);
+}
+
+// Messages Section
+.chatbot-messages {
+  flex-grow: 1;
+  padding: 15px;
+  overflow-y: auto;
+  background: #f0f0f5;
+  border-bottom: 1px solid #d3d3e0;
+  width: 95%;      // Increase the width of the message area
+  margin: 0 auto;
+}
+
+// Message Styling
+.message {
+  margin-bottom: 15px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 15px;
+  line-height: 1.4;
+  width: fit-content;
+  max-width: 90%;    // Slightly increase the message width
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+// User Message Styling
+.message.user {
+  background-color: #4b0082;
+  color: #fff;
+  align-self: flex-end;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+// Bot Message Styling
+.message.bot {
+  background-color: #fff;
+  color: #2c2c54;
+  align-self: flex-start;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+// Input Section
+.chatbot-input-form {
+  display: flex;
+  background-color: #2c2c54;
+  padding: 15px;
+  border-top: 1px solid #4b0082;
+}
+
+.chatbot-input-form input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #4b0082;
+  margin-right: 10px;
+  background: #f5f5f5;
+  color: #333;
+  transition: border 0.2s ease-in;
+}
+
+.chatbot-input-form input:focus {
+  border-color: #9400d3;
+}
+
+.chatbot-input-form button {
+  background: linear-gradient(135deg, #0066ff, #003399);   // 3D Blue Gradient
+  color: #fff;
+  padding: 8px 12px;     // Decrease button size
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);  // Add some depth
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.chatbot-input-form button:hover {
+  background: linear-gradient(135deg, #003399, #001f66);  // Darker gradient on hover
+  transform: translateY(-2px);  // 3D effect
+}
+
+// Quick Options Styling
+.quick-options {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  background-color: #f0f0f5;
+  border-top: 1px solid #d3d3e0;
+}
+
+.quick-options button {
+  background: linear-gradient(135deg, #0066ff, #003399);  // 3D Blue Gradient for buttons
+  color: #fff;
+  border: none;
+  margin: 5px;
+  padding: 8px 12px;   // Reduce button padding
+  border-radius: 5px;
+  cursor: pointer;
+  flex: 1;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);  // Add shadow for 3D effect
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.quick-options button:hover {
+  background: linear-gradient(135deg, #003399, #001f66);  // Darker hover gradient
+  transform: translateY(-2px);  // Button rises up for 3D effect
+}
+
+// Unregister Form Styling
+.unregister-form {
+  padding: 15px;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.unregister-form input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #4b0082;
+}
+
+.unregister-form button {
+  background: linear-gradient(135deg, #0066ff, #003399);  // 3D Blue Gradient for the unregister button
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);  // Add shadow for depth
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.unregister-form button:hover {
+  background: linear-gradient(135deg, #003399, #001f66);  // Darker gradient on hover
+  transform: translateY(-2px);
+}
+
+// Feedback Options Styling
+.feedback-options {
+  padding: 15px;
+  background-color: #f5f5f5;
+  text-align: center;
+}
+
+.feedback-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.feedback-buttons button {
+  background: linear-gradient(135deg, #0066ff, #003399);  // 3D Blue Gradient for feedback buttons
+  color: #fff;
+  border: none;
+  padding: 8px 12px;  // Reduce button size
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);  // Shadow for depth
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.feedback-buttons button:hover {
+  background: linear-gradient(135deg, #003399, #001f66);
+  transform: translateY(-2px);
+}
+
+// Logout Confirmation Styling
+.logout-confirmation {
+  padding: 15px;
+  text-align: center;
+  background-color: #f5f5f5;
+  border-top: 1px solid #d3d3e0;
+}
+
+.logout-confirmation button {
+  background: linear-gradient(135deg, #0066ff, #003399);  // 3D Blue Gradient for confirmation buttons
+  color: #fff;
+  padding: 8px 12px;  // Reduce button size
+  border: none;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.logout-confirmation button:hover {
+  background: linear-gradient(135deg, #003399, #001f66);
+  transform: translateY(-2px);
+}
+
+// Additional Help Styling
+.additional-help {
+  padding: 15px;
+  text-align: center;
+  background-color: #f5f5f5;
+}
+
+.additional-help button {
+  background: linear-gradient(135deg, #0066ff, #003399);  // 3D Blue Gradient for help buttons
+  color: #fff;
+  padding: 8px 12px;   // Reduce button size
+  border: none;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);  // Shadow for 3D effect
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.additional-help button:hover {
+  background: linear-gradient(135deg, #003399, #001f66);
+  transform: translateY(-2px);
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

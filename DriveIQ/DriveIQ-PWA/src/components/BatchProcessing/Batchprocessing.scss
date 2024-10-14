@@ -1,0 +1,31 @@
+.batch-processing-container {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', sans-serif;
+    color: #171717;
+  
+    h3 {
+      font-size: 1.5rem;
+      color: #171717;
+      margin-bottom: 15px;
+    }
+  
+    p {
+      color: #150051; /* Success message color */
+      font-weight: bold;
+    }
+  
+    pre {
+      background-color: #272822;
+      color: #171717;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      max-height: 300px; /* Limit the height of preformatted text */
+    }
+  }
+  
