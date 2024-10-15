@@ -127,55 +127,78 @@ const processBatch = async (batch) => {
     }
 };
 
-  const processDailyData = async () => {
-    try {
-      const driver_id = localStorage.getItem('driver_id');
-      const response = await api.post('/process-daily-data', { driver_id });
+const processDailyData = async () => {
+  try {
+    const driver_id = localStorage.getItem('driver_id');
+    const response = await api.post('/process-daily-data', { driver_id });
 
-      console.log('Daily Data Response:', response.data); // Check response here
-      if (response.data && response.data.aggregated_data) {
-        setDailyData(response.data); // Store daily data in the state
-      } else {
-        console.warn('Aggregated data is missing in the response.');
-        setDailyData(null);
-      }
-    } catch (error) {
-      console.error('Error processing daily data:', error);
-      setError('Failed to process daily data. Please try again later.');
+    console.log('Daily Data Response:', response.data); // Check response here
+    if (response.data && response.data.aggregated_data) {
+      setDailyData(response.data); // Store daily data in the state
+    } else {
+      console.warn('Aggregated data is missing in the response.');
+      setDailyData(null);
     }
+  } catch (error) {
+    console.error('Error processing daily data:', error);
+    setError('Failed to process daily data. Please try again later.');
+  }
+};
+
+
+
+// Render the distribution graph for daily features
+const renderDistributionGraph = () => {
+  if (!dailyData || !dailyData.aggregated_data) return null;
+
+  const labels = ['Speed(m/s)', 'Acceleration(m/s²)', 'Jerk(m/s³)', 'Braking Intensity'];
+  const data = [
+    cleanValue(dailyData.aggregated_data['Speed(m/s)']),
+    cleanValue(dailyData.aggregated_data['Acceleration(m/s²)']),
+    cleanValue(dailyData.aggregated_data['Jerk(m/s³)']),
+    cleanValue(dailyData.aggregated_data['Braking_Intensity']),
+  ];
+
+  // Filter out null values and corresponding labels
+  const filteredData = data.map((value, index) => (value !== null ? value : null));
+  const filteredLabels = labels.filter((_, index) => data[index] !== null);
+
+  const chartData = {
+    labels: filteredLabels,
+    datasets: [
+      {
+        label: 'Daily Feature Distribution',
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.8)',
+          'rgba(54, 162, 235, 0.8)',
+          'rgba(75, 192, 192, 0.8)',
+          'rgba(153, 102, 255, 0.8)',
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+        ],
+        borderWidth: 2,
+        hoverBackgroundColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+        ],
+        hoverBorderColor: '#fff',
+        hoverBorderWidth: 3,
+        data: filteredData.filter(value => value !== null), // Only include non-null values
+        barThickness: 50, // Adjust bar thickness
+      },
+    ],
   };
 
-  // Render the distribution graph for daily features
-  const renderDistributionGraph = () => {
-    if (!dailyData || !dailyData.aggregated_data) return null;
-
-    const labels = ['Speed(m/s)', 'Acceleration(m/s^2)', 'Jerk(m/s^3)', 'Braking Intensity'];
-    const data = [
-      cleanValue(dailyData.aggregated_data['Speed(m/s)']),
-      cleanValue(dailyData.aggregated_data['Acceleration(m/s^2)']),
-      cleanValue(dailyData.aggregated_data['Jerk(m/s^3)']),
-      cleanValue(dailyData.aggregated_data['Braking_Intensity']),
-    ];
-
-    const chartData = {
-      labels,
-      datasets: [
-        {
-          label: 'Daily Feature Distribution',
-          backgroundColor: ['rgba(255, 99, 132, 0.8)', 'rgba(54, 162, 235, 0.8)', 'rgba(75, 192, 192, 0.8)', 'rgba(153, 102, 255, 0.8)'],
-          borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)'],
-          borderWidth: 2,
-          hoverBackgroundColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)'],
-          hoverBorderColor: '#fff',
-          hoverBorderWidth: 3,
-          data,
-          barThickness: 50, // Adjust bar thickness
-        },
-      ],
-    };
-
-    return (
-      <div className="chart-wrapper">
+  // Render the Bar chart only if there's valid data
+  return (
+    <div className="chart-wrapper">
+      {filteredData.some(value => value !== null) && ( // Only render if there are valid data points
         <Bar
           data={chartData}
           options={{
@@ -224,9 +247,11 @@ const processBatch = async (batch) => {
             },
           }}
         />
-      </div>
-    );
-  };
+      )}
+    </div>
+  );
+};
+
 
   const renderChart = (label, data, borderColor, gradientColor) => {
     const chartLabels = data.map((_, index) => `Batch ${index + 1}`);
