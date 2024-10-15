@@ -3,6 +3,12 @@ from app.db import db, Admin, Driver, Trip, AggregatedData
 from utils.bulk_data_processing import process_bulk_data
 from utils.ml_integration import predict_bulk_driver_behavior
 import logging
+from utils.ml_integration import predict_driver_behavior
+import os
+from io import StringIO  
+import pandas as pd
+
+
 admin_bp = Blueprint('admin', __name__)
 
 @admin_bp.route('/login', methods=['POST'])
@@ -78,7 +84,49 @@ def get_all_daily_driver_data(driver_id):
         logging.error(f"Error fetching daily data for driver {driver_id}: {str(e)}")
         return jsonify({"error": "An error occurred while fetching daily data"}), 500
 
+@admin_bp.route('/upload_driver_data', methods=['POST'])
+def upload_driver_data():
+    try:
+        logging.info("Received request to upload driver data.")
+        
+        # Check if the request contains data
+        data = request.get_json()
+        if not data or 'data' not in data or 'headers' not in data:
+            return jsonify({"error": "No data provided"}), 400
 
+        # Extract the headers and raw data
+        headers = data['headers']
+        raw_data = data['data']
+        logging.info(f"Headers received: {headers}")  # Log the headers received
+        logging.info(f"Raw data received: {raw_data[:2]}...")  # Log the first two rows of raw data
+
+        # Convert the raw data into a pandas DataFrame
+        df = pd.DataFrame(raw_data, columns=headers)
+
+        # Check if the DataFrame has all necessary features
+        required_columns = ['Speed(m/s)', 'Acceleration(m/s^2)', 'Heading_Change(degrees)', 
+                            'Jerk(m/s^3)', 'Braking_Intensity', 'SASV', 'Speed_Violation']
+
+        missing_columns = [col for col in required_columns if col not in df.columns]
+        if missing_columns:
+            logging.error(f"Missing required columns: {', '.join(missing_columns)}")
+            return jsonify({"error": f"Missing required columns: {', '.join(missing_columns)}"}), 400
+
+        # Process the data through the ML model
+        driving_score, driving_category = predict_driver_behavior(df)
+
+        # Return the predictions
+        return jsonify({
+            "message": "Data processed successfully",
+            "driving_score": driving_score,
+            "driving_category": driving_category
+        }), 200
+
+    except Exception as e:
+        logging.error(f"Error processing uploaded data: {str(e)}")
+        return jsonify({"error": "An error occurred while processing the data"}), 500
+
+    
 @admin_bp.route('/driver/bulk_consolidated_data/<int:driver_id>', methods=['GET'])
 def get_bulk_consolidated_driver_data(driver_id):
     try:
