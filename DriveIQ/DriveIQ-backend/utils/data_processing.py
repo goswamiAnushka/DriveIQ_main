@@ -86,11 +86,7 @@ def process_gps_data(gps_data):
     for index, row in df.iterrows():
         print(f"Timestamp: {row['Timestamp']}, Speed: {row['Speed(km/h)']} km/h")
 
-    # Filter out rows where the speed is below 5 km/h (stationary or idle)
-    df = df[df['Speed(km/h)'] > 5]
 
-    if df.empty:
-        raise ValueError("No valid movement data after filtering low speeds")
 
     # Calculate acceleration and jerk
     df['Acceleration(m/s^2)'] = df['Speed(m/s)'].diff() / df['Time_Diff(s)']

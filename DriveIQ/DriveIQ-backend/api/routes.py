@@ -69,9 +69,7 @@ def register():
     logging.info(f"Driver {email} registered successfully.")
     return jsonify({"message": "Registration successful", "token": token}), 201
 
-# Define thresholds (SPEED_THRESHOLD for low speeds and STOP_TIME_THRESHOLD for idle time)
-SPEED_THRESHOLD = 5  # m/s (~18 km/h)
-STOP_TIME_THRESHOLD = timedelta(minutes=5)  # Idle time threshold before starting a new trip
+
 
 def generate_unique_trip_id(driver_id):
     """Generate a truly unique trip ID."""
@@ -117,18 +115,11 @@ def record_telematics():
 
     try:
         # Process the GPS data
-        processed_data = process_gps_data(gps_data)  # Function to process and calculate driving features
+        processed_data = process_gps_data(gps_data)
 
         # Check if a new trip should be started or continue the last trip
         latest_trip = Trip.query.filter_by(driver_id=driver_id).order_by(Trip.created_at.desc()).first()
-
-        start_new_trip = False
-        if latest_trip:
-            time_since_last_trip = (datetime.utcnow() - latest_trip.created_at).total_seconds()
-            if processed_data['avg_speed'] < SPEED_THRESHOLD and time_since_last_trip > STOP_TIME_THRESHOLD.total_seconds():
-                start_new_trip = True
-        else:
-            start_new_trip = True
+        start_new_trip = not latest_trip
 
         # Generate a new trip ID if starting a new trip
         trip_id = generate_unique_trip_id(driver_id) if start_new_trip else latest_trip.trip_id
