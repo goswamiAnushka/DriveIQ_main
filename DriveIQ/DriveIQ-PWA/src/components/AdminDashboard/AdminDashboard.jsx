@@ -11,6 +11,9 @@ const AdminDashboard = () => {
     const [loading, setLoading] = useState(false); // Loading state
     const [error, setError] = useState(null); // Error state
     const [modalOpen, setModalOpen] = useState(false); // State for controlling modal visibility
+    const [csvContent, setCsvContent] = useState(''); // State to hold pasted CSV content
+
+
 
     // Fetch all drivers on component mount
     const fetchDrivers = async () => {
@@ -69,23 +72,45 @@ const AdminDashboard = () => {
             setLoading(false);
         }
     };
+    
+    // Function to handle bulk CSV prediction
+    const handleBulkCsvPrediction = async () => {
+        setLoading(true);
+        try {
+            const parsedData = csvContent.split('\n').map(row => row.split(',')).filter(row => row.length === 7); // Ensure correct column count
+            const jsonData = {
+                headers: ["Speed(m/s)", "Acceleration(m/s^2)", "Heading_Change(degrees)", "Jerk(m/s^3)", "Braking_Intensity", "SASV", "Speed_Violation"],
+                data: parsedData // Use the validated data
+            };
 
-    // Function to prepare data for daily performance chart
-    const prepareChartData = (dailyData) => {
-        const dates = Object.keys(dailyData);
-        const drivingScores = dates.map(date => dailyData[date][0]?.driving_score || 0);
+            console.log("Sending data to the API:", jsonData); // Log the data being sent for debugging
 
-        setChartData({
-            labels: dates,
-            datasets: [
-                {
-                    label: 'Driving Score',
-                    data: drivingScores,
-                    backgroundColor: 'rgba(153, 102, 255, 0.5)',
+            const response = await fetch('http://127.0.0.1:5000/admin/upload_driver_data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
                 },
-            ],
-        });
+                body: JSON.stringify(jsonData),
+            });
+
+            if (!response.ok) {
+                const errorResponse = await response.json();
+                throw new Error(`Error ${response.status}: ${errorResponse.error || 'Failed to process CSV data'}`);
+            }
+
+            const data = await response.json();
+            console.log("API response data:", data); // Log the successful response
+
+            setApiData(data); // Store the API response in state
+            setModalOpen(true); // Open modal with response data
+        } catch (err) {
+            console.error("Error during bulk CSV prediction:", err.message); // Log the error message
+            setError(`Failed to process CSV: ${err.message}`); // More user-friendly error
+        } finally {
+            setLoading(false); // Reset loading state
+        }
     };
+
 
     // Function to prepare comparison chart for consolidated data
     const prepareComparisonChart = (data) => {
@@ -162,6 +187,17 @@ const AdminDashboard = () => {
             {/* Button to fetch all drivers */}
             <button className="fetch-drivers-btn" onClick={fetchDrivers}>Get Info of Drivers</button>
 
+                         {/* Text area for CSV content */}
+            <div className="csv-input">
+                <textarea
+                    value={csvContent}
+                    onChange={(e) => setCsvContent(e.target.value)}
+                    placeholder="Paste CSV content here"
+                    rows="10"
+                />
+                <button onClick={handleBulkCsvPrediction}>Submit CSV</button>
+            </div>
+
             {/* Display drivers in a table */}
             {drivers.length > 0 && (
                 <table className="drivers-table">
@@ -194,28 +230,35 @@ const AdminDashboard = () => {
                 </table>
             )}
 
-            {/* Show loading indicator */}
             {loading && <p>Loading...</p>}
-
-            {/* Show error message */}
             {error && <p className="error">{error}</p>}
 
             {/* Modal to show API data */}
-            {modalOpen && apiData && (
+            {modalOpen && (
                 <div className="modal">
                     <div className="modal-content">
                         <span className="close" onClick={closeModal}>&times;</span>
-                        <h3>Data for Driver ID: {selectedDriverId}</h3>
-                        
-                        {/* Check if the data is consolidated or daily */}
-                        {apiData.average_driving_score ? (
+                        {apiData && (
                             <div>
-                                <pre>{formatConsolidatedDataToText(apiData)}</pre>
-                                {chartData && <Bar data={chartData} options={{ responsive: true }} />}
-                            </div>
-                        ) : (
-                            <div>
-                                <pre>{formatDailyDataToText(apiData.daily_data)}</pre>
+                                <h3>Driver Data</h3>
+                                {/* Displaying API data: driving category and score */}
+                                <p>Driving Category: {apiData.driving_category}</p>
+                                <p>Driving Score: {apiData.driving_score}</p>
+                                <p>Message: {apiData.message}</p>
+                                {/* Chart Data */}
+                                {chartData && (
+                                    <Bar
+                                        data={chartData}
+                                        options={{
+                                            responsive: true,
+                                            scales: {
+                                                y: {
+                                                    beginAtZero: true,
+                                                },
+                                            },
+                                        }}
+                                    />
+                                )}
                             </div>
                         )}
                     </div>
@@ -225,4 +268,4 @@ const AdminDashboard = () => {
     );
 };
 
-export default AdminDashboard; // Ensure this is a default export
+export default AdminDashboard;
