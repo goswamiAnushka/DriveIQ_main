@@ -3,11 +3,13 @@ import numpy as np
 import pickle
 import pandas as pd
 import logging
+import joblib
+from utils.data_predict_processing import analyze_driving_data
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 
-# Paths to the trip-level and bulk-level model files and scalers
+# Paths to the trip-level, bulk-level models, and scalers
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Trip-level model and scaler
@@ -17,6 +19,11 @@ trip_scaler_path = os.path.join(current_dir, '../../ml_model/models/scaler.pkl')
 # Bulk-level model and scaler
 bulk_model_path = os.path.join(current_dir, '../../ml_model/models/bulk_driving_model.pkl')
 bulk_scaler_path = os.path.join(current_dir, '../../ml_model/models/bulk_scaler.pkl')
+
+# Model with parameters
+model_with_params_path = os.path.join(current_dir, '../../ml_model/models/driving_model_with_params.pkl')
+model_info = joblib.load(model_with_params_path)  # Load the model with parameters
+model = model_info['model']  # Extract the model
 
 # Load the trip-level model and scaler
 with open(trip_model_path, 'rb') as trip_model_file:
@@ -127,6 +134,49 @@ def predict_bulk_driver_behavior(bulk_data):
     driving_category = categorize_driving_score(average_score)
 
     return driving_category, int(average_score)
+def predict_driving_category(summary_data):
+    """
+    Predicts the driving category based on the provided summary data using probabilities,
+    and prints additional driving factors.
+    """
+
+    # Prepare the necessary features for model prediction
+    features = ['Speed', 'Acceleration', 'Jerk', 'High_Jerk', 'Speed_Violation',
+                'Harsh_Acceleration', 'Harsh_Braking', 'Sensitive_Area_Violation',
+                'High_Heading_Change']
+
+    # Extract feature values from the summary data
+    X = summary_data[features]
+
+    # Make probability-based predictions using the ML model
+    category_probabilities = model.predict_proba(X)
+
+    # Calculate driving score based on probabilities
+    driving_score = calculate_driving_score_from_probabilities(category_probabilities)
+
+    # Determine driving category based on the score
+    driving_category = categorize_driving_score(driving_score)
+
+    # Add predictions to the summary data
+    summary_data['Driving_Score'] = driving_score
+    summary_data['Driving_Category'] = driving_category
+
+    # Print the other averaged factors for inspection
+    print("Average Speed:", summary_data['Speed'].mean())
+    print("Average Acceleration:", summary_data['Acceleration'].mean())
+    print("Average Jerk:", summary_data['Jerk'].mean())
+    print("Total Speed Violations:", summary_data['Speed_Violation'].sum())
+    print("Total Harsh Acceleration:", summary_data['Harsh_Acceleration'].sum())
+    print("Total Harsh Braking:", summary_data['Harsh_Braking'].sum())
+    print("Total Sensitive Area Violations:", summary_data['Sensitive_Area_Violation'].sum())
+    print("Average Heading Change:", summary_data['High_Heading_Change'].mean())
+
+    # Return the driving score and category along with the averaged factors
+    return summary_data[['Driving_Score', 'Driving_Category', 'Speed', 'Acceleration', 
+                         'Jerk', 'High_Jerk', 'Speed_Violation', 'Harsh_Acceleration', 
+                         'Harsh_Braking', 'Sensitive_Area_Violation', 'High_Heading_Change']]
+
+
 
 # Example usage (you can replace this with actual data input)
 if __name__ == "__main__":

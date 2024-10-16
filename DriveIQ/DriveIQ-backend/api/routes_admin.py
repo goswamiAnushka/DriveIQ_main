@@ -5,8 +5,13 @@ from utils.ml_integration import predict_bulk_driver_behavior
 import logging
 from utils.ml_integration import predict_driver_behavior
 import os
+from utils.data_predict_processing import analyze_driving_data
+from utils.ml_integration import predict_driving_category
 from io import StringIO  
 import pandas as pd
+from flask import Flask, request, jsonify
+import numpy as np
+
 
 
 admin_bp = Blueprint('admin', __name__)
@@ -84,49 +89,7 @@ def get_all_daily_driver_data(driver_id):
         logging.error(f"Error fetching daily data for driver {driver_id}: {str(e)}")
         return jsonify({"error": "An error occurred while fetching daily data"}), 500
 
-@admin_bp.route('/upload_driver_data', methods=['POST'])
-def upload_driver_data():
-    try:
-        logging.info("Received request to upload driver data.")
-        
-        # Check if the request contains data
-        data = request.get_json()
-        if not data or 'data' not in data or 'headers' not in data:
-            return jsonify({"error": "No data provided"}), 400
 
-        # Extract the headers and raw data
-        headers = data['headers']
-        raw_data = data['data']
-        logging.info(f"Headers received: {headers}")  # Log the headers received
-        logging.info(f"Raw data received: {raw_data[:2]}...")  # Log the first two rows of raw data
-
-        # Convert the raw data into a pandas DataFrame
-        df = pd.DataFrame(raw_data, columns=headers)
-
-        # Check if the DataFrame has all necessary features
-        required_columns = ['Speed(m/s)', 'Acceleration(m/s^2)', 'Heading_Change(degrees)', 
-                            'Jerk(m/s^3)', 'Braking_Intensity', 'SASV', 'Speed_Violation']
-
-        missing_columns = [col for col in required_columns if col not in df.columns]
-        if missing_columns:
-            logging.error(f"Missing required columns: {', '.join(missing_columns)}")
-            return jsonify({"error": f"Missing required columns: {', '.join(missing_columns)}"}), 400
-
-        # Process the data through the ML model
-        driving_score, driving_category = predict_driver_behavior(df)
-
-        # Return the predictions
-        return jsonify({
-            "message": "Data processed successfully",
-            "driving_score": driving_score,
-            "driving_category": driving_category
-        }), 200
-
-    except Exception as e:
-        logging.error(f"Error processing uploaded data: {str(e)}")
-        return jsonify({"error": "An error occurred while processing the data"}), 500
-
-    
 @admin_bp.route('/driver/bulk_consolidated_data/<int:driver_id>', methods=['GET'])
 def get_bulk_consolidated_driver_data(driver_id):
     try:
@@ -185,3 +148,49 @@ def get_bulk_consolidated_driver_data(driver_id):
     except Exception as e:
         logging.error(f"Error during bulk prediction for driver {driver_id}: {str(e)}")
         return jsonify({"error": "An error occurred while processing bulk data"}), 500
+
+@admin_bp.route('/process_gps_data', methods=['POST'])
+def process_gps_data_and_predict():
+    try:
+        # Step 1: Get the input GPS data from the request
+        gps_data = request.get_json()
+
+        if not gps_data:
+            return jsonify({"error": "No data provided"}), 400
+
+        # Step 2: Convert the GPS data to a DataFrame and process it
+        df = pd.DataFrame(gps_data)
+
+        # Ensure required fields are present
+        required_columns = ['Latitude', 'Longitude', 'Speed', 'Acceleration', 'Timestamp', 'HeadingChange']
+        if not all(column in df.columns for column in required_columns):
+            return jsonify({"error": "Missing required fields in input data"}), 400
+
+        # Step 3: Process the GPS data to extract metrics
+        analyzed_data, summary_data = analyze_driving_data(df)
+
+        if isinstance(analyzed_data, pd.DataFrame) and isinstance(summary_data, pd.DataFrame):
+            # Step 4: Use the processed summary data to make predictions
+            predicted_data = predict_driving_category(summary_data)
+
+            # Step 5: Prepare the response data, including driving score, category, and averaged factors
+            response_data = {
+                "message": "Processing and prediction successful!",
+                "driving_score": float(predicted_data['Driving_Score'].values[0]),
+                "driving_category": str(predicted_data['Driving_Category'].values[0]),
+                "average_speed": float(summary_data['Speed'].values[0]),
+                "average_acceleration": float(summary_data['Acceleration'].values[0]),
+                "average_jerk": float(summary_data['Jerk'].values[0]),
+                "total_harsh_acceleration": float(summary_data['Harsh_Acceleration'].values[0]),
+                "total_harsh_braking": float(summary_data['Harsh_Braking'].values[0]),
+                "total_sensitive_area_violations": int(summary_data['Sensitive_Area_Violation'].values[0]),
+                "average_heading_change": float(summary_data['High_Heading_Change'].values[0])
+            }
+
+            return jsonify(response_data), 200
+
+        else:
+            return jsonify({"error": "Unexpected format from analyze_driving_data."}), 500
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
