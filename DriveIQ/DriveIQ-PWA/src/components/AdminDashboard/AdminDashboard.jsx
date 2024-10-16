@@ -11,7 +11,8 @@ const AdminDashboard = () => {
     const [loading, setLoading] = useState(false); // Loading state
     const [error, setError] = useState(null); // Error state
     const [modalOpen, setModalOpen] = useState(false); // State for controlling modal visibility
-    const [csvContent, setCsvContent] = useState(''); // State to hold pasted CSV content
+    const [gpsData, setGpsData] = useState(''); // State for GPS data input
+    const [predictionResponse, setPredictionResponse] = useState(''); // State for prediction response
 
 
     // Fetch all drivers on component mount
@@ -158,13 +159,31 @@ const AdminDashboard = () => {
         return textOutput; // Return the formatted text
     };
 
+    // Function to handle GPS data submission
+    const handleGpsDataSubmit = async () => {
+        try {
+            const response = await fetch('http://127.0.0.1:5000/admin/process_gps_data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: gpsData,
+            });
+
+            if (!response.ok) throw new Error('Failed to process GPS data');
+            const data = await response.json();
+            setPredictionResponse(JSON.stringify(data, null, 2)); // Format the response as text
+        } catch (err) {
+            setError(err.message);
+        }
+    };
+
     return (
         <div className="admin-dashboard">
             <h2>Admin Dashboard</h2>
 
             {/* Button to fetch all drivers */}
             <button className="fetch-drivers-btn" onClick={fetchDrivers}>Get Info of Drivers</button>
-
 
             {/* Display drivers in a table */}
             {drivers.length > 0 && (
@@ -198,28 +217,51 @@ const AdminDashboard = () => {
                 </table>
             )}
 
-            {/* Show loading indicator */}
+            {/* Input area for GPS data */}
+            <div className="gps-data-section">
+                <h3>Input GPS Data (JSON format)</h3>
+                <textarea
+                    value={gpsData}
+                    onChange={(e) => setGpsData(e.target.value)}
+                    placeholder='Enter GPS data in JSON format...'
+                    rows={5}
+                />
+                <button onClick={handleGpsDataSubmit}>Submit GPS Data</button>
+            </div>
+
+            {/* Display prediction response */}
+            {predictionResponse && (
+                <div className="prediction-response">
+                    <h3>Prediction Response</h3>
+                    <pre>{predictionResponse}</pre>
+                </div>
+            )}
+
+            {/* Display loading state and error message */}
             {loading && <p>Loading...</p>}
+            {error && <p className="error-message">{error}</p>}
 
-            {/* Show error message */}
-            {error && <p className="error">{error}</p>}
-
-            {/* Modal to show API data */}
-            {modalOpen && apiData && (
+            {/* Modal for displaying API response data */}
+            {modalOpen && (
                 <div className="modal">
                     <div className="modal-content">
-                        <span className="close" onClick={closeModal}>&times;</span>
-                        <h3>Data for Driver ID: {selectedDriverId}</h3>
-                        
-                        {/* Check if the data is consolidated or daily */}
-                        {apiData.average_driving_score ? (
+                        <h2>Driver Data</h2>
+                        <button onClick={closeModal}>Close</button>
+                        {selectedDriverId && (
                             <div>
+                                <h3>Consolidated Data for Driver {selectedDriverId}</h3>
                                 <pre>{formatConsolidatedDataToText(apiData)}</pre>
-                                {chartData && <Bar data={chartData} options={{ responsive: true }} />}
                             </div>
-                        ) : (
+                        )}
+                        {apiData && apiData.daily_data && (
                             <div>
+                                <h3>Daily Data</h3>
                                 <pre>{formatDailyDataToText(apiData.daily_data)}</pre>
+                            </div>
+                        )}
+                        {chartData && (
+                            <div className="chart-container">
+                                <Bar data={chartData} />
                             </div>
                         )}
                     </div>
