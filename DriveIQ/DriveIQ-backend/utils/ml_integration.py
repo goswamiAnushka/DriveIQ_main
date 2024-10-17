@@ -134,6 +134,7 @@ def predict_bulk_driver_behavior(bulk_data):
     driving_category = categorize_driving_score(average_score)
 
     return driving_category, int(average_score)
+
 def predict_driving_category(summary_data):
     """
     Predicts the driving category based on the provided summary data using probabilities,
