@@ -11,8 +11,9 @@ const AdminDashboard = () => {
     const [loading, setLoading] = useState(false); // Loading state
     const [error, setError] = useState(null); // Error state
     const [modalOpen, setModalOpen] = useState(false); // State for controlling modal visibility
-    const [gpsData, setGpsData] = useState(''); // State for GPS data input
     const [predictionResponse, setPredictionResponse] = useState(''); // State for prediction response
+    const [gpsData, setGpsData] = useState(''); // State for GPS data input
+
 
 
     // Fetch all drivers on component mount
@@ -73,7 +74,6 @@ const AdminDashboard = () => {
         }
     };
 
-
     // Function to prepare data for daily performance chart
     const prepareChartData = (dailyData) => {
         const dates = Object.keys(dailyData);
@@ -115,6 +115,7 @@ const AdminDashboard = () => {
         setChartData(null); // Clear chart data when modal closes
     };
 
+    
     // Function to convert API data to plain text format for consolidated data
     const formatConsolidatedDataToText = (data) => {
         if (!data) return "No consolidated data available"; // Handle case where data is null or undefined
@@ -159,25 +160,26 @@ const AdminDashboard = () => {
         return textOutput; // Return the formatted text
     };
 
-    // Function to handle GPS data submission
-    const handleGpsDataSubmit = async () => {
-        try {
-            const response = await fetch('http://127.0.0.1:5000/admin/process_gps_data', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: gpsData,
-            });
-
-            if (!response.ok) throw new Error('Failed to process GPS data');
-            const data = await response.json();
-            setPredictionResponse(JSON.stringify(data, null, 2)); // Format the response as text
-        } catch (err) {
-            setError(err.message);
-        }
-    };
-
+        // Function to handle GPS data submission
+        const handleGpsDataSubmit = async () => {
+            try {
+                const response = await fetch('http://127.0.0.1:5000/admin/process_gps_data', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: gpsData,
+                });
+    
+                if (!response.ok) throw new Error('Failed to process GPS data');
+                const data = await response.json();
+                setPredictionResponse(JSON.stringify(data, null, 2)); // Format the response as text
+            } catch (err) {
+                setError(err.message);
+            }
+        };
+    
+    
     return (
         <div className="admin-dashboard">
             <h2>Admin Dashboard</h2>
@@ -216,9 +218,8 @@ const AdminDashboard = () => {
                     </tbody>
                 </table>
             )}
-
-            {/* Input area for GPS data */}
-            <div className="gps-data-section">
+                        {/* Input area for GPS data */}
+                        <div className="gps-data-section">
                 <h3>Input GPS Data (JSON format)</h3>
                 <textarea
                     value={gpsData}
@@ -237,31 +238,28 @@ const AdminDashboard = () => {
                 </div>
             )}
 
-            {/* Display loading state and error message */}
+            {/* Show loading indicator */}
             {loading && <p>Loading...</p>}
-            {error && <p className="error-message">{error}</p>}
 
-            {/* Modal for displaying API response data */}
-            {modalOpen && (
+            {/* Show error message */}
+            {error && <p className="error">{error}</p>}
+
+            {/* Modal to show API data */}
+            {modalOpen && apiData && (
                 <div className="modal">
                     <div className="modal-content">
-                        <h2>Driver Data</h2>
-                        <button onClick={closeModal}>Close</button>
-                        {selectedDriverId && (
+                        <span className="close" onClick={closeModal}>&times;</span>
+                        <h3>Data for Driver ID: {selectedDriverId}</h3>
+                        
+                        {/* Check if the data is consolidated or daily */}
+                        {apiData.average_driving_score ? (
                             <div>
-                                <h3>Consolidated Data for Driver {selectedDriverId}</h3>
                                 <pre>{formatConsolidatedDataToText(apiData)}</pre>
+                                {chartData && <Bar data={chartData} options={{ responsive: true }} />}
                             </div>
-                        )}
-                        {apiData && apiData.daily_data && (
+                        ) : (
                             <div>
-                                <h3>Daily Data</h3>
                                 <pre>{formatDailyDataToText(apiData.daily_data)}</pre>
-                            </div>
-                        )}
-                        {chartData && (
-                            <div className="chart-container">
-                                <Bar data={chartData} />
                             </div>
                         )}
                     </div>
@@ -271,4 +269,4 @@ const AdminDashboard = () => {
     );
 };
 
-export default AdminDashboard;
+export default AdminDashboard; // Ensure this is a default export
