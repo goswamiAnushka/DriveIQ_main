@@ -14,8 +14,11 @@ Flask-SQLAlchemy
 Flask-Migrate
 Flask-Cors
 Werkzeug
+imblearn
 PyJWT
 osmnx
+lime
 fPDF
+shap
 python-decouple
 dotenv
