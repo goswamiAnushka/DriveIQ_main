@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
+import ChatBot from './components/ChatBot/ChatBot';
 import Dashboard from './components/Dashboard/Dashboard';
 import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 import AdminPage from './pages/AdminPage/AdminPage'; // Import the AdminPage
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/admin" element={<AdminPage />} /> {/* Route for AdminPage */}
         <Route path="/admin-dashboard" element={<AdminDashboard />} /> {/* Route for AdminDashboard */}
         <Route path="/driver" element={<ProtectedRoute element={DriverPage} isAuthenticated={!!token} />} /> {/* Protected Route for DriverPage */}
+        <Route path="/chatbot" element={<ChatBot />} />
       </Routes>
     </Router>
   );

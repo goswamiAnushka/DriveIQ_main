@@ -1,15 +1,31 @@
+$primary-color: #03248f; // Primary color for buttons and highlights
+$secondary-color: #f9f9f9; // Light background for the container
+$text-color: #333; // Dark text color for readability
+$label-color: #555; // Medium gray for label text
+$error-color: #ff5252; // Bright red for error messages
+$border-color: #ddd; // Light border color
+
 .admin-page {
     max-width: 400px;
     margin: 50px auto;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
+    border: 1px solid $border-color;
+    border-radius: 10px; // Slightly larger border-radius for a softer look
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1); // Softer shadow for a more modern feel
+    background-color: $secondary-color; // Light background for better contrast
+    transition: box-shadow 0.3s, border-color 0.3s; // Smooth transition for hover effects
+
+    &:hover {
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15); // Darker shadow on hover
+        border-color: $primary-color; // Change border color on hover
+    }
 
     h2 {
         text-align: center;
         margin-bottom: 20px;
+        font-size: 28px; // Increased font size for a bold title
+        color: $text-color; // Darker text for better readability
+        font-family: 'Arial', sans-serif; // Modern sans-serif font
     }
 
     div {
@@ -18,32 +34,67 @@
         label {
             display: block;
             margin-bottom: 5px;
+            font-weight: bold; // Bold labels for emphasis
+            color: $label-color; // Medium gray for labels
+            font-size: 14px; // Consistent font size for labels
         }
 
         input {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            padding: 12px; // Increased padding for comfort
+            border: 1px solid $border-color;
+            border-radius: 5px; // Slightly rounded corners
+            font-size: 16px; // Increased font size for input
+            transition: border-color 0.3s; // Smooth border color transition
+
+            &:focus {
+                border-color: $primary-color; // Green border on focus
+                outline: none; // Remove default outline
+                box-shadow: 0 0 5px rgba($primary-color, 0.5); // Subtle glow effect
+            }
         }
     }
 
     button {
         width: 100%;
-        padding: 10px;
-        background-color: #4caf50;
+        padding: 12px; // Increased padding for buttons
+        background-color: $primary-color; // Green background
         color: white;
         border: none;
-        border-radius: 4px;
+        border-radius: 5px; // Slightly rounded corners
         cursor: pointer;
+        font-size: 16px; // Increased font size for button
+        transition: background-color 0.3s, transform 0.2s; // Smooth transition effects
 
         &:hover {
-            background-color: #45a049;
+            background-color: darken($primary-color, 5%); // Slightly darker green on hover
+            transform: translateY(-2px); // Lift effect on hover
         }
     }
 
     .error-message {
-        color: red;
+        color: $error-color; // Bright red for error messages
         text-align: center;
+        margin-top: 10px; // Add margin for spacing
+        font-size: 14px; // Consistent font size for error messages
+    }
+}
+
+// Responsive Styles
+@media (max-width: 480px) {
+    .admin-page {
+        padding: 15px; // Reduced padding for smaller screens
+    }
+
+    h2 {
+        font-size: 24px; // Adjusted font size for smaller screens
+    }
+
+    input {
+        font-size: 14px; // Smaller font for inputs
+    }
+
+    button {
+        font-size: 14px; // Smaller font for button
     }
 }

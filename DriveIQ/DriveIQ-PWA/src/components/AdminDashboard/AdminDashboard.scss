@@ -1,8 +1,8 @@
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #121212; // Dark background
-    color: #ffffff; // White text
+    background-color: #0a1b2e; // Dark blue background
+    color: #d9e7ff; // Light blue-gray text
 }
 
 .admin-dashboard {
@@ -11,12 +11,12 @@ body {
     margin: 0 auto;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    background-color: #1e1e1e; // Slightly lighter dark background
+    background-color: #132a44; // Slightly lighter blue background
 }
 
 h2 {
     text-align: center;
-    color: #e3e3e3; // Light gray color for header
+    color: #a9c4ff; // Soft light blue for header
     margin-bottom: 20px;
 }
 
@@ -26,14 +26,14 @@ h2 {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #8a2be2; // Violet
-    color: white;
+    background-color: #0073e6; // Primary blue
+    color: #ffffff;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
 
     &:hover {
-        background-color: #7a1b99; // Darker violet on hover
+        background-color: #005bb5; // Darker blue on hover
         transform: translateY(-2px);
     }
 }
@@ -48,39 +48,39 @@ h2 {
 .drivers-table td {
     padding: 12px;
     text-align: center;
-    border: 1px solid #444; // Slightly lighter border
+    border: 1px solid #1e4a6e; // Subtle blue-gray border
 }
 
 .drivers-table th {
-    background-color: #5d5d5d; // Dark gray for header
-    color: #e3e3e3;
+    background-color: #1c3b5b; // Darker blue for header
+    color: #a9c4ff;
 }
 
 .drivers-table tr:nth-child(even) {
-    background-color: #2b2b2b; // Even row background
+    background-color: #17304e; // Dark blue for even rows
 }
 
 .drivers-table tr:hover {
-    background-color: #3a3a3a; // Hover effect
+    background-color: #1e4a6e; // Light blue hover effect
 }
 
 .action-btn {
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
-    background-color: #9370db; // Light violet
-    color: white;
+    background-color: #3399ff; // Light blue button
+    color: #ffffff;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
 
     &:hover {
-        background-color: #7b68ee; // Darker light violet on hover
+        background-color: #0073e6; // Darker light blue on hover
         transform: translateY(-2px);
     }
 }
 
 .error {
-    color: #ff6347; // Tomato color for error messages
+    color: #ff4c4c; // Red color for error messages
     text-align: center;
 }
 
@@ -98,23 +98,23 @@ h2 {
 }
 
 .modal-content {
-    background: #292929; // Dark modal background
+    background: #1c3b5b; // Dark blue modal background
     border-radius: 10px;
     padding: 20px;
     width: 90%;
     max-width: 600px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    animation: fadeIn 0.3s ease-in-out; // Modal fade in animation
+    animation: fadeIn 0.3s ease-in-out; // Modal fade-in animation
 }
 
 .close {
     float: right;
     font-size: 24px;
     cursor: pointer;
-    color: #fff;
+    color: #d9e7ff;
 
     &:hover {
-        color: #ff6347; // Change color on hover
+        color: #ff4c4c; // Change color on hover
     }
 }
 
@@ -134,5 +134,251 @@ h2 {
     margin-top: 20px;
     padding: 20px;
     border-radius: 5px;
-    background-color: #333333; // Dark background for charts
+    background-color: #2b4e6f; // Darker blue background for charts
+}
+
+// Date picker styling
+.date-picker-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.date-picker-input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #1e4a6e;
+    background-color: #132a44; // Darker background for input
+    color: #d9e7ff; // Light text
+    margin-right: 10px;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+        outline: none;
+        border-color: #3399ff; // Highlighted border on focus
+    }
+}
+
+.date-picker-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0073e6; // Blue button for date search
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+        background-color: #005bb5; // Darker on hover
+        transform: translateY(-2px);
+    }
+}
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #0a1b2e; /* Dark blue background */
+    color: #d9e7ff; /* Light blue-gray text */
+}
+
+.admin-dashboard {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    background-color: #132a44; /* Slightly lighter blue background */
+}
+
+h2 {
+    text-align: center;
+    color: #a9c4ff; /* Soft light blue for header */
+    margin-bottom: 20px;
+}
+
+.fetch-drivers-btn {
+    display: block;
+    margin: 0 auto 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0073e6; /* Primary blue */
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+        background-color: #005bb5; /* Darker blue on hover */
+        transform: translateY(-2px);
+    }
+}
+
+.drivers-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.drivers-table th,
+.drivers-table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #1e4a6e; /* Subtle blue-gray border */
+}
+
+.drivers-table th {
+    background-color: #1c3b5b; /* Darker blue for header */
+    color: #a9c4ff;
+}
+
+.drivers-table tr:nth-child(even) {
+    background-color: #17304e; /* Dark blue for even rows */
+}
+
+.drivers-table tr:hover {
+    background-color: #1e4a6e; /* Light blue hover effect */
+}
+
+.action-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3399ff; /* Light blue button */
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+        background-color: #0073e6; /* Darker light blue on hover */
+        transform: translateY(-2px);
+    }
+}
+
+.error {
+    color: #ff4c4c; /* Red color for error messages */
+    text-align: center;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7); /* Black overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #1c3b5b; /* Dark blue modal background */
+    border-radius: 10px;
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease-in-out; /* Modal fade-in animation */
+}
+
+.close {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+    color: #d9e7ff;
+
+    &:hover {
+        color: #ff4c4c; /* Change color on hover */
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Chart styles */
+.chart-container {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #2b4e6f; /* Darker blue background for charts */
+}
+
+/* Date picker styling */
+.date-picker-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.date-picker-input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #1e4a6e;
+    background-color: #132a44; /* Darker background for input */
+    color: #d9e7ff; /* Light text */
+    margin-right: 10px;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+        outline: none;
+        border-color: #3399ff; /* Highlighted border on focus */
+    }
+}
+
+.date-picker-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0073e6; /* Blue button for date search */
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+        background-color: #005bb5; /* Darker on hover */
+        transform: translateY(-2px);
+    }
+}
+
+/* Slider styles */
+.slider {
+    -webkit-appearance: none; /* Remove default webkit appearance */
+    width: 100%; /* Full width */
+    height: 5px; /* Slider height */
+    background: #1e4a6e; /* Slider background */
+    border-radius: 5px; /* Rounded edges */
+    outline: none; /* Remove outline */
+    opacity: 0.8; /* Slightly transparent */
+    transition: opacity 0.3s; /* Fade effect on hover */
+}
+
+.slider:hover {
+    opacity: 1; /* Full opacity on hover */
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Remove default webkit appearance */
+    appearance: none; /* Remove default appearance */
+    width: 15px; /* Thumb width */
+    height: 15px; /* Thumb height */
+    border-radius: 50%; /* Rounded thumb */
+    background: #0073e6; /* Thumb color */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+    width: 15px; /* Thumb width */
+    height: 15px; /* Thumb height */
+    border-radius: 50%; /* Rounded thumb */
+    background: #0073e6; /* Thumb color */
+    cursor: pointer; /* Pointer cursor on hover */
 }

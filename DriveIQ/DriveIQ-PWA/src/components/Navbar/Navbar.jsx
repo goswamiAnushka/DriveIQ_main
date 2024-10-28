@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Navbar.scss';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import logo from './logo.png';  // Import the logo
+import logo from './logo.png';
 
 const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -10,12 +10,10 @@ const Navbar = () => {
 
   useEffect(() => {
     const storedDriverName = localStorage.getItem('driver_name');
-    console.log("Stored Driver Name:", storedDriverName);  // Log the stored name
     if (storedDriverName) {
-        setDriverName(storedDriverName);
+      setDriverName(storedDriverName);
     }
-}, []);
-
+  }, []);
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -23,11 +21,12 @@ const Navbar = () => {
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+    if (dropdownOpen) setDropdownOpen(false);
   };
 
   const handleProfileClick = () => {
     if (driverName) {
-      window.location.href = '/driver';  // Redirect to DriverPage
+      window.location.href = '/driver';
     }
   };
 
@@ -35,13 +34,12 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-left">
         <a href="/" className="navbar-brand">
-          <img src={logo} alt="DriveIQ" />  {/* Use the imported logo */}
+          <img src={logo} alt="DriveIQ" />
         </a>
       </div>
 
-      {/* Menu Icon for Small Screens */}
       <div className="menu-icon" onClick={toggleMenu}>
-        {menuOpen ? <FaTimes /> : <FaBars />}  {/* Change icon based on menu state */}
+        {menuOpen ? <FaTimes /> : <FaBars />}
       </div>
 
       <div className={`navbar-right ${menuOpen ? 'open' : ''}`}>
@@ -51,14 +49,12 @@ const Navbar = () => {
           <li><a href="#what-telematics">What is Telematics?</a></li>
 
           {driverName ? (
-            // Display driver's name and redirect to DriverPage on click
             <li>
               <button className="profile-button" onClick={handleProfileClick}>
                 {driverName}
               </button>
             </li>
           ) : (
-            // Dropdown for login if no driver is logged in
             <li className="dropdown">
               <button onClick={toggleDropdown} className="dropdown-btn">
                 Login

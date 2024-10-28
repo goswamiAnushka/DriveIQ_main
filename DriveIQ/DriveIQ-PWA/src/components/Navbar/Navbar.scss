@@ -2,8 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #002855;
-  padding: 5px 30px;  /* Reduced vertical padding for a shorter navbar */
+  background-color: #043063;
+  padding: 5px 20px;  /* Compact padding for a cleaner look */
   color: white;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
@@ -15,10 +15,11 @@
       text-decoration: none;
 
       img {
-        width: 95px;  /* Smaller size */
-        height: 95px;  /* Ensure it’s a square to make it a perfect circle */
-        object-fit: cover;  /* Ensure it scales well within the circle */
+        width: 85px;
+        height: 85px;
+        object-fit: cover;
         display: block;
+        border-radius: 50%;  /* Rounded image */
       }
     }
   }
@@ -31,21 +32,22 @@
       padding: 0;
 
       li {
-        margin: 0 20px;  /* Horizontal margin for links */
+        margin: 0 15px;  /* Spacing between links */
         position: relative;
 
         a, .dropdown-btn {
-          color: white;
+          color: #EDEDED;  /* Softened white for readability */
           text-decoration: none;
-          padding: 5px 20px;  /* Reduced vertical padding for links */
+          padding: 6px 18px;  /* Balanced padding */
           border-radius: 5px;
           font-weight: 600;
           font-size: 1rem;
           transition: all 0.3s ease;
 
           &:hover {
-            background-color: #ff6700;
-            box-shadow: 0 4px 10px rgba(255, 103, 0, 0.5);
+            background-color: #0061A8;
+            color: #FFFFFF;  /* Full white on hover */
+            box-shadow: 0 4px 12px rgba(0, 97, 168, 0.3);
           }
         }
 
@@ -55,21 +57,21 @@
           position: absolute;
           top: 100%;
           left: 0;
-          background-color: white;
+          background-color: #FFFFFF;
           border: 1px solid #ddd;
           border-radius: 5px;
-          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 6px 12px rgba(171, 9, 9, 0.15);
           padding: 10px 0;
 
           a {
             color: #002855;
-            padding: 10px 20px;
-            text-align: left;
+            padding: 8px 18px;
             font-size: 0.9rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
 
             &:hover {
-              background-color: #f0f4f8;
-              color: #ff6700;
+              background-color: #e8f1f9;
+              color: #00467f;
             }
           }
         }
@@ -89,7 +91,26 @@
     color: white;
   }
 
-  /* Show menu on smaller screens */
+  /* Adjustments for smaller screens */
+  @media (max-width: 992px) {
+    .navbar-left .navbar-brand {
+      font-size: 1.3rem;
+    }
+
+    .navbar-right {
+      ul {
+        li {
+          margin: 0 10px;  /* Reduce link spacing */
+        }
+
+        a, .dropdown-btn {
+          font-size: 0.95rem;
+        }
+      }
+    }
+  }
+
+  /* Responsive layout for mobile screens */
   @media (max-width: 768px) {
     .menu-icon {
       display: block;
@@ -97,8 +118,8 @@
 
     .navbar-left {
       img {
-        width: 50px;  /* Smaller size for mobile */
-        height: 50px;  /* Ensure it’s a square for mobile */
+        width: 50px;
+        height: 50px;
       }
     }
 
@@ -107,10 +128,9 @@
       top: 60px;
       right: 0;
       width: 100%;
-      background-color: #002855;
+      background-color: #0854ab;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       height: 0;
       overflow: hidden;
       transition: height 0.3s ease;
@@ -120,12 +140,25 @@
         align-items: center;
 
         li {
-          margin: 10px 0;
+          margin: 8px 0;
         }
       }
 
       &.open {
-        height: 250px;  /* Adjust height based on number of items */
+        height: 280px;  /* Height to fit links on mobile */
+      }
+    }
+  }
+
+  /* Very small screens */
+  @media (max-width: 576px) {
+    .navbar-left .navbar-brand {
+      font-size: 1.2rem;
+    }
+
+    .navbar-right {
+      ul li a, .navbar-right ul li .dropdown-btn {
+        font-size: 0.85rem;  /* Adjust font size for readability */
       }
     }
   }

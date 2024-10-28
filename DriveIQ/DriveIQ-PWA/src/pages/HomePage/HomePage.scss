@@ -6,8 +6,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 80px 50px;
-    background-color: #002855;
+    padding: 60px 50px;
+    background-color: #3a74b5;
     color: white;
     flex-wrap: wrap;
 
@@ -16,9 +16,9 @@
 
       h1 {
         font-size: 3.5rem;
+        color: #f0f4f8;
         margin-bottom: 20px;
         animation: fadeInDown 1.5s ease-in;
-        color: #f0f4f8;
       }
 
       p {
@@ -45,7 +45,7 @@
 
     .hero-images-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr 1fr;
       gap: 20px;
       max-width: 50%;
 
@@ -61,11 +61,14 @@
     }
   }
 
-  /* Info Sections */
   .info-section {
     padding: 60px 50px;
     background-color: #fff;
     text-align: center;
+
+    &:nth-child(even) {
+      background-color: #f8f9fa;
+    }
 
     h2 {
       font-size: 2.5rem;
@@ -77,15 +80,10 @@
       font-size: 1.3rem;
       color: #666;
       max-width: 800px;
-      margin: 0 auto 30px auto;
-    }
-
-    &:nth-child(even) {
-      background-color: #f8f9fa;
+      margin: 0 auto;
     }
   }
 
-  /* Features Section */
   .features {
     text-align: center;
     padding: 60px 0;
@@ -93,8 +91,8 @@
 
     h2 {
       font-size: 2.5rem;
-      margin-bottom: 40px;
       color: #002855;
+      margin-bottom: 40px;
     }
 
     .features-container {
@@ -120,8 +118,8 @@
 
         h3 {
           font-size: 1.8rem;
-          margin-bottom: 15px;
           color: #0e0d0d;
+          margin-bottom: 15px;
         }
 
         p {
@@ -153,7 +151,7 @@
     }
   }
 
-  /* Media Queries for Responsive Design */
+  /* Responsive Design */
   @media (max-width: 768px) {
     .hero {
       flex-direction: column;
@@ -165,302 +163,71 @@
         margin-bottom: 20px;
 
         h1 {
-          font-size: 2.5rem; // Adjust heading size for mobile
+          font-size: 2.5rem;
         }
 
         p {
-          font-size: 1.5rem; // Adjust paragraph size for mobile
+          font-size: 1.5rem;
         }
       }
 
       .hero-images-grid {
         max-width: 100%;
-        grid-template-columns: 1fr; // Change grid to a single-column layout
-        gap: 10px;
+        grid-template-columns: 1fr;
       }
     }
 
     .info-section {
       padding: 40px 20px;
+
       h2 {
         font-size: 2rem;
       }
+
       p {
         font-size: 1.1rem;
       }
     }
 
     .features {
-      padding: 40px 20px; // Reduce padding on small screens
+      padding: 40px 20px;
 
-      h2 {
-        font-size: 2rem; // Adjust heading size for mobile
-      }
-
-      .features-container {
-        flex-direction: column; // Stack features vertically
-        text-align: center;
-
-        .feature {
-          max-width: 100%; // Full-width features on small screens
-          margin-bottom: 20px; // Add space between features
-
-          i {
-            font-size: 2.5rem; // Adjust icon size for mobile
-          }
-
-          h3 {
-            font-size: 1.5rem; // Adjust heading size for mobile
-          }
-
-          p {
-            font-size: 1rem; // Adjust paragraph size for mobile
-          }
-        }
-      }
-    }
-  }
-
-  @keyframes fadeInDown {
-    0% { opacity: 0; transform: translateY(-20px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-  }
-}
-.homepage {
-  font-family: 'Open Sans', sans-serif;
-  background-color: #f0f4f8;
-
-  .hero {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 40px 50px;  /* Reduced top padding to decrease space from navbar */
-    background-color: #002855;
-    color: white;
-    flex-wrap: wrap;
-
-    .hero-content {
-      max-width: 45%;
-
-      h1 {
-        font-size: 3.5rem;
-        margin-bottom: 20px;
-        animation: fadeInDown 1.5s ease-in;
-        color: #f0f4f8;
-      }
-
-      p {
-        font-size: 1.8rem;
-        margin-bottom: 25px;
-        animation: fadeIn 1.5s ease-in;
-      }
-
-      .cta-button {
-        padding: 15px 30px;
-        background-color: #ff6700;
-        color: white;
-        font-size: 1.3rem;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-
-        &:hover {
-          background-color: #ff4500;
-        }
-      }
-    }
-
-    .hero-images-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      max-width: 50%;
-
-      img {
-        width: 100%;
-        border-radius: 10px;
-        animation: fadeIn 1s ease-out;
-      }
-
-      .large-image {
-        grid-column: span 2;
-      }
-    }
-  }
-
-  /* Info Sections */
-  .info-section {
-    padding: 60px 50px;
-    background-color: #fff;
-    text-align: center;
-
-    h2 {
-      font-size: 2.5rem;
-      color: #002855;
-      margin-bottom: 20px;
-    }
-
-    p {
-      font-size: 1.3rem;
-      color: #666;
-      max-width: 800px;
-      margin: 0 auto 30px auto;
-    }
-
-    &:nth-child(even) {
-      background-color: #f8f9fa;
-    }
-  }
-
-  /* Features Section */
-  .features {
-    text-align: center;
-    padding: 60px 0;
-    background-color: #fff;
-
-    h2 {
-      font-size: 2.5rem;
-      margin-bottom: 40px;
-      color: #002855;
-    }
-
-    .features-container {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-
-      .feature {
-        text-align: center;
-        max-width: 30%;
-        padding: 10px;
-        transition: transform 0.3s;
-
-        &:hover {
-          transform: translateY(-10px);
-        }
-
-        i {
-          font-size: 3.5rem;
-          color: #ff6700;
-          margin-bottom: 15px;
-        }
-
-        h3 {
-          font-size: 1.8rem;
-          margin-bottom: 15px;
-          color: #0e0d0d;
-        }
-
-        p {
-          font-size: 1.2rem;
-          color: #666;
-        }
-      }
-    }
-  }
-
-  .footer {
-    background-color: #002855;
-    padding: 20px 0;
-    color: white;
-
-    .footer-content {
-      text-align: center;
-
-      nav a {
-        color: #ff6700;
-        margin: 0 15px;
-        text-decoration: none;
-        transition: color 0.3s;
-
-        &:hover {
-          color: white;
-        }
-      }
-    }
-  }
-
-  /* Media Queries for Responsive Design */
-  @media (max-width: 768px) {
-    .hero {
-      flex-direction: column;
-      padding: 40px 20px;  /* This padding can also be reduced further if needed */
-      text-align: center;
-
-      .hero-content {
-        max-width: 100%;
-        margin-bottom: 20px;
-
-        h1 {
-          font-size: 2.5rem; // Adjust heading size for mobile
-        }
-
-        p {
-          font-size: 1.5rem; // Adjust paragraph size for mobile
-        }
-      }
-
-      .hero-images-grid {
-        max-width: 100%;
-        grid-template-columns: 1fr; // Change grid to a single-column layout
-        gap: 10px;
-      }
-    }
-
-    .info-section {
-      padding: 40px 20px;  // Keep padding similar to maintain consistency
       h2 {
         font-size: 2rem;
       }
-      p {
-        font-size: 1.1rem;
-      }
-    }
-
-    .features {
-      padding: 40px 20px; // Reduce padding on small screens
-
-      h2 {
-        font-size: 2rem; // Adjust heading size for mobile
-      }
 
       .features-container {
-        flex-direction: column; // Stack features vertically
-        text-align: center;
+        flex-direction: column;
+        align-items: center;
 
         .feature {
-          max-width: 100%; // Full-width features on small screens
-          margin-bottom: 20px; // Add space between features
+          max-width: 100%;
+          margin-bottom: 20px;
 
           i {
-            font-size: 2.5rem; // Adjust icon size for mobile
+            font-size: 2.5rem;
           }
 
           h3 {
-            font-size: 1.5rem; // Adjust heading size for mobile
+            font-size: 1.5rem;
           }
 
           p {
-            font-size: 1rem; // Adjust paragraph size for mobile
+            font-size: 1rem;
           }
         }
       }
     }
   }
 
+  /* Animations */
   @keyframes fadeInDown {
-    0% { opacity: 0; transform: translateY(-20px); }
-    100% { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   @keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 }
