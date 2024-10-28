@@ -22,8 +22,8 @@ bulk_scaler_path = os.path.join(current_dir, '../../ml_model/models/bulk_scaler.
 
 # Model with parameters
 model_with_params_path = os.path.join(current_dir, '../../ml_model/models/driving_model_with_params.pkl')
-model_info = joblib.load(model_with_params_path)  # Load the model with parameters
-model = model_info['model']  # Extract the model
+model = joblib.load(model_with_params_path)  # Load the model with parameters
+
 
 # Load the trip-level model and scaler
 with open(trip_model_path, 'rb') as trip_model_file:
