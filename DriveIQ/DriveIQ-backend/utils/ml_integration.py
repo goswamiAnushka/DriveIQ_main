@@ -42,9 +42,9 @@ with open(bulk_scaler_path, 'rb') as bulk_scaler_file:
 # Categorize driving score based on thresholds
 def categorize_driving_score(score):
     """Categorize driving score into Safe, Moderate, or Risky."""
-    if score >= 80:
+    if score >= 75:
         return 'Safe'
-    elif score >= 60:
+    elif score >= 55:
         return 'Moderate'
     else:
         return 'Risky'

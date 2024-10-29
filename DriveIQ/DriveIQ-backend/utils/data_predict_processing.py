@@ -21,7 +21,7 @@ def get_sensitive_areas(lat, lon):
     except Exception as e:
         print(f"Error fetching sensitive areas for ({lat}, {lon}): {e}")
         return gpd.GeoDataFrame()  # Return empty in case of an error
-    
+
 def analyze_driving_data(df):
     """Analyzes driving data based on absolute metrics."""
     
@@ -50,7 +50,8 @@ def analyze_driving_data(df):
     df['Jerk'] = df['Jerk'].fillna(0)  # Fill NaN values with 0
 
     # Calculate penalties based on thresholds
-    df['Speed_Violation'] = np.where(df['Speed'] > speed_limit, (df['Speed'] - speed_limit), 0)
+    df['Speed_Violation'] = np.where(df['Speed'] > speed_limit, df['Speed'] - speed_limit, 0)
+    df['Speed_Violation_Count'] = np.where(df['Speed'] > speed_limit, 1, 0)  # Counts each instance of speed violation
     df['Harsh_Acceleration'] = np.where(df['Acceleration'] > harsh_acceleration_threshold, 
                                          (df['Acceleration'] - harsh_acceleration_threshold), 0)
     df['Harsh_Braking'] = np.where(df['Acceleration'] < harsh_braking_threshold, 
@@ -86,7 +87,8 @@ def analyze_driving_data(df):
     overall_metrics = {
         'Average_Speed': df['Speed'].mean(),
         'Average_Acceleration': df['Acceleration'].mean(),
-        'Total_Speed_Violations': df['Speed_Violation'].sum(),
+        'Total_Speed_Violations': df['Speed_Violation_Count'].sum(),  # Total count of speed violations
+        'Cumulative_Speed_Violation': df['Speed_Violation'].sum(),  # Cumulative amount over the limit
         'Total_Harsh_Acceleration': df['Harsh_Acceleration'].sum(),
         'Total_Harsh_Braking': df['Harsh_Braking'].sum(),
         'Total_Sensitive_Area_Violations': df['Sensitive_Area_Violation'].sum(),
@@ -100,7 +102,7 @@ def analyze_driving_data(df):
         'Acceleration': overall_metrics['Average_Acceleration'],
         'Jerk': overall_metrics['Average_Jerk'],
         'High_Jerk': overall_metrics['Average_Jerk'],  # Ensure this matches your model's requirement
-        'Speed_Violation': overall_metrics['Total_Speed_Violations'],
+        'Speed_Violation': overall_metrics['Cumulative_Speed_Violation'],  # Use cumulative for the 'Speed_Violation' name
         'Harsh_Acceleration': overall_metrics['Total_Harsh_Acceleration'],
         'Harsh_Braking': overall_metrics['Total_Harsh_Braking'],
         'Sensitive_Area_Violation': overall_metrics['Total_Sensitive_Area_Violations'],
