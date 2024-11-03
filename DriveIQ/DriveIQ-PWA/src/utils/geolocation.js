@@ -120,3 +120,20 @@ export const generateSimulatedRoute = (driverId, batchSize) => {
 const batches = generateSimulatedRoute(1, 5);
 console.log(JSON.stringify(batches, null, 2)); // Log the generated batches in a readable format
 
+/*function startTracking() {
+    if (navigator.geolocation) {
+        navigator.geolocation.watchPosition(function(position) {
+            const locationData = {
+                Latitude: position.coords.latitude,
+                Longitude: position.coords.longitude,
+                Timestamp: Math.floor(Date.now() / 1000) // Converts milliseconds to seconds
+            };
+            sendLocationData(locationData);
+        }, function(error) {
+            console.error("Error retrieving location", error);
+        }, { enableHighAccuracy: true, maximumAge: 10000, timeout: 5000 });
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
+}
+*/

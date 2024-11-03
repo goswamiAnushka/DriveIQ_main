@@ -44,7 +44,7 @@ def categorize_driving_score(score):
     """Categorize driving score into Safe, Moderate, or Risky."""
     if score >= 75:
         return 'Safe'
-    elif score >= 55:
+    elif score >= 60:
         return 'Moderate'
     else:
         return 'Risky'

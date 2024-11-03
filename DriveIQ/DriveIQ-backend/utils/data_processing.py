@@ -103,7 +103,7 @@ def process_gps_data(gps_data):
     df['SASV'] = df.apply(lambda row: calculate_sasv(row['Latitude'], row['Longitude'], row['Speed(m/s)'], fetch_sensitive_areas(row['Latitude'], row['Longitude'])), axis=1)
 
     # Speed violation (above ~50 km/h)
-    df['Speed_Violation'] = df['Speed(km/h)'].apply(lambda x: 1 if x > 50 else 0)  # Speed limit: 50 km/h
+    df['Speed_Violation'] = df['Speed(km/h)'].apply(lambda x: 1 if x > 80 else 0)  # Speed limit: 50 km/h
 
     # Aggregate metrics
     total_distance = df['Distance(m)'].sum()
