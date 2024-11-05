@@ -2,6 +2,8 @@ import pandas as pd
 import numpy as np
 from math import radians, sin, cos, sqrt, atan2, degrees
 import osmnx as ox
+import time
+import logging
 
 # Haversine formula to calculate distance between two GPS points
 def haversine(lat1, lon1, lat2, lon2):
@@ -21,26 +23,47 @@ def calculate_heading(lat1, lon1, lat2, lon2):
     initial_heading = atan2(x, y)
     return (degrees(initial_heading) + 360) % 360  # Normalize heading to [0, 360]
 
+# Sensitive area cache to store fetched areas for nearby locations
+sensitive_areas_cache = {}
+
 # Fetch sensitive areas (e.g., schools, hospitals)
-def fetch_sensitive_areas(lat, lon, radius=300):
-    try:
-        if not (-90 <= lat <= 90) or not (-180 <= lon <= 180):
-            raise ValueError(f"Invalid coordinates: Latitude = {lat}, Longitude = {lon}")
+def fetch_sensitive_areas(lat, lon, radius=300, retries=3, delay=1):
+    cache_key = (round(lat, 3), round(lon, 3))  # Approximate caching key
 
-        tags = {'amenity': ['school', 'hospital']}
-        sensitive_areas = ox.features_from_point((lat, lon), tags, dist=radius)
+    # Check if location already in cache
+    if cache_key in sensitive_areas_cache:
+        return sensitive_areas_cache[cache_key]
 
-        if sensitive_areas.empty:
-            return []
-
-        sensitive_coords = sensitive_areas['geometry'].apply(lambda x: (x.centroid.y, x.centroid.x))
-        return sensitive_coords.tolist()
-    except Exception as e:
-        return []
+    tags = {'amenity': ['school', 'hospital']}
+    for attempt in range(retries):
+        try:
+            # Fetch sensitive areas from OSM
+            sensitive_areas = ox.features_from_point((lat, lon), tags=tags, dist=radius)
+            
+            if sensitive_areas.empty:
+                logging.warning(f"No sensitive areas found for ({lat}, {lon}) within {radius}m.")
+                sensitive_areas_cache[cache_key] = []  # Cache empty result if nothing found
+                return []
+            
+            # Extract centroid coordinates
+            sensitive_coords = sensitive_areas['geometry'].apply(lambda x: (x.centroid.y, x.centroid.x))
+            sensitive_areas_cache[cache_key] = sensitive_coords.tolist()
+            return sensitive_coords.tolist()
+        
+        except Exception as e:
+            logging.error(f"Attempt {attempt+1} - Error fetching sensitive areas for ({lat}, {lon}): {e}")
+            if attempt < retries - 1:
+                time.sleep(delay)  # Wait before retrying
+            else:
+                # Cache empty result if all attempts fail
+                sensitive_areas_cache[cache_key] = []
+                return []
 
 def calculate_sasv(lat, lon, speed, sensitive_locations):
+    """Check if speed limit is exceeded in sensitive areas"""
     distances = [haversine(lat, lon, s_lat, s_lon) for s_lat, s_lon in sensitive_locations]
-    if any(dist < 300 for dist in distances) and speed > 8.33:  # ~30 km/h speed limit in sensitive areas
+    # Check if within 300m of a sensitive area and over the speed limit of ~30 km/h
+    if any(dist < 300 for dist in distances) and speed > 8.33:  
         return 1
     return 0
 
@@ -56,14 +79,13 @@ def process_gps_data(gps_data):
         if col not in df.columns:
             raise ValueError(f"Missing required column: {col}")
 
+    # Convert necessary columns to numeric
     df['Latitude'] = pd.to_numeric(df['Latitude'], errors='coerce')
     df['Longitude'] = pd.to_numeric(df['Longitude'], errors='coerce')
-    df['Timestamp'] = pd.to_numeric(df['Timestamp'], errors='coerce')  # Changed to 'Timestamp'
+    df['Timestamp'] = pd.to_numeric(df['Timestamp'], errors='coerce')
 
     # Drop any rows with missing values
     df.dropna(subset=['Latitude', 'Longitude', 'Timestamp'], inplace=True)
-
-    # Ensure sufficient data remains after dropping rows with missing values
     if len(df) < 2:
         raise ValueError("Insufficient valid GPS data after cleaning")
 
@@ -72,21 +94,12 @@ def process_gps_data(gps_data):
     df['Lon_Shifted'] = df['Longitude'].shift(1)
     df['Distance(m)'] = df.apply(lambda row: haversine(row['Lat_Shifted'], row['Lon_Shifted'], row['Latitude'], row['Longitude']), axis=1)
 
-    # Calculate time difference, with a minimum of 1 second to avoid division by very small values
-    df['Time_Diff(s)'] = df['Timestamp'].diff().fillna(1)
-    df['Time_Diff(s)'] = df['Time_Diff(s)'].apply(lambda x: max(x, 1))  # Set minimum time difference
+    # Calculate time difference
+    df['Time_Diff(s)'] = df['Timestamp'].diff().fillna(1).apply(lambda x: max(x, 1))
 
-    # Calculate speed (m/s)
+    # Calculate speed (m/s) and convert to km/h
     df['Speed(m/s)'] = df['Distance(m)'] / df['Time_Diff(s)']
-    
-    # Convert speed to km/h
     df['Speed(km/h)'] = df['Speed(m/s)'] * 3.6
-
-    # Print speeds for each GPS data point
-    for index, row in df.iterrows():
-        print(f"Timestamp: {row['Timestamp']}, Speed: {row['Speed(km/h)']} km/h")
-
-
 
     # Calculate acceleration and jerk
     df['Acceleration(m/s^2)'] = df['Speed(m/s)'].diff() / df['Time_Diff(s)']
@@ -103,7 +116,7 @@ def process_gps_data(gps_data):
     df['SASV'] = df.apply(lambda row: calculate_sasv(row['Latitude'], row['Longitude'], row['Speed(m/s)'], fetch_sensitive_areas(row['Latitude'], row['Longitude'])), axis=1)
 
     # Speed violation (above ~50 km/h)
-    df['Speed_Violation'] = df['Speed(km/h)'].apply(lambda x: 1 if x > 80 else 0)  # Speed limit: 50 km/h
+    df['Speed_Violation'] = df['Speed(km/h)'].apply(lambda x: 1 if x > 80 else 0)
 
     # Aggregate metrics
     total_distance = df['Distance(m)'].sum()
@@ -119,9 +132,9 @@ def process_gps_data(gps_data):
         raise ValueError("Insufficient valid speed data to calculate avg_speed")
 
     return {
-        'avg_speed': avg_speed_mps,  # The key you're expecting in your original code
-        'avg_speed_mps': avg_speed_mps,  # Speed in meters per second
-        'avg_speed_kmph': avg_speed_kmph,  # Speed in kilometers per hour
+        'avg_speed': avg_speed_mps,
+        'avg_speed_mps': avg_speed_mps,
+        'avg_speed_kmph': avg_speed_kmph,
         'avg_acceleration': avg_acceleration,
         'avg_jerk': avg_jerk,
         'avg_heading_change': avg_heading_change,

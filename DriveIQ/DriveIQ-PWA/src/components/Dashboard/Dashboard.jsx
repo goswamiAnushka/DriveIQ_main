@@ -345,19 +345,29 @@ const renderDistributionGraph = () => {
 
       {/* Map Section */}
       <div className="map-section">
-        <h3>Route Map</h3>
-        <MapContainer center={[26.6337, 92.7926]} zoom={13} scrollWheelZoom={false} className="map-container">
-          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="&copy; OpenStreetMap contributors" />
-          <Polyline positions={route} color="blue" />
-          {markers.map((marker, idx) => (
-            <Marker key={idx} position={[marker.lat, marker.lng]} icon={customIcon}>
-              <Popup>
-                Latitude: {marker.lat}, Longitude: {marker.lng}
-              </Popup>
-            </Marker>
-          ))}
-        </MapContainer>
-      </div>
+      <h3>Route Map</h3>
+      <MapContainer
+        center={[37.7749, -122.4194]} // Centered in San Francisco
+        zoom={13}
+        scrollWheelZoom={false}
+        className="map-container"
+      >
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution="&copy; OpenStreetMap contributors"
+        />
+        <Polyline positions={route} color="blue" />
+        {markers.map((marker, idx) => (
+          <Marker key={idx} position={[marker.lat, marker.lng]} icon={customIcon}>
+            <Popup>
+              Latitude: {marker.lat}, Longitude: {marker.lng}
+            </Popup>
+          </Marker>
+        ))}
+      </MapContainer>
+    </div>
+  
+
 
       {/* Charts Section */}
       <div className="chart-section">

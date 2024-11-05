@@ -1,4 +1,4 @@
-// src/utils/geolocation.js
+// Updated San Francisco coordinates in src/utils/geolocation.js
 
 // Function to get the current location using the Geolocation API
 export const getCurrentLocation = () => {
@@ -19,16 +19,16 @@ export const getCurrentLocation = () => {
     });
 };
 
-// Simulates GPS data with realistic latitude, longitude, and timestamps
+// Simulates GPS data with realistic latitude, longitude, and timestamps for downtown San Francisco
 export const simulateGpsData = () => {
     const currentTimestamp = Math.floor(Date.now() / 1000); // Current time in seconds
     return [
-        { Latitude: 26.6337, Longitude: 92.7926, Timestamp: currentTimestamp - 300 },
-        { Latitude: 26.6347, Longitude: 92.7936, Timestamp: currentTimestamp - 240 },
-        { Latitude: 26.6357, Longitude: 92.7946, Timestamp: currentTimestamp - 180 },
-        { Latitude: 26.6367, Longitude: 92.7956, Timestamp: currentTimestamp - 120 },
-        { Latitude: 26.6377, Longitude: 92.7966, Timestamp: currentTimestamp - 60 },
-        { Latitude: 26.6387, Longitude: 92.7976, Timestamp: currentTimestamp }, // Current position
+        { Latitude: 37.7749, Longitude: -122.4194, Timestamp: currentTimestamp - 300 },
+        { Latitude: 37.7755, Longitude: -122.4189, Timestamp: currentTimestamp - 240 },
+        { Latitude: 37.7760, Longitude: -122.4183, Timestamp: currentTimestamp - 180 },
+        { Latitude: 37.7765, Longitude: -122.4177, Timestamp: currentTimestamp - 120 },
+        { Latitude: 37.7770, Longitude: -122.4172, Timestamp: currentTimestamp - 60 },
+        { Latitude: 37.7775, Longitude: -122.4166, Timestamp: currentTimestamp }, // Current position
     ];
 };
 
@@ -49,7 +49,6 @@ export const smartGpsTracking = (currentBatch, previousBatch) => {
     };
 
     const calculateSpeed = (distance, timeDiff) => {
-        // Prevent division by zero or negative time difference
         return timeDiff > 0 ? distance / timeDiff : 0; // Speed in m/s
     };
 
@@ -74,12 +73,12 @@ export const smartGpsTracking = (currentBatch, previousBatch) => {
 export const generateSimulatedRoute = (driverId, batchSize) => {
     const gpsBatches = [];
     const routeCoordinates = [
-        { Latitude: 26.6337, Longitude: 92.7926 }, // Point A
-        { Latitude: 26.6347, Longitude: 92.7936 }, // Point B
-        { Latitude: 26.6357, Longitude: 92.7946 }, // Point C
-        { Latitude: 26.6367, Longitude: 92.7956 }, // Point D
-        { Latitude: 26.6377, Longitude: 92.7966 }, // Point E
-        { Latitude: 26.6337, Longitude: 92.7926 }  // Back to Point A
+        { Latitude: 37.7749, Longitude: -122.4194 }, // Point A
+        { Latitude: 37.7755, Longitude: -122.4189 }, // Point B
+        { Latitude: 37.7760, Longitude: -122.4183 }, // Point C
+        { Latitude: 37.7765, Longitude: -122.4177 }, // Point D
+        { Latitude: 37.7770, Longitude: -122.4172 }, // Point E
+        { Latitude: 37.7749, Longitude: -122.4194 }  // Back to Point A
     ];
     let timestamp = Math.floor(Date.now() / 1000); // Start with the current timestamp
 
@@ -115,25 +114,6 @@ export const generateSimulatedRoute = (driverId, batchSize) => {
     return gpsBatches;
 };
 
-
 // Example usage: Generate 5 batches of simulated GPS data
 const batches = generateSimulatedRoute(1, 5);
 console.log(JSON.stringify(batches, null, 2)); // Log the generated batches in a readable format
-
-/*function startTracking() {
-    if (navigator.geolocation) {
-        navigator.geolocation.watchPosition(function(position) {
-            const locationData = {
-                Latitude: position.coords.latitude,
-                Longitude: position.coords.longitude,
-                Timestamp: Math.floor(Date.now() / 1000) // Converts milliseconds to seconds
-            };
-            sendLocationData(locationData);
-        }, function(error) {
-            console.error("Error retrieving location", error);
-        }, { enableHighAccuracy: true, maximumAge: 10000, timeout: 5000 });
-    } else {
-        alert("Geolocation is not supported by this browser.");
-    }
-}
-*/
