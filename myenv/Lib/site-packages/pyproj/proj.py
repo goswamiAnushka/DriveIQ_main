@@ -14,9 +14,10 @@ Calling a Proj class instance with the arguments lon, lat will
 convert lon/lat (in degrees) to x/y native map projection
 coordinates (in meters).
 """
+
 import re
 import warnings
-from typing import Any, Optional
+from typing import Any
 
 from pyproj._compat import cstrencode
 from pyproj._transformer import Factors
@@ -45,7 +46,7 @@ class Proj(Transformer):
     """
 
     def __init__(
-        self, projparams: Optional[Any] = None, preserve_units: bool = True, **kwargs
+        self, projparams: Any | None = None, preserve_units: bool = True, **kwargs
     ) -> None:
         """
         A Proj class instance is initialized with proj map projection
@@ -284,7 +285,7 @@ class Proj(Transformer):
         """
         return self.definition
 
-    def to_latlong_def(self) -> Optional[str]:
+    def to_latlong_def(self) -> str | None:
         """return the definition string of the geographic (lat/lon)
         coordinate version of the current projection"""
         return self.crs.geodetic_crs.to_proj4(4) if self.crs.geodetic_crs else None

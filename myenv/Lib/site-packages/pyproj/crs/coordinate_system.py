@@ -2,7 +2,6 @@
 This module is for building coordinate systems to be used when
 building a CRS.
 """
-from typing import Union
 
 from pyproj._crs import CoordinateSystem
 from pyproj.crs.enums import (
@@ -63,7 +62,7 @@ class Ellipsoidal2DCS(CoordinateSystem):
 
     def __new__(
         cls,
-        axis: Union[Ellipsoidal2DCSAxis, str] = Ellipsoidal2DCSAxis.LONGITUDE_LATITUDE,
+        axis: Ellipsoidal2DCSAxis | str = Ellipsoidal2DCSAxis.LONGITUDE_LATITUDE,
     ):
         """
         Parameters
@@ -134,9 +133,7 @@ class Ellipsoidal3DCS(CoordinateSystem):
 
     def __new__(
         cls,
-        axis: Union[
-            Ellipsoidal3DCSAxis, str
-        ] = Ellipsoidal3DCSAxis.LONGITUDE_LATITUDE_HEIGHT,
+        axis: Ellipsoidal3DCSAxis | str = Ellipsoidal3DCSAxis.LONGITUDE_LATITUDE_HEIGHT,
     ):
         """
         Parameters
@@ -282,7 +279,7 @@ class Cartesian2DCS(CoordinateSystem):
     """
 
     def __new__(
-        cls, axis: Union[Cartesian2DCSAxis, str] = Cartesian2DCSAxis.EASTING_NORTHING
+        cls, axis: Cartesian2DCSAxis | str = Cartesian2DCSAxis.EASTING_NORTHING
     ):
         """
         Parameters
@@ -365,7 +362,7 @@ class VerticalCS(CoordinateSystem):
     This generates an Vertical Coordinate System
     """
 
-    def __new__(cls, axis: Union[VerticalCSAxis, str] = VerticalCSAxis.GRAVITY_HEIGHT):
+    def __new__(cls, axis: VerticalCSAxis | str = VerticalCSAxis.GRAVITY_HEIGHT):
         """
         Parameters
         ----------

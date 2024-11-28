@@ -35,6 +35,20 @@ cdef extern from "proj.h" nogil:
     PJ *proj_create (PJ_CONTEXT *ctx, const char *definition)
     PJ *proj_normalize_for_visualization(PJ_CONTEXT *ctx, const PJ* obj)
 
+    ctypedef struct PJ_INFO:
+        int major               # Major release number
+        int minor               # Minor release number
+        int patch               # Patch level
+        const char *release     # Release info. Version + date
+        const char *version     # Full version number
+        const char *searchpath  # Paths where init and grid files are
+                                # looked for. Paths are separated by
+                                # semi-colons on Windows, and colons
+                                # on non-Windows platforms.
+        const char *const *paths
+        size_t path_count
+    PJ_INFO proj_info()
+
     ctypedef struct PJ_PROJ_INFO:
         const char  *id
         const char  *description
@@ -122,6 +136,7 @@ cdef extern from "proj.h" nogil:
         double* out_ymax,
         int densify_pts
     )
+    PJ* proj_trans_get_last_used_operation(PJ *P)
     ctypedef struct PJ_AREA
     PJ *proj_create_crs_to_crs_from_pj(
         PJ_CONTEXT *ctx,
@@ -546,3 +561,6 @@ cdef extern from "proj.h" nogil:
     )
     void proj_unit_list_destroy(PROJ_UNIT_INFO** list)
     const char *proj_context_get_url_endpoint(PJ_CONTEXT* ctx)
+
+    int proj_is_deprecated(const PJ *obj)
+    PJ_OBJ_LIST *proj_get_non_deprecated(PJ_CONTEXT *ctx, const PJ *obj)

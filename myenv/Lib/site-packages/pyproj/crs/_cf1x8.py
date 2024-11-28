@@ -5,6 +5,7 @@ a CRS to a CF-1.8 compliant projection.
 http://cfconventions.org/cf-conventions/cf-conventions.html#appendix-grid-mappings
 
 """
+
 import warnings
 
 from pyproj._crs import Datum, Ellipsoid, PrimeMeridian
@@ -232,9 +233,9 @@ def _oblique_mercator(cf_params):
     return HotineObliqueMercatorBConversion(
         latitude_projection_centre=cf_params["latitude_of_projection_origin"],
         longitude_projection_centre=cf_params["longitude_of_projection_origin"],
-        azimuth_initial_line=cf_params["azimuth_of_central_line"],
+        azimuth_projection_centre=cf_params["azimuth_of_central_line"],
         angle_from_rectified_to_skew_grid=0.0,
-        scale_factor_on_initial_line=cf_params.get(
+        scale_factor_projection_centre=cf_params.get(
             "scale_factor_at_projection_origin", 1.0
         ),
         easting_projection_centre=cf_params.get("false_easting", 0.0),
@@ -514,12 +515,20 @@ def _oblique_mercator__to_cf(conversion):
         warnings.warn(
             "angle from rectified to skew grid parameter lost in conversion to CF"
         )
+    try:
+        azimuth_of_central_line = params["azimuth_of_initial_line"]
+    except KeyError:
+        azimuth_of_central_line = params["azimuth_at_projection_centre"]
+    try:
+        scale_factor_at_projection_origin = params["scale_factor_on_initial_line"]
+    except KeyError:
+        scale_factor_at_projection_origin = params["scale_factor_at_projection_centre"]
     return {
         "grid_mapping_name": "oblique_mercator",
         "latitude_of_projection_origin": params["latitude_of_projection_centre"],
         "longitude_of_projection_origin": params["longitude_of_projection_centre"],
-        "azimuth_of_central_line": params["azimuth_of_initial_line"],
-        "scale_factor_at_projection_origin": params["scale_factor_on_initial_line"],
+        "azimuth_of_central_line": azimuth_of_central_line,
+        "scale_factor_at_projection_origin": scale_factor_at_projection_origin,
         "false_easting": params["easting_at_projection_centre"],
         "false_northing": params["northing_at_projection_centre"],
     }
@@ -658,6 +667,7 @@ def _pole_rotation_netcdf__to_cf(conversion):
 _INVERSE_GRID_MAPPING_NAME_MAP = {
     "albers_equal_area": _albers_conical_equal_area__to_cf,
     "modified_azimuthal_equidistant": _azimuthal_equidistant__to_cf,
+    "azimuthal_equidistant": _azimuthal_equidistant__to_cf,
     "geostationary_satellite_(sweep_x)": _geostationary__to_cf,
     "geostationary_satellite_(sweep_y)": _geostationary__to_cf,
     "lambert_azimuthal_equal_area": _lambert_azimuthal_equal_area__to_cf,

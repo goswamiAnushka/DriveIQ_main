@@ -1,4 +1,3 @@
-// src/pages/DriverPage/DriverPage.tsx
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ChatBot from '../../components/ChatBot/ChatBot';
@@ -21,25 +20,32 @@ const DriverPage: React.FC = () => {
   ]);
   const [currentSloganIndex, setCurrentSloganIndex] = useState(0);
 
-  // Fetch the driver's name from local storage
-  const driverName = localStorage.getItem('driver_name') ; // This should be the driver's name
+  // Fetch the driver's info from local storage
+  const driverName = localStorage.getItem('driver_name'); // Driver's name
+  const driverId = localStorage.getItem('driver_id'); // Driver's ID
+  const token = localStorage.getItem('token'); // Authentication token
+
+  const userInfo = {
+    name: driverName,
+    id: driverId,
+    token,
+  };
 
   // Check for authentication
   useEffect(() => {
-    const token = localStorage.getItem('token');
     if (!token) {
       navigate('/login'); // Redirect to login if not authenticated
     }
-  }, [navigate]);
+  }, [navigate, token]);
 
   // Typewriter effect for the welcome message
   useEffect(() => {
     if (driverName) {
-      const welcomeMessage = `Welcome to DriveIQ,  ${driverName}!   `; // Constructing the welcome message with driverName
+      const welcomeMessage = `Welcome to DriveIQ, ${driverName}!   `; // Constructing the welcome message with driverName
       let index = 0;
       const typeWriterInterval = setInterval(() => {
         if (index < welcomeMessage.length) {
-          setDisplayText(prev => prev + welcomeMessage[index]);
+          setDisplayText((prev) => prev + welcomeMessage[index]);
           index++;
         } else {
           clearInterval(typeWriterInterval);
@@ -118,7 +124,7 @@ const DriverPage: React.FC = () => {
         <FaComments size={40} color="#6200ea" />
       </div>
 
-      {showChatBot && <ChatBot />} {/* Show chatbot if toggled */}
+      {showChatBot && <ChatBot userInfo={userInfo} onLogout={handleLogout} />} {/* Passing props to ChatBot */}
     </div>
   );
 };

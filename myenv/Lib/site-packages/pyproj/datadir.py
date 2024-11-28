@@ -1,15 +1,15 @@
 """
 Module for managing the PROJ data directory.
 """
+
 # pylint: disable=global-statement
 import os
 import shutil
 import sys
 from pathlib import Path
-from typing import Union
 
-from pyproj._datadir import (  # noqa: F401  pylint: disable=unused-import
-    _global_context_set_data_dir,
+from pyproj._context import (  # noqa: F401  pylint: disable=unused-import
+    _set_context_data_dir,
     get_user_data_dir,
 )
 from pyproj.exceptions import DataDirError
@@ -18,13 +18,13 @@ _USER_PROJ_DATA = None
 _VALIDATED_PROJ_DATA = None
 
 
-def set_data_dir(proj_data_dir: Union[str, Path]) -> None:
+def set_data_dir(proj_data_dir: str | Path) -> None:
     """
     Set the data directory for PROJ to use.
 
     Parameters
     ----------
-    proj_data_dir: Union[str, Path]
+    proj_data_dir: str | Path
         The path to the PROJ data directory.
     """
     global _USER_PROJ_DATA
@@ -35,16 +35,16 @@ def set_data_dir(proj_data_dir: Union[str, Path]) -> None:
     # need to reset the global PROJ context
     # to prevent core dumping if the data directory
     # is not found.
-    _global_context_set_data_dir()
+    _set_context_data_dir()
 
 
-def append_data_dir(proj_data_dir: Union[str, Path]) -> None:
+def append_data_dir(proj_data_dir: str | Path) -> None:
     """
     Add an additional data directory for PROJ to use.
 
     Parameters
     ----------
-    proj_data_dir: Union[str, Path]
+    proj_data_dir: str | Path
         The path to the PROJ data directory.
     """
     set_data_dir(os.pathsep.join([get_data_dir(), str(proj_data_dir)]))

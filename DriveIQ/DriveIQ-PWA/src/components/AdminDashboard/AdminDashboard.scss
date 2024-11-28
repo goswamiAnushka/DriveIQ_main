@@ -1,175 +1,438 @@
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #0a1b2e; // Dark blue background
-    color: #d9e7ff; // Light blue-gray text
+    background: linear-gradient(135deg, #0a1b2e, #162c4a); /* Gradient from dark blue to deeper shade */
+    color: #d9e7ff; /* Light blue-gray text */
 }
 
 .admin-dashboard {
-    padding: 20px;
+    padding: 30px;
     max-width: 1200px;
     margin: 0 auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    background-color: #132a44; // Slightly lighter blue background
+    border-radius: 15px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4); /* Stronger shadow for more depth */
+    background: linear-gradient(135deg, #132a44, #1e3b61); /* Smooth gradient background */
+    transition: all 0.3s ease;
+}
+
+.admin-dashboard:hover {
+    box-shadow: 0 6px 40px rgba(0, 0, 0, 0.5); /* Hover effect for more depth */
 }
 
 h2 {
     text-align: center;
-    color: #a9c4ff; // Soft light blue for header
+    color: #a9c4ff; /* Soft light blue for header */
+    font-size: 2rem;
     margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
+/* Fetch Button */
 .fetch-drivers-btn {
     display: block;
-    margin: 0 auto 20px;
-    padding: 10px 20px;
+    margin: 0 auto 30px;
+    padding: 15px 25px;
     border: none;
-    border-radius: 5px;
-    background-color: #0073e6; // Primary blue
+    border-radius: 8px;
+    background-color: #0073e6; /* Primary blue */
     color: #ffffff;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-
-    &:hover {
-        background-color: #005bb5; // Darker blue on hover
-        transform: translateY(-2px);
-    }
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.fetch-drivers-btn:hover {
+    background-color: #005bb5;
+    transform: translateY(-4px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.fetch-drivers-btn:active {
+    transform: translateY(1px);
+    box-shadow: none;
+}
+
+/* Table */
 .drivers-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .drivers-table th,
 .drivers-table td {
-    padding: 12px;
+    padding: 15px;
     text-align: center;
-    border: 1px solid #1e4a6e; // Subtle blue-gray border
+    border: 1px solid #1e4a6e;
 }
 
 .drivers-table th {
-    background-color: #1c3b5b; // Darker blue for header
+    background-color: #1c3b5b;
     color: #a9c4ff;
+    font-weight: bold;
 }
 
 .drivers-table tr:nth-child(even) {
-    background-color: #17304e; // Dark blue for even rows
+    background-color: #1e3b6e;
 }
 
 .drivers-table tr:hover {
-    background-color: #1e4a6e; // Light blue hover effect
+    background-color: #1e4a6e;
+    transition: background-color 0.3s ease;
 }
 
+/* Action Button */
 .action-btn {
-    padding: 10px 15px;
+    padding: 12px 18px;
     border: none;
-    border-radius: 5px;
-    background-color: #3399ff; // Light blue button
+    border-radius: 8px;
+    background-color: #3399ff;
     color: #ffffff;
+    font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
-
-    &:hover {
-        background-color: #0073e6; // Darker light blue on hover
-        transform: translateY(-2px);
-    }
 }
 
+.action-btn:hover {
+    background-color: #0073e6;
+    transform: translateY(-3px);
+}
+
+.action-btn:active {
+    transform: translateY(1px);
+}
+
+/* Error Message */
 .error {
-    color: #ff4c4c; // Red color for error messages
+    color: #ff4c4c;
     text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 20px;
 }
 
+/* Modal */
 .modal {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.7); // Black overlay
+    background: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 .modal-content {
-    background: #1c3b5b; // Dark blue modal background
-    border-radius: 10px;
-    padding: 20px;
+    background: #1c3b5b;
+    border-radius: 12px;
+    padding: 30px;
     width: 90%;
-    max-width: 600px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    animation: fadeIn 0.3s ease-in-out; // Modal fade-in animation
-}
-
-.close {
-    float: right;
-    font-size: 24px;
-    cursor: pointer;
-    color: #d9e7ff;
-
-    &:hover {
-        color: #ff4c4c; // Change color on hover
-    }
+    max-width: 700px;
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.4s ease-out;
 }
 
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: scale(0.95);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: scale(1);
     }
 }
 
-// Chart styles
-.chart-container {
-    margin-top: 20px;
-    padding: 20px;
-    border-radius: 5px;
-    background-color: #2b4e6f; // Darker blue background for charts
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
-// Date picker styling
+.close {
+    font-size: 28px;
+    cursor: pointer;
+    color: #d9e7ff;
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: #ff4c4c;
+    }
+}
+
+/* Chart Container */
+.chart-container {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #2b4e6f;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Date Picker */
 .date-picker-container {
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .date-picker-input {
-    padding: 10px;
-    border-radius: 5px;
+    padding: 12px;
+    border-radius: 6px;
     border: 1px solid #1e4a6e;
-    background-color: #132a44; // Darker background for input
-    color: #d9e7ff; // Light text
-    margin-right: 10px;
+    background-color: #132a44;
+    color: #d9e7ff;
+    margin-right: 15px;
+    font-size: 16px;
     transition: border-color 0.3s ease;
 
     &:focus {
         outline: none;
-        border-color: #3399ff; // Highlighted border on focus
+        border-color: #3399ff;
     }
 }
 
 .date-picker-button {
-    padding: 10px 15px;
+    padding: 12px 18px;
     border: none;
-    border-radius: 5px;
-    background-color: #0073e6; // Blue button for date search
+    border-radius: 6px;
+    background-color: #0073e6;
     color: #ffffff;
+    font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
 
     &:hover {
-        background-color: #005bb5; // Darker on hover
-        transform: translateY(-2px);
+        background-color: #005bb5;
+        transform: translateY(-3px);
+    }
+
+    &:active {
+        transform: translateY(1px);
     }
 }
+
+/* Additional Utility Styles */
+.preformatted {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: 'Courier New', Courier, monospace;
+    color: #d9e7ff;
+    background-color: #2b4e6f;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+textarea {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #1e4a6e;
+    background-color: #132a44;
+    color: #d9e7ff;
+    width: 100%;
+    height: 150px;
+    resize: vertical;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+        outline: none;
+        border-color: #3399ff;
+    }
+}
+
+/* Media Queries for Responsiveness */
+
+/* Tablet Devices */
+@media (max-width: 768px) {
+    .admin-dashboard {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .fetch-drivers-btn {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+
+    .drivers-table th,
+    .drivers-table td {
+        padding: 10px;
+    }
+
+    .drivers-table th {
+        font-size: 14px;
+    }
+
+    .drivers-table td {
+        font-size: 12px;
+    }
+
+    .modal-content {
+        padding: 20px;
+    }
+
+    .chart-container {
+        padding: 15px;
+    }
+
+    .date-picker-container {
+        flex-direction: column;
+    }
+
+    .date-picker-input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .date-picker-button {
+        width: 100%;
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 480px) {
+    .admin-dashboard {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    .fetch-drivers-btn {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+
+    .drivers-table th,
+    .drivers-table td {
+        padding: 8px;
+    }
+
+    .drivers-table th {
+        font-size: 12px;
+    }
+
+    .drivers-table td {
+        font-size: 10px;
+    }
+
+    .modal-content {
+        padding: 15px;
+    }
+
+    .chart-container {
+        padding: 10px;
+    }
+
+    .date-picker-container {
+        flex-direction: column;
+    }
+
+    .date-picker-input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .date-picker-button {
+        width: 100%;
+    }
+}
+.admin-dashboard {
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden; // Prevent scrolling outside
+  
+      .modal-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        width: 80%;
+        max-height: 90vh; // Limit the height to fit within the viewport
+        overflow-y: auto; // Enable vertical scrolling
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        position: relative;
+  
+        .close {
+          position: absolute;
+          top: 10px;
+          right: 15px;
+          font-size: 24px;
+          cursor: pointer;
+        }
+  
+        pre {
+          background-color: #1b1919;
+          padding: 10px;
+          border-radius: 5px;
+          white-space: pre-wrap; // Preserve formatting
+          word-wrap: break-word;
+          max-height: 60vh; // Limit pre height inside modal
+          overflow-y: auto; // Enable scrolling for long text
+        }
+      }
+    }
+  
+    .gps-data-section {
+      margin-top: 20px;
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #0e0e0e;
+        font-size: 16px;
+        resize: none; // Disable resizing to keep layout consistent
+        max-height: 200px;
+        overflow-y: auto; // Add scrolling for large GPS data inputs
+      }
+    }
+  
+    .prediction-response {
+      margin-top: 20px;
+      pre {
+        background-color: #0a0000;
+        padding: 15px;
+        border-radius: 5px;
+        white-space: pre-wrap; // Make long JSON readable
+        word-wrap: break-word;
+        overflow-y: auto;
+        max-height: 300px; // Scroll when response is long
+      }
+    }
+  
+    .drivers-table {
+      overflow-x: auto; // Enable horizontal scroll if table is too wide
+      th, td {
+        padding: 10px;
+        text-align: left;
+        white-space: nowrap; // Prevent table items from wrapping
+      }
+    }
+  }
+  

@@ -4,10 +4,13 @@ import { Bar } from 'react-chartjs-2';
 import 'chart.js/auto';
 import Slider from 'react-rangeslider';
 import 'react-rangeslider/lib/index.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const AdminDashboard = () => {
     const [drivers, setDrivers] = useState([]);
     const [apiData, setApiData] = useState(null);
+    const [filteredData, setFilteredData] = useState(null);
     const [chartData, setChartData] = useState(null);
     const [selectedDriverId, setSelectedDriverId] = useState('');
     const [loading, setLoading] = useState(false);
@@ -15,9 +18,7 @@ const AdminDashboard = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [predictionResponse, setPredictionResponse] = useState('');
     const [gpsData, setGpsData] = useState('');
-    const [selectedDates, setSelectedDates] = useState({});
-    const [dailyDataSliderValue, setDailyDataSliderValue] = useState(0);
-    const [consolidatedDataSliderValue, setConsolidatedDataSliderValue] = useState(0);
+    const [selectedDate, setSelectedDate] = useState(null);
 
     const fetchDrivers = async () => {
         setLoading(true);
@@ -47,9 +48,9 @@ const AdminDashboard = () => {
             if (!response.ok) throw new Error('Failed to fetch daily data');
             const data = await response.json();
             setApiData(data);
+            setFilteredData(data.daily_data); // Initialize with full data
             setSelectedDriverId(driverId);
             setModalOpen(true);
-            prepareChartData(data.daily_data);
         } catch (err) {
             setError(err.message);
         } finally {
@@ -74,6 +75,30 @@ const AdminDashboard = () => {
         }
     };
 
+    const filterDataByDate = () => {
+        if (!apiData || !apiData.daily_data) return;
+
+        if (!selectedDate) {
+            setFilteredData(apiData.daily_data);
+            return;
+        }
+
+        const filtered = Object.entries(apiData.daily_data).reduce((acc, [date, entries]) => {
+            const entryDate = new Date(date).toDateString();
+            const selectedDateString = selectedDate.toDateString();
+            if (entryDate === selectedDateString) {
+                acc[date] = entries;
+            }
+            return acc;
+        }, {});
+
+        setFilteredData(filtered);
+    };
+
+    useEffect(() => {
+        filterDataByDate();
+    }, [selectedDate]);
+
     const prepareChartData = (dailyData) => {
         const dates = Object.keys(dailyData);
         const drivingScores = dates.map(date => dailyData[date][0]?.driving_score || 0);
@@ -87,10 +112,6 @@ const AdminDashboard = () => {
                 },
             ],
         });
-    };
-
-    const handleDateChange = (driverId, date) => {
-        setSelectedDates(prev => ({ ...prev, [driverId]: date }));
     };
 
     const prepareComparisonChart = (data) => {
@@ -111,6 +132,7 @@ const AdminDashboard = () => {
     const closeModal = () => {
         setModalOpen(false);
         setApiData(null);
+        setFilteredData(null);
         setChartData(null);
     };
 
@@ -203,6 +225,32 @@ const AdminDashboard = () => {
                     </tbody>
                 </table>
             )}
+            {modalOpen && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <span className="close" onClick={closeModal}>&times;</span>
+                        <h3>Data for Driver ID: {selectedDriverId}</h3>
+                        {apiData && apiData.average_driving_score ? (
+                            <div>
+                                <pre>{formatConsolidatedDataToText(apiData)}</pre>
+                                {chartData && <Bar data={chartData} options={{ responsive: true }} />}
+                            </div>
+                        ) : (
+                            <div>
+                                <div className="date-filter">
+                                    <label>Select Date:</label>
+                                    <DatePicker
+                                        selected={selectedDate}
+                                        onChange={(date) => setSelectedDate(date)}
+                                        dateFormat="yyyy-MM-dd"
+                                    />
+                                </div>
+                                <pre>{formatDailyDataToText(filteredData)}</pre>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            )}
             <div className="gps-data-section">
                 <h3>Input GPS Data (JSON format)</h3>
                 <textarea
@@ -221,24 +269,6 @@ const AdminDashboard = () => {
             )}
             {loading && <p>Loading...</p>}
             {error && <p className="error">{error}</p>}
-            {modalOpen && apiData && (
-                <div className="modal">
-                    <div className="modal-content">
-                        <span className="close" onClick={closeModal}>&times;</span>
-                        <h3>Data for Driver ID: {selectedDriverId}</h3>
-                        {apiData.average_driving_score ? (
-                            <div>
-                                <pre>{formatConsolidatedDataToText(apiData)}</pre>
-                                {chartData && <Bar data={chartData} options={{ responsive: true }} />}
-                            </div>
-                        ) : (
-                            <div>
-                                <pre>{formatDailyDataToText(apiData.daily_data)}</pre>
-                            </div>
-                        )}
-                    </div>
-                </div>
-            )}
         </div>
     );
 };
