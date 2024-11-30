@@ -3,15 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import ChatBot from '../../components/ChatBot/ChatBot';
 import { FaComments, FaArrowRight, FaSignOutAlt } from 'react-icons/fa'; // Importing icons
 import Slider from 'react-slick'; // Importing the slider component
+import Typical from 'react-typical'; // Importing Typical for typing effect
 import './DriverPage.scss';
-import drivingImage1 from '../../assets/driving.jpg'; // Ensure to have these images in your assets folder
+import drivingImage1 from '../../assets/driving.jpg';
 import drivingImage2 from '../../assets/driving2.jpg';
 import drivingImage3 from '../../assets/driving3.jpg';
 
 const DriverPage: React.FC = () => {
   const navigate = useNavigate();
   const [showChatBot, setShowChatBot] = useState(false);
-  const [displayText, setDisplayText] = useState("");
   const [slogans, setSlogans] = useState([
     "Pay as you drive, save as you go!",
     "Telematics tracking, tailored for your needs!",
@@ -21,9 +21,9 @@ const DriverPage: React.FC = () => {
   const [currentSloganIndex, setCurrentSloganIndex] = useState(0);
 
   // Fetch the driver's info from local storage
-  const driverName = localStorage.getItem('driver_name'); // Driver's name
-  const driverId = localStorage.getItem('driver_id'); // Driver's ID
-  const token = localStorage.getItem('token'); // Authentication token
+  const driverName = localStorage.getItem('driver_name') || "Driver";
+  const driverId = localStorage.getItem('driver_id') || "Unknown";
+  const token = localStorage.getItem('token');
 
   const userInfo = {
     name: driverName,
@@ -34,50 +34,32 @@ const DriverPage: React.FC = () => {
   // Check for authentication
   useEffect(() => {
     if (!token) {
-      navigate('/login'); // Redirect to login if not authenticated
+      navigate('/login');
     }
   }, [navigate, token]);
-
-  // Typewriter effect for the welcome message
-  useEffect(() => {
-    if (driverName) {
-      const welcomeMessage = `Welcome to DriveIQ, ${driverName}!   `; // Constructing the welcome message with driverName
-      let index = 0;
-      const typeWriterInterval = setInterval(() => {
-        if (index < welcomeMessage.length) {
-          setDisplayText((prev) => prev + welcomeMessage[index]);
-          index++;
-        } else {
-          clearInterval(typeWriterInterval);
-        }
-      }, 100); // Adjust typing speed here
-
-      return () => clearInterval(typeWriterInterval);
-    }
-  }, [driverName]);
 
   // Slogan rotation effect
   useEffect(() => {
     const sloganInterval = setInterval(() => {
       setCurrentSloganIndex((prevIndex) => (prevIndex + 1) % slogans.length);
-    }, 4000); // Change slogan every 4 seconds
+    }, 4000);
 
     return () => clearInterval(sloganInterval);
   }, [slogans.length]);
 
   const toggleChatBot = () => {
-    setShowChatBot((prev) => !prev); // Toggle chatbot visibility
+    setShowChatBot((prev) => !prev);
   };
 
   const handleNavigateToDashboard = () => {
-    navigate('/dashboard'); // Navigate to the Dashboard
+    navigate('/dashboard');
   };
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('driver_id');
     localStorage.removeItem('driver_name');
-    navigate('/login'); // Navigate back to login page after logout
+    navigate('/login');
   };
 
   // Slider settings
@@ -87,8 +69,8 @@ const DriverPage: React.FC = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true, // Enable auto play
-    autoplaySpeed: 3000, // Speed of auto play
+    autoplay: true,
+    autoplaySpeed: 3000,
   };
 
   return (
@@ -99,7 +81,18 @@ const DriverPage: React.FC = () => {
       </button>
 
       <div className="welcome-section">
-        <h2>{displayText}</h2>
+        <h2>
+          <Typical
+            steps={[
+              `Welcome to DriveIQ, ${driverName}!`,
+              2000, // Pause for 2 seconds
+              `Your Driver ID: ${driverId}`,
+              3000, // Pause for 3 seconds
+            ]}
+            loop={Infinity}
+            wrapper="span"
+          />
+        </h2>
         <p className="slogan-popup">{slogans[currentSloganIndex]}</p>
       </div>
 
@@ -124,7 +117,7 @@ const DriverPage: React.FC = () => {
         <FaComments size={40} color="#6200ea" />
       </div>
 
-      {showChatBot && <ChatBot userInfo={userInfo} onLogout={handleLogout} />} {/* Passing props to ChatBot */}
+      {showChatBot && <ChatBot userInfo={userInfo} onLogout={handleLogout} />}
     </div>
   );
 };
