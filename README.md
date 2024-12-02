@@ -8,9 +8,6 @@ DriveIQ/ ├── DriveIQ-backend/ # Flask REST API for data processing and int
 
 
 
-
----
-
 ## Features
 
 - **Dual Interfaces**: Separate dashboards for drivers and insurance admins.
@@ -23,8 +20,6 @@ DriveIQ/ ├── DriveIQ-backend/ # Flask REST API for data processing and int
 - **Secure Access**: JWT-based authentication.
 - **Real-Time Updates**: Socket.io for real-time event handling and a PWA for offline capabilities.
 
----
-
 ## Technology Stack
 
 - **Frontend**: React (Progressive Web App)
@@ -36,76 +31,77 @@ DriveIQ/ ├── DriveIQ-backend/ # Flask REST API for data processing and int
   - Google Geolocation API
   - OpenStreetMap API
 
----
-
 ## Installation
 
-### DriveIQ Full Setup Guide
+### Backend Setup (DriveIQ-backend)
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/yourusername/DriveIQ.git
+   cd DriveIQ/DriveIQ-backend/app
+Create a virtual environment and install dependencies:
 
-```bash
-# Clone the Repository
-git clone https://github.com/yourusername/DriveIQ.git
-cd DriveIQ
 
-# Backend Setup
-cd DriveIQ-backend/app
-
-# Create a virtual environment
-python -m venv myenv
-
-# Activate the virtual environment
-source myenv/bin/activate  # On Windows: myenv\Scripts\activate
-
-# Install dependencies
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r ../requirements.txt
+Run the backend server:
 
-# Run the backend server
+
 python server.py
+Machine Learning Model Setup (ml_model)
+Navigate to the ml_model directory:
 
-# Machine Learning Model Setup
 cd ../../ml_model
+Ensure required dependencies are installed:
 
-# Install dependencies
+
 pip install -r requirements.txt
+Frontend Setup (DriveIQ-PWA)
+Navigate to the DriveIQ-PWA directory:
 
-# Frontend Setup
+
 cd ../DriveIQ-PWA
+Install dependencies and run the application:
 
-# Install dependencies
+
 npm install
-
-# Run the application
 npm start
+
+## Usage
+
+### Backend Integration with Machine Learning Models
+- The backend processes GPS data and interacts with the machine learning models to evaluate driving behavior in real-time, daily, and multi-day contexts.
+- Admins can upload JSON/CSV files for bulk trip analysis.
+
+# API Documentation
+
+## Admin API Endpoints
+
+### 1. **Get All Drivers**
+- **URL**: `/admin/drivers`
+- **Method**: `GET`
+- **Response**:
+  - `200 OK`: Returns a list of all drivers.
 
 ---
 
-Usage
+### 2. **Get Driver's Daily Data**
+- **URL**: `/admin/driver/all_daily_data/<int:driver_id>`
+- **Method**: `GET`
+- **Response**:
+  - `200 OK`: Aggregated daily data for the given driver.
 
-Backend Integration with Machine Learning Models
-The backend processes GPS data and interacts with the machine learning models to evaluate driving behavior in real-time, daily, and multi-day contexts.
-Admins can upload JSON/CSV files for bulk trip analysis.
-API Documentation
-Admin API Endpoints
+---
 
-1. Get All Drivers
-URL: /admin/drivers
-Method: GET
-Response:
-200 OK: Returns a list of all drivers.
+### 3. **Get Bulk Consolidated Data**
+- **URL**: `/admin/driver/bulk_consolidated_data/<int:driver_id>`
+- **Method**: `GET`
+- **Response**:
+  - `200 OK`: Consolidated data for the given driver, including driving scores and model-predicted results.
 
-2. Get Driver's Daily Data
-URL: /admin/driver/all_daily_data/<int:driver_id>
-Method: GET
-Response:
-200 OK: Aggregated daily data for the given driver.
-3. Get Bulk Consolidated Data
-URL: /admin/driver/bulk_consolidated_data/<int:driver_id>
-Method: GET
-Response:
-200 OK: Consolidated data for the given driver, including driving scores and model-predicted results.
+---
 
-
-4. **Process GPS Data**
+### 4. **Process GPS Data**
 - **URL**: `/admin/process_gps_data`
 - **Method**: `POST`
 - **Request Body**:
@@ -122,26 +118,25 @@ Response:
     ...
   ]
 
-Driver API Endpoints
+# Driver API Endpoints
 
-1. Register Driver
-URL: /register
+## 1. **Register Driver**
+- **URL**: `/register`
+- **Method**: `POST`
+- **Request Body** (Form Data):
+  - `name`: Driver's name
+  - `email`: Driver's email
+  - `password`: Driver's password
+  - `accepted_terms`: Boolean value indicating if terms were accepted
+  - `identity_proof`: Driver's identity proof file (PNG, JPG, JPEG, GIF)
 
-Method: POST
+- **Response**:
+  - `201 Created`: Successful registration with a JWT token.
+  - `400 Bad Request`: Missing or invalid data.
 
-Request Body (Form Data):
+---
 
-name: Driver's name
-email: Driver's email
-password: Driver's password
-accepted_terms: Boolean value indicating if terms were accepted
-identity_proof: Driver's identity proof file (PNG, JPG, JPEG, GIF)
-Response:
-
-201 Created: Successful registration with a JWT token.
-400 Bad Request: Missing or invalid data.
-
-2. **Login Driver**
+## 2. **Login Driver**
 - **URL**: `/login`
 - **Method**: `POST`
 - **Request Body**:
@@ -247,7 +242,6 @@ Contributions are welcome! Feel free to open issues or submit pull requests for 
 ## License
 
 This project is licensed under the MIT License.
-
 
 
 
