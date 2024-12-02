@@ -190,7 +190,7 @@ npm start
 ## Screenshots
 
 ### 1. **Homepage**  
-![Homepage](SCREENSHOTS\driveiq home.png)
+![Homepage](SCREENSHOTS/driveiq%20home.png)
 
 ---
 
