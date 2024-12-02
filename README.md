@@ -67,23 +67,31 @@ Install dependencies and run the application:
 npm install
 npm start
 
-Usage
-Backend Integration with Machine Learning Models
-The backend processes GPS data and interacts with the machine learning models to evaluate driving behavior in real-time, daily, and multi-day contexts.
-Admins can upload JSON/CSV files for bulk trip analysis.
-API Endpoints
-POST /api/gps-data: Submit real-time GPS data for analysis.
-GET /api/driver-score: Retrieve daily driving scores and categories.
-POST /api/upload-json: Bulk upload for trip data analysis.
-Future Enhancements
-PWA Optimization: Faster response times and offline support.
-Real-Time Notifications: Using Socket.io for event-driven updates.
-Contributing
+## Usage
+
+### Backend Integration with Machine Learning Models
+- The backend processes GPS data and interacts with the machine learning models to evaluate driving behavior in real-time, daily, and multi-day contexts.
+- Admins can upload JSON/CSV files for bulk trip analysis.
+
+### API Endpoints
+- `POST /api/gps-data`: Submit real-time GPS data for analysis.
+- `GET /api/driver-score`: Retrieve daily driving scores and categories.
+- `POST /api/upload-json`: Bulk upload for trip data analysis.
+
+## Future Enhancements
+
+- **PWA Optimization**: Faster response times and offline support.
+- **Real-Time Notifications**: Using Socket.io for event-driven updates.
+
+## Contributing
+
 Contributions are welcome! Feel free to open issues or submit pull requests for enhancements.
 
-License
+## License
+
 This project is licensed under the MIT License.
 
 
 
-Feel free to replace the GitHub link with your actual repository link! Let me know if you need m
+
+
