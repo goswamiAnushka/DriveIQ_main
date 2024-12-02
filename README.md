@@ -221,7 +221,7 @@ npm start
 ---
 
 ### 7. **Driver Data Overview with ChatBot**  
-![Driver Data Overview](SCREENSHOTS/DATE_WISE_DATA.png)
+![Driver Data Overview with ChatBot](SCREENSHOTS/DATE_WISE_DATA.png)
 
 ---
 
