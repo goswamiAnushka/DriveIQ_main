@@ -8,6 +8,9 @@ DriveIQ/ ├── DriveIQ-backend/ # Flask REST API for data processing and int
 
 
 
+
+---
+
 ## Features
 
 - **Dual Interfaces**: Separate dashboards for drivers and insurance admins.
@@ -20,6 +23,8 @@ DriveIQ/ ├── DriveIQ-backend/ # Flask REST API for data processing and int
 - **Secure Access**: JWT-based authentication.
 - **Real-Time Updates**: Socket.io for real-time event handling and a PWA for offline capabilities.
 
+---
+
 ## Technology Stack
 
 - **Frontend**: React (Progressive Web App)
@@ -31,9 +36,11 @@ DriveIQ/ ├── DriveIQ-backend/ # Flask REST API for data processing and int
   - Google Geolocation API
   - OpenStreetMap API
 
+---
+
 ## Installation
 
-# DriveIQ Full Setup Guide
+### DriveIQ Full Setup Guide
 
 ```bash
 # Clone the Repository
@@ -70,8 +77,9 @@ npm install
 # Run the application
 npm start
 
+---
 
-### Usage
+## Usage
 
 ### Backend Integration with Machine Learning Models
 - The backend processes GPS data and interacts with the machine learning models to evaluate driving behavior in real-time, daily, and multi-day contexts.
