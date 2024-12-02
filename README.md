@@ -195,37 +195,40 @@ npm start
 ---
 
 ### 2. **Login Page**  
-![Login Page](link_to_login_page_screenshot)
+![Login Page](SCREENSHOTS/driveiq login.png)
 
 ---
 
 ### 3. **Driver Page**  
-![Driver Page](link_to_driver_page_screenshot)
+![Driver Page](SCREENSHOTS/driver page.png)
 
 ---
 
 ### 4. **Driver Dashboard with Map & Graphs**  
-![Driver Dashboard](link_to_driver_dashboard_screenshot)
+![Driver Dashboard](SCREENSHOTS/MAP.png)
 
 ---
 
 ### 5. **Batch Data Processing & Daily Scores**  
-![Batch Data Processing](link_to_batch_data_screenshot)
+![Batch Data Processing](SCREENSHOTS/GRAPH FLUCTIATIONS.png)
+![Batch Data Processing](SCREENSHOTS/BATCH PRPCESS.png)
+
+
 
 ---
 
 ### 6. **Admin Dashboard**  
-![Admin Dashboard](link_to_admin_dashboard_screenshot)
+![Admin Dashboard](SCREENSHOTS/ADMIN DASHBOARD.png)
 
 ---
 
 ### 7. **Driver Data Overview**  
-![Driver Data Overview](link_to_driver_data_overview_screenshot)
+![Driver Data Overview](SCREENSHOTS/DATE WISE DATA.png)
 
 ---
 
 ### 8. **Comparison of Consolidated Metrics and ML Predicted Scores**  
-![Comparison Metrics](link_to_comparison_metrics_screenshot)
+![Comparison Metrics](SCREENSHOTS/SCORE.png)
 
 
 ## Future Enhancements
