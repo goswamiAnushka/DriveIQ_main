@@ -33,38 +33,43 @@ DriveIQ/ ├── DriveIQ-backend/ # Flask REST API for data processing and int
 
 ## Installation
 
-### Backend Setup (DriveIQ-backend)
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/yourusername/DriveIQ.git
-   cd DriveIQ/DriveIQ-backend/app
-Create a virtual environment and install dependencies:
+# DriveIQ Full Setup Guide
 
+```bash
+# Clone the Repository
+git clone https://github.com/yourusername/DriveIQ.git
+cd DriveIQ
+
+# Backend Setup
+cd DriveIQ-backend/app
+
+# Create a virtual environment
 python -m venv myenv
+
+# Activate the virtual environment
 source myenv/bin/activate  # On Windows: myenv\Scripts\activate
+
+# Install dependencies
 pip install -r ../requirements.txt
 
-
-
+# Run the backend server
 python server.py
-Machine Learning Model Setup (ml_model)
-Navigate to the ml_model directory:
 
+# Machine Learning Model Setup
 cd ../../ml_model
-Ensure required dependencies are installed:
 
-
+# Install dependencies
 pip install -r requirements.txt
-Frontend Setup (DriveIQ-PWA)
-Navigate to the DriveIQ-PWA directory:
 
-
+# Frontend Setup
 cd ../DriveIQ-PWA
-Install dependencies and run the application:
 
-
+# Install dependencies
 npm install
+
+# Run the application
 npm start
+
 
 ## Usage
 
