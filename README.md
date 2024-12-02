@@ -73,10 +73,120 @@ npm start
 - The backend processes GPS data and interacts with the machine learning models to evaluate driving behavior in real-time, daily, and multi-day contexts.
 - Admins can upload JSON/CSV files for bulk trip analysis.
 
-### API Endpoints
-- `POST /api/gps-data`: Submit real-time GPS data for analysis.
-- `GET /api/driver-score`: Retrieve daily driving scores and categories.
-- `POST /api/upload-json`: Bulk upload for trip data analysis.
+# API Documentation
+
+## Admin API Endpoints
+
+### 1. **Get All Drivers**
+- **URL**: `/admin/drivers`
+- **Method**: `GET`
+- **Response**:
+  - `200 OK`: Returns a list of all drivers.
+
+---
+
+### 2. **Get Driver's Daily Data**
+- **URL**: `/admin/driver/all_daily_data/<int:driver_id>`
+- **Method**: `GET`
+- **Response**:
+  - `200 OK`: Aggregated daily data for the given driver.
+
+---
+
+### 3. **Get Bulk Consolidated Data**
+- **URL**: `/admin/driver/bulk_consolidated_data/<int:driver_id>`
+- **Method**: `GET`
+- **Response**:
+  - `200 OK`: Consolidated data for the given driver, including driving scores and model-predicted results.
+
+---
+
+### 4. **Process GPS Data**
+- **URL**: `/admin/process_gps_data`
+- **Method**: `POST`
+- **Request Body**:
+  ```json
+  [
+    {
+      "Latitude": 12.34,
+      "Longitude": 56.78,
+      "Speed": 40.0,
+      "Acceleration": 2.1,
+      "Timestamp": "2024-12-01T12:00:00Z",
+      "HeadingChange": 15.0
+    },
+    ...
+  ]
+
+# Driver API Endpoints
+
+## 1. **Register Driver**
+- **URL**: `/register`
+- **Method**: `POST`
+- **Request Body** (Form Data):
+  - `name`: Driver's name
+  - `email`: Driver's email
+  - `password`: Driver's password
+  - `accepted_terms`: Boolean value indicating if terms were accepted
+  - `identity_proof`: Driver's identity proof file (PNG, JPG, JPEG, GIF)
+
+- **Response**:
+  - `201 Created`: Successful registration with a JWT token.
+  - `400 Bad Request`: Missing or invalid data.
+
+---
+
+## 2. **Login Driver**
+- **URL**: `/login`
+- **Method**: `POST`
+- **Request Body**:
+  ```json
+  {
+    "email": "driver_email",
+    "password": "driver_password"
+  }
+
+## 3. **Record Telematics Data**
+- **URL**: `/record-telematics`
+- **Method**: `POST`
+- **Authorization**: JWT Token required
+- **Request Body**:
+  ```json
+  {
+    "gps_data": [
+      {
+        "Latitude": 12.34,
+        "Longitude": 56.78,
+        "Speed": 40.0,
+        "Acceleration": 2.1,
+        "Timestamp": "2024-12-01T12:00:00Z",
+        "HeadingChange": 15.0
+      },
+      ...
+    ],
+    "driver_id": 1
+  }
+
+## 4. **Unregister Driver**
+- **URL**: `/unregister`
+- **Method**: `POST`
+- **Request Body**:
+  ```json
+  {
+    "email": "driver_email",
+    "password": "driver_password"
+  }
+
+## 5. **Process Daily Data**
+- **URL**: `/process-daily-data`
+- **Method**: `POST`
+- **Authorization**: JWT Token required
+- **Request Body**:
+  ```json
+  {
+    "driver_id": 1
+  }
+
 
 ## Future Enhancements
 
