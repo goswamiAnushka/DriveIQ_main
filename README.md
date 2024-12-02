@@ -40,11 +40,10 @@ DriveIQ/ ├── DriveIQ-backend/ # Flask REST API for data processing and int
    cd DriveIQ/DriveIQ-backend/app
 Create a virtual environment and install dependencies:
 
-
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+python -m venv myenv
+source myenv/bin/activate  # On Windows: myenv\Scripts\activate
 pip install -r ../requirements.txt
-Run the backend server:
+
 
 
 python server.py
