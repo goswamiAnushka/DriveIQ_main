@@ -205,7 +205,7 @@ npm start
 ---
 
 ### 4. **Driver Dashboard with Map & Graphs**  
-![Driver Dashboard](SCREENSHOTS/map.png)
+![Driver Dashboard](SCREENSHOTS/MAP.png)
 
 ---
 
@@ -216,17 +216,17 @@ npm start
 ---
 
 ### 6. **Admin Dashboard**  
-![Admin Dashboard](SCREENSHOTS/admin_dashboard.png)
+![Admin Dashboard](SCREENSHOTS/ADMIN_DASHBOARD.png)
 
 ---
 
 ### 7. **Driver Data Overview**  
-![Driver Data Overview](SCREENSHOTS/date_wise_data.png)
+![Driver Data Overview](SCREENSHOTS/DATE_WISE_DATA.png)
 
 ---
 
 ### 8. **Comparison of Consolidated Metrics and ML Predicted Scores**  
-![Comparison Metrics](SCREENSHOTS/score.png)
+![Comparison Metrics](SCREENSHOTS/SCORE.png)
 
 
 
