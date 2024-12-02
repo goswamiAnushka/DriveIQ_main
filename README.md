@@ -199,7 +199,7 @@ npm start
 
 ---
 
-### 3. **Driver Page**  
+### 3. **Driver Page with ChatBot for support and queries**  
 ![Driver Page](SCREENSHOTS/driver_page.png)
 
 ---
@@ -220,8 +220,8 @@ npm start
 
 ---
 
-### 7. **Driver Data Overview with ChatBot**  
-![Driver Data Overview with ChatBot](SCREENSHOTS/DATE_WISE_DATA.png)
+### 7. **Driver Data Overview**  
+![Driver Data Overview](SCREENSHOTS/DATE_WISE_DATA.png)
 
 ---
 
